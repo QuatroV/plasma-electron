@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="radialGradientId" r="100%" cx="9%" cy="124%">
+      <stop offset="0" stop-color="#00ffa6"/>
+      <stop offset="1" stop-color="#27e2ff"/>
+    </radialGradient>
+    <clipPath id="shape">
+      <path fill="currentColor" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z"/>
+    </clipPath>
+    <clipPath id="clip-2">
+      <path fill="currentColor" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z"/>
+    </clipPath>
+    <clipPath id="clip-1">
+      <path fill="currentColor" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z"/>
+    </clipPath>
+    <radialGradient id="gradient-1" r="100%" cx="0.907" cy="0.552" gradientTransform="matrix(-0.388172, 0.771862, -1.490103, -0.525663, 1.394156, 0.472046)">
+      <stop offset="0" style="stop-color: rgb(2, 91, 216);"/>
+      <stop offset="1" style="stop-color: rgb(0, 123, 189);"/>
+    </radialGradient>
+    <clipPath id="clip-3">
+      <path fill="currentColor" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z"/>
+    </clipPath>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="528.977" cy="497.578" r="337.084" id="gradient-0" gradientTransform="matrix(0.915985, 0.108019, -0.117115, 0.993118, 102.716056, -53.715564)">
+      <stop offset="0" style="stop-color: rgba(2, 91, 216, 1)"/>
+      <stop offset="1" style="stop-color: rgba(1, 48, 115, 1)"/>
+    </radialGradient>
+    <clipPath id="clip-4">
+      <path fill="currentColor" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z"/>
+    </clipPath>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="403.393" cy="315.758" r="337.084" id="gradient-2" gradientTransform="matrix(0.915985, 0.108019, -0.117115, 0.993118, 102.716056, -53.715564)">
+      <stop offset="0" style="stop-color: rgb(141, 188, 255);"/>
+      <stop offset="1" style="stop-color: rgb(79, 132, 206);"/>
+    </radialGradient>
+    <radialGradient id="gradient-4" r="100%" cx="0.635" cy="0.481">
+      <stop offset="0" style="stop-color: rgb(0, 102, 255);"/>
+      <stop offset="1" stop-color="#27e2ff"/>
+    </radialGradient>
+    <clipPath id="clip-5">
+      <path fill="currentColor" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z"/>
+    </clipPath>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="715.956" cy="222.382" r="337.084" id="gradient-3" gradientTransform="matrix(-0.938168, 2.159724, -2.056216, -0.893204, 1783.110408, -1206.821098)">
+      <stop offset="0" style="stop-color: rgb(174, 255, 253);"/>
+      <stop offset="1" style="stop-color: rgb(3, 104, 192);"/>
+    </radialGradient>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="793.543" cy="148.033" r="396.047" id="gradient-5">
+      <stop offset="0" style="stop-color: rgb(0, 123, 255);"/>
+      <stop offset="1" style="stop-color: rgb(46, 41, 141);"/>
+    </radialGradient>
+    <radialGradient id="gradient-6" r="100%" cx="0.445" cy="0.511" gradientTransform="matrix(0.392242, 0.179408, -0.215138, 0.371381, 0.405365, 0.24997)" spreadMethod="pad">
+      <stop offset="0" style="stop-color: rgb(0, 238, 255);"/>
+      <stop offset="1" style="stop-color: rgba(39, 226, 255, 0);"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#gradient-6)" d="M 1148.833 853.859 C 1006.247 1093.088 768 1228.421 434.091 1259.846 C 100.178 1291.273 -99.145 1171.655 -163.893 900.997 C -228.638 630.335 -219.909 372.499 -137.704 127.496 C -55.499 -117.511 154.741 -253.484 493.014 -280.42 C 831.29 -307.36 1060.81 -184.858 1181.566 87.087 C 1302.326 359.032 1291.413 614.618 1148.833 853.859 Z" style="stroke-width: 10px; paint-order: fill;"/>
+  <path fill="url(#gradient-4)" d="M 849.328 701.272 C 772.567 838.963 644.304 916.853 464.541 934.941 C 284.777 953.029 177.468 884.183 142.612 728.405 C 107.755 572.625 112.455 424.228 156.711 283.215 C 200.967 142.201 314.15 63.942 496.264 48.438 C 678.377 32.934 801.94 103.44 866.952 259.959 C 931.964 416.476 926.089 563.58 849.328 701.272 Z" style="stroke: url(#gradient-5); stroke-width: 10px;"/>
+  <g clip-path="url(#shape)" transform="matrix(1, 0, 0, 1, -19.386106, 3.877211)">
+    <path fill="url(#radialGradientId)" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z"/>
+  </g>
+  <svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" style="" transform="matrix(0.7247888029747926, 0, 0, 0.7611340274315057, 731.020299310132, 177.5099405944894)">
+    <defs>
+      <clipPath id="clip-2">
+        <path fill="currentColor" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z"/>
+      </clipPath>
+    </defs>
+    <g clip-path="url(#clip-2)"/>
+  </svg>
+  <g clip-path="url(#clip-1)" transform="matrix(0.5725, 0, 0, 0.5725, 153.435532, 323.684418)" style="">
+    <path fill="url(#gradient-1)" d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z" style="stroke: url(#gradient-3); stroke-width: 22.7074px;"/>
+  </g>
+  <g clip-path="url(#clip-3)" transform="matrix(0.31945, 0, 0, 0.31945, 279.524384, 424.038422)" style="">
+    <path d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z" style="fill: url(#gradient-0);"/>
+  </g>
+  <g clip-path="url(#clip-4)" transform="matrix(0.192077, 0, 0, 0.178358, 361.519653, 460.813293)" style="">
+    <path d="M813,686.5Q715,873,485.5,897.5Q256,922,211.5,711Q167,500,223.5,309Q280,118,512.5,97Q745,76,828,288Q911,500,813,686.5Z" style="fill: url(#gradient-2);"/>
+  </g>
+  <g clip-path="url(#clip-5)" transform="matrix(0.156257, 0, 0, 0.141116, 420.183777, 130.517868)" style=""/>
+</svg>

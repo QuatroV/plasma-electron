@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import MenuElement from "./MenuElement";
 import MenuFileElement from "./MenuFileElement";
 import MenuRunElement from "./MenuRunElement";
-import WindowOperationsIcons from "./WindowOperationsIcons";
+import WindowOperationsIcons from "../../windowOperations/components/WindowOperationsIcons";
 
 const MenuBar = () => {
   return (

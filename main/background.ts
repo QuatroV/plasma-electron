@@ -26,12 +26,20 @@ if (isProd) {
     await mainWindow.loadURL(`http://localhost:${port}/home`);
     mainWindow.webContents.openDevTools();
   }
+
+  ipcMain.handle("quit-app", () => {
+    app.quit();
+  });
+
+  ipcMain.handle("max-window", () => {
+    mainWindow.maximize();
+  });
+
+  ipcMain.handle("min-window", () => {
+    mainWindow.minimize();
+  });
 })();
 
 app.on("window-all-closed", () => {
-  app.quit();
-});
-
-ipcMain.handle("quit-app", () => {
   app.quit();
 });

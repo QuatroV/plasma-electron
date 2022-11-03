@@ -1,5 +1,6 @@
 import Editor, { loader } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
+import { useEffect, useRef } from "react";
 const path = require("path");
 
 function ensureFirstBackSlash(str) {
@@ -23,15 +24,30 @@ loader.config({
 });
 
 export default function MonacoEditorComponent({ value }: { value: string }) {
+  const editorRef = useRef(null);
+
+  const handleMount = (editor) => {
+    editorRef.current = editor;
+    console.log(editorRef.current);
+  };
+
+  const handleResize = () => {
+    console.log(editorRef?.current);
+    if (!editorRef?.current) return;
+    editorRef.current.layout();
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <>
-      <Editor
-        height="100%"
-        width="100%"
-        language="javascript"
-        theme="vs-dark"
-        value={value}
-      />
-    </>
+    <Editor
+      height="calc(100vh - 72px)"
+      language="javascript"
+      theme="vs-dark"
+      value={value}
+      onMount={handleMount}
+    />
   );
 }

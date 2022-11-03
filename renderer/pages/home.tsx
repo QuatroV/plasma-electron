@@ -10,6 +10,14 @@ import { get } from "idb-keyval";
 import { clear } from "idb-keyval";
 import Image from "next/image";
 import MonacoEditorComponent from "../features/editor/components/Editor";
+import dynamic from "next/dynamic";
+
+const Terminal = dynamic(
+  () => import("../features/terminal/components/Terminal"),
+  {
+    ssr: false,
+  }
+);
 
 const Home: NextPage = () => {
   const currentFile = useFileStore((state) => state.currentFile);
@@ -54,6 +62,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <MonacoEditorComponent value={editorText} />
+          <Terminal />
         </div>
       </main>
     </div>
