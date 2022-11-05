@@ -1,6 +1,7 @@
-import { app, ipcMain, ipcRenderer } from "electron";
+import { app, dialog, ipcMain } from "electron";
 import serve from "electron-serve";
 import { createWindow } from "./helpers";
+import fs from "fs";
 
 const isProd: boolean = process.env.NODE_ENV === "production";
 
@@ -37,6 +38,26 @@ if (isProd) {
 
   ipcMain.handle("min-window", () => {
     mainWindow.minimize();
+  });
+
+  ipcMain.handle("app:on-dir-open", async (event, file) => {
+    const dialogReturnValue = await dialog.showOpenDialog({
+      properties: ["openDirectory"],
+    });
+    const rootPath = dialogReturnValue.filePaths[0];
+
+    const files = await fs.promises.readdir(rootPath);
+    return { files: files, rootPath };
+  });
+
+  ipcMain.handle("app:on-file-open", async (event, arg) => {
+    const files = await fs.promises.readFile(arg);
+    return files;
+  });
+
+  ipcMain.handle("app:on-file-save", async (event, arg) => {
+    const { filename, data } = arg;
+    await fs.promises.writeFile(filename, data);
   });
 })();
 

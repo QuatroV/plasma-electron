@@ -2,7 +2,7 @@
 
 ## Usage
 
-### Create an App
+### Create a Nextron App
 
 ```
 # with npx

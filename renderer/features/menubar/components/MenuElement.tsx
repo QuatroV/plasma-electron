@@ -5,10 +5,6 @@ interface MenuElementProps {
   options?: (() => JSX.Element)[];
 }
 
-const Option = () => {
-  return <div>Some Option</div>;
-};
-
 const MenuElement = ({ title, options }: MenuElementProps) => {
   return (
     <Dropdown options={options || []}>

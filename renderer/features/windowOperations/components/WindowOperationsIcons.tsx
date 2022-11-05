@@ -10,7 +10,7 @@ const WindowOperationsIcons = () => {
         height="24"
         width="24"
         alt=""
-        className="hover:bg-gray-400 rounded"
+        className="hover:bg-gray-400 rounded cursor-pointer"
       />
       <Image
         onClick={() => ipcRenderer.invoke("max-window")}
@@ -18,7 +18,7 @@ const WindowOperationsIcons = () => {
         height="24"
         width="24"
         alt=""
-        className="hover:bg-gray-400 rounded"
+        className="hover:bg-gray-400 rounded cursor-pointer"
       />
       <Image
         onClick={() => ipcRenderer.invoke("quit-app")}
@@ -26,7 +26,7 @@ const WindowOperationsIcons = () => {
         height="24"
         width="24"
         alt=""
-        className="hover:bg-gray-400 rounded"
+        className="hover:bg-gray-400 rounded cursor-pointer"
       />
     </div>
   );

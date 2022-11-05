@@ -1,22 +1,25 @@
-import { get, set } from "idb-keyval";
+import { ipcRenderer } from "electron";
 import useFileStore, { FileInfo } from "../../../stores/fileStore";
-import { verifyPermission } from "../../../utils/fileUtils";
 
 export default function useLoadFile() {
   const setCurrentFile = useFileStore((state) => state.setCurrentFile);
   const currentFile = useFileStore((state) => state.currentFile);
+  const setCurrentFileContent = useFileStore(
+    (state) => state.setCurrentFileContent
+  );
+  const rootPath = useFileStore((state) => state.rootPath);
+  const addOpenedFile = useFileStore((state) => state.addOpenedFile);
 
   const openFile = async (_e: any, file: FileInfo) => {
     if (file.kind === "file" && currentFile !== file.name) {
-      const fileHandle = (await get(file.name)) as FileSystemFileHandle;
-      if (!verifyPermission(fileHandle, true)) {
-        console.log("No access to the file system");
-        return;
-      }
-      const fileContent = await fileHandle.getFile();
-      const contents = await fileContent.text();
-      set("currentFile", contents);
-      setCurrentFile(fileContent.name);
+      const fileContent = await ipcRenderer.invoke(
+        "app:on-file-open",
+        `${rootPath}/${file.name}`
+      );
+
+      setCurrentFile(file.name);
+      setCurrentFileContent(fileContent);
+      addOpenedFile(file.name);
     }
   };
 

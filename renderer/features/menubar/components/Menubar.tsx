@@ -7,7 +7,7 @@ import WindowOperationsIcons from "../../windowOperations/components/WindowOpera
 
 const MenuBar = () => {
   return (
-    <nav className="flex w-100   bg-gray-200 sticky top-0 z-10 draggable justify-between ">
+    <nav className="flex w-100 bg-gray-100 sticky top-0 z-10 draggable justify-between ">
       <div className="flex gap-2 p-1">
         <Logo />
         <MenuFileElement />

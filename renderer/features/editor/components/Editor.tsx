@@ -1,6 +1,7 @@
 import Editor, { loader } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import useFileStore from "../../../stores/fileStore";
 const path = require("path");
 
 function ensureFirstBackSlash(str) {
@@ -23,7 +24,7 @@ loader.config({
   },
 });
 
-export default function MonacoEditorComponent({ value }: { value: string }) {
+export default function MonacoEditorComponent() {
   const editorRef = useRef(null);
 
   const handleMount = (editor) => {
@@ -41,13 +42,35 @@ export default function MonacoEditorComponent({ value }: { value: string }) {
     window.addEventListener("resize", handleResize);
   }, []);
 
+  const currentFileContent = useFileStore((state) => state.currentFileContent);
+  const setCurrentFileContent = useFileStore(
+    (state) => state.setCurrentFileContent
+  );
+  const [editorText, setEditorText] = useState("");
+
+  useEffect(() => {
+    const handleFileChange = async () => {
+      const currentFileString =
+        typeof currentFileContent === "string"
+          ? currentFileContent
+          : new TextDecoder().decode(currentFileContent);
+      setEditorText(currentFileString);
+    };
+    handleFileChange();
+  }, [currentFileContent]);
+
+  const handleChange = (value: string) => {
+    console.log(value);
+    setCurrentFileContent(new TextEncoder().encode(value));
+  };
+
   return (
     <Editor
       height="calc(100vh - 72px)"
       language="javascript"
-      theme="vs-dark"
-      value={value}
+      value={editorText}
       onMount={handleMount}
+      onChange={handleChange}
     />
   );
 }

@@ -7,17 +7,25 @@ export type FileInfo = {
 };
 
 interface FileState {
+  rootPath: string;
   currentFile: string;
+  currentFileContent: Uint8Array;
   files: FileInfo[];
-  openedFiles: FileInfo[];
+  openedFiles: string[];
   setFiles: (files: FileInfo[]) => void;
   addFile: (file: FileInfo) => void;
   setCurrentFile: (currentFile: string) => void;
-  addOpenedFile: (openedFile: FileInfo) => void;
+  addOpenedFile: (openedFile: string) => void;
+  clearAllFiles: () => void;
+  setCurrentFileContent: (fileContent: Uint8Array) => void;
+  setRootPath: (rootPath: string) => void;
+  clearOpenedFiles: () => void;
 }
 
 const useFileStore = create<FileState>()(
   devtools((set) => ({
+    rootPath: "",
+    currentFileContent: new Uint8Array(),
     openedFiles: [],
     currentFile: "",
     files: [],
@@ -30,8 +38,20 @@ const useFileStore = create<FileState>()(
     setCurrentFile: (currentFile: string) => {
       set({ currentFile });
     },
-    addOpenedFile: (openedFile: FileInfo) => {
-      set((state) => ({ files: state.openedFiles.concat(openedFile) }));
+    addOpenedFile: (openedFile: string) => {
+      set((state) => ({ openedFiles: state.openedFiles.concat(openedFile) }));
+    },
+    clearAllFiles: () => {
+      set(() => ({ files: [] }));
+    },
+    setCurrentFileContent: (fileContent) => {
+      set(() => ({ currentFileContent: fileContent }));
+    },
+    setRootPath: (rootPath) => {
+      set(() => ({ rootPath }));
+    },
+    clearOpenedFiles: () => {
+      set(() => ({ openedFiles: [] }));
     },
   }))
 );
