@@ -1,14 +1,17 @@
 import Image from "next/image";
-import useFileStore, { FileInfo } from "../../../stores/fileStore";
+import useFileStore from "../../../stores/fileStore";
 import useLoadFile from "../hooks/useLoadFile";
 
 const Explorer = () => {
   const files = useFileStore((state) => state.files);
+  const projectName = useFileStore((state) => state.projectName);
   const { currentFile, openFile } = useLoadFile();
 
   return (
     <aside className=" w-48 min-w-[12rem]">
-      <div className="bg-gray-200 p-1 font-semibold text-sm">Explorer</div>
+      <div className="bg-gray-200 p-1 font-semibold text-sm">
+        {projectName || "Explorer"}
+      </div>
       <div className=" shadow-inner overflow-y-auto h-[calc(100vh-68px)] pt-1 mb-1 bg-gray-200">
         {files.map((file, idx) => (
           <div

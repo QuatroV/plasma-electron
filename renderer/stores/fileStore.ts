@@ -8,6 +8,7 @@ export type FileInfo = {
 
 interface FileState {
   rootPath: string;
+  projectName: string;
   currentFile: string;
   currentFileContent: Uint8Array;
   files: FileInfo[];
@@ -20,10 +21,12 @@ interface FileState {
   setCurrentFileContent: (fileContent: Uint8Array) => void;
   setRootPath: (rootPath: string) => void;
   clearOpenedFiles: () => void;
+  setProjectName: (projectName: string) => void;
 }
 
 const useFileStore = create<FileState>()(
   devtools((set) => ({
+    projectName: "",
     rootPath: "",
     currentFileContent: new Uint8Array(),
     openedFiles: [],
@@ -52,6 +55,9 @@ const useFileStore = create<FileState>()(
     },
     clearOpenedFiles: () => {
       set(() => ({ openedFiles: [] }));
+    },
+    setProjectName: (projectName) => {
+      set(() => ({ projectName }));
     },
   }))
 );

@@ -22,7 +22,7 @@ const Dropdown = ({ children, options }: DropdownProps) => {
         >
           {options.map((el, idx) => (
             <div
-              className=" rounded cursor-pointer hover:bg-gray-200 pl-2 pr-2 pt-1 pb-1"
+              className=" rounded cursor-pointer hover:bg-gray-200 pl-2 pr-2 pt-1 pb-1 active:shadow-inner"
               key={idx}
             >
               {el()}

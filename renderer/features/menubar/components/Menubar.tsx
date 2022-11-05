@@ -4,6 +4,7 @@ import MenuElement from "./MenuElement";
 import MenuFileElement from "./MenuFileElement";
 import MenuRunElement from "./MenuRunElement";
 import WindowOperationsIcons from "../../windowOperations/components/WindowOperationsIcons";
+import WindowName from "./WindowName";
 
 const MenuBar = () => {
   return (
@@ -16,6 +17,7 @@ const MenuBar = () => {
         <MenuElement title="Terminal" />
         <MenuRunElement />
       </div>
+      <WindowName />
       <WindowOperationsIcons />
     </nav>
   );
