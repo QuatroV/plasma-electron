@@ -23,12 +23,17 @@ export default function useOpenDirectory(callback?: () => void) {
     setRootPath(rootPath);
     setProjectName(getLastDirFromPath(rootPath));
 
-    files.forEach((filename) => {
-      const extensionRegExp = /(?:\.([^.]+))?$/;
-      const extension = extensionRegExp.exec(filename)[1];
+    const parsedFiles = JSON.parse(files);
+
+    parsedFiles.forEach((fileInfo) => {
+      const { name, items, path, nestingLevel, kind } = fileInfo;
+
       addFile({
-        name: filename,
-        kind: extension === undefined ? "directory" : "file",
+        path,
+        name,
+        items,
+        kind,
+        visible: nestingLevel === 0,
       });
     });
 

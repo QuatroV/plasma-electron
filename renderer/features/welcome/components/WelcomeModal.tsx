@@ -1,35 +1,44 @@
-import dynamic from "next/dynamic";
 import WindowOperationsIcons from "../../windowOperations/components/WindowOperationsIcons";
 import useWelcomeModalStore from "../stores/modalStore";
 import ButtonsContainer from "./ButtonsContainer";
+import CreateProjectContainer from "./CreateProjectContainer";
 import Logo from "./Logo";
+
+const STAGES = {
+  welcome: <ButtonsContainer />,
+  createProject: <CreateProjectContainer />,
+};
 
 const WelcomeModal = () => {
   const isOpen = useWelcomeModalStore((state) => state.isOpen);
+  const stage = useWelcomeModalStore((state) => state.stage);
+
   return (
     <div
-      className={`flex justify-center items-center h-screen z-20 fixed w-screen bg-[url('/welcome/low-poly-grid-haikei.png')] bg-contain bg-center backdrop-blur-sm ${
+      className={`fixed z-20 flex h-screen w-screen items-center justify-center bg-[url('/welcome/low-poly-grid-haikei.png')] bg-contain bg-center backdrop-blur-sm ${
         !isOpen && "hidden"
       }`}
     >
       <div>
         <div>
-          <div className="flex justify-center flex-row items-center">
+          <div className="flex flex-row items-center justify-center">
             <Logo />
-            <h1 className="text-white font-extrabold text-6xl flex justify-center">
+            <h1 className="flex justify-center text-6xl font-extrabold text-white">
               PL
-              <span className=" text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+              <span className=" bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                 ASM
               </span>
               A
             </h1>
           </div>
 
-          <ButtonsContainer />
+          <div className=" m-4 flex flex-col gap-4 rounded-xl border-2 border-white bg-white bg-opacity-80 p-4 backdrop-blur-md backdrop-filter transition-all md:w-[600px] md:flex-row">
+            {STAGES[stage]}
+          </div>
         </div>
       </div>
 
-      <div className="absolute top-0 right-0 bg-white bg-opacity-80 backdrop-filter backdrop-blur-md m-2 p-2 rounded ">
+      <div className="absolute top-0 right-0 m-2 rounded bg-white bg-opacity-80 p-2 backdrop-blur-md backdrop-filter ">
         <WindowOperationsIcons />
       </div>
     </div>

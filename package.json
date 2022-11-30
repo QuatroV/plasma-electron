@@ -10,12 +10,18 @@
     "build": "nextron build",
     "postinstall": "electron-builder install-app-deps"
   },
+  "build": {
+    "extraResources": [
+      "./extraResources/**"
+    ]
+  },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",
     "@types/wicg-file-system-access": "^2020.9.5",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
     "idb-keyval": "^6.2.0",
+    "immer": "^9.0.16",
     "monaco-editor": "^0.34.1",
     "next": "12.3.1",
     "next-pwa": "^5.6.0",
@@ -37,6 +43,8 @@
     "next": "^12.2.5",
     "nextron": "^8.2.0",
     "postcss": "^8.4.13",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "^3.1.8",

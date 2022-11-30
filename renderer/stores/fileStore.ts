@@ -1,10 +1,17 @@
 import create from "zustand";
 import { devtools } from "zustand/middleware";
+import produce, { current } from "immer";
+import { searchTree } from "../utils/treeSearch";
 
 export type FileInfo = {
+  path: string;
   name: string;
   kind: "directory" | "file";
+  items: FileInfo[] | null;
+  visible: boolean;
 };
+
+export type FileInfoWithoutNesting = Omit<FileInfo, "items">;
 
 interface FileState {
   rootPath: string;
@@ -12,16 +19,19 @@ interface FileState {
   currentFile: string;
   currentFileContent: Uint8Array;
   files: FileInfo[];
-  openedFiles: string[];
+  openedFiles: FileInfoWithoutNesting[];
   setFiles: (files: FileInfo[]) => void;
   addFile: (file: FileInfo) => void;
   setCurrentFile: (currentFile: string) => void;
-  addOpenedFile: (openedFile: string) => void;
+  addOpenedFile: (openedFile: FileInfoWithoutNesting) => void;
+  removeOpenedFile: (openedFile: FileInfoWithoutNesting) => void;
   clearAllFiles: () => void;
   setCurrentFileContent: (fileContent: Uint8Array) => void;
   setRootPath: (rootPath: string) => void;
   clearOpenedFiles: () => void;
   setProjectName: (projectName: string) => void;
+  openSubdir: (path: string) => void;
+  closeSubdir: (path: string) => void;
 }
 
 const useFileStore = create<FileState>()(
@@ -32,6 +42,7 @@ const useFileStore = create<FileState>()(
     openedFiles: [],
     currentFile: "",
     files: [],
+    visibleFiles: [],
     setFiles: (files: FileInfo[]) => {
       set({ files });
     },
@@ -41,11 +52,24 @@ const useFileStore = create<FileState>()(
     setCurrentFile: (currentFile: string) => {
       set({ currentFile });
     },
-    addOpenedFile: (openedFile: string) => {
+    addOpenedFile: (openedFile: FileInfoWithoutNesting) => {
       set((state) => ({ openedFiles: state.openedFiles.concat(openedFile) }));
     },
+    removeOpenedFile: (openedFile: FileInfoWithoutNesting) => {
+      set((state) => {
+        const updatedOpenedFiles = state.openedFiles.filter(
+          (file) => file.path !== openedFile.path
+        );
+        return {
+          openedFiles: updatedOpenedFiles,
+          currentFile: updatedOpenedFiles.length
+            ? updatedOpenedFiles.at(-1).name
+            : undefined,
+        };
+      });
+    },
     clearAllFiles: () => {
-      set(() => ({ files: [] }));
+      set(() => ({ files: [], visibleFiles: [] }));
     },
     setCurrentFileContent: (fileContent) => {
       set(() => ({ currentFileContent: fileContent }));
@@ -58,6 +82,38 @@ const useFileStore = create<FileState>()(
     },
     setProjectName: (projectName) => {
       set(() => ({ projectName }));
+    },
+    openSubdir: (path) => {
+      set(
+        produce((state) => {
+          // OPTIMIZE by prasinf paths instead of tree search
+          const subdir = searchTree(
+            { path: "", items: state.files },
+            path,
+            "path",
+            "items"
+          );
+          subdir.items.forEach((item) => {
+            item.visible = true;
+          });
+        })
+      );
+    },
+    closeSubdir: (path) => {
+      set(
+        produce((state) => {
+          // OPTIMIZE by prasinf paths instead of tree search
+          const subdir = searchTree(
+            { path: "", items: state.files },
+            path,
+            "path",
+            "items"
+          );
+          subdir.items.forEach((item) => {
+            item.visible = false;
+          });
+        })
+      );
     },
   }))
 );

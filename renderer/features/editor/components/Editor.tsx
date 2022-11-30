@@ -29,11 +29,9 @@ export default function MonacoEditorComponent() {
 
   const handleMount = (editor) => {
     editorRef.current = editor;
-    console.log(editorRef.current);
   };
 
   const handleResize = () => {
-    console.log(editorRef?.current);
     if (!editorRef?.current) return;
     editorRef.current.layout();
   };
@@ -60,7 +58,6 @@ export default function MonacoEditorComponent() {
   }, [currentFileContent]);
 
   const handleChange = (value: string) => {
-    console.log(value);
     setCurrentFileContent(new TextEncoder().encode(value));
   };
 

@@ -3,14 +3,14 @@ import { ipcRenderer } from "electron";
 
 const WindowOperationsIcons = () => {
   return (
-    <div className="flex items-center non-draggable">
+    <div className="non-draggable flex min-w-max items-center">
       <Image
         onClick={() => ipcRenderer.invoke("min-window")}
         src="/menubar/minimize_FILL0_wght400_GRAD0_opsz48.svg"
         height="24"
         width="24"
         alt=""
-        className="hover:bg-gray-400 rounded cursor-pointer"
+        className="cursor-pointer rounded hover:bg-gray-400"
       />
       <Image
         onClick={() => ipcRenderer.invoke("max-window")}
@@ -18,7 +18,7 @@ const WindowOperationsIcons = () => {
         height="24"
         width="24"
         alt=""
-        className="hover:bg-gray-400 rounded cursor-pointer"
+        className="cursor-pointer rounded hover:bg-gray-400"
       />
       <Image
         onClick={() => ipcRenderer.invoke("quit-app")}
@@ -26,7 +26,7 @@ const WindowOperationsIcons = () => {
         height="24"
         width="24"
         alt=""
-        className="hover:bg-gray-400 rounded cursor-pointer"
+        className="cursor-pointer rounded hover:bg-gray-400"
       />
     </div>
   );
