@@ -18,10 +18,10 @@ const Terminal = dynamic(
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-gray-400">
+    <div className="overflow-hidden bg-gray-400">
       <WelcomeModal />
       <MenuBar />
-      <main className="flex w-full h-[calc(100vh-40px)]">
+      <main className="flex h-[calc(100vh-40px)] w-full">
         <Explorer />
         <div className="z-0 flex-1">
           <Tabs />

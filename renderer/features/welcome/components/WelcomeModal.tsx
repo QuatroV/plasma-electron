@@ -1,8 +1,9 @@
 import WindowOperationsIcons from "../../windowOperations/components/WindowOperationsIcons";
-import useWelcomeModalStore from "../stores/modalStore";
+import useWelcomeModalStore from "../../../stores/modalStore";
 import ButtonsContainer from "./ButtonsContainer";
 import CreateProjectContainer from "./CreateProjectContainer";
 import Logo from "./Logo";
+import useFileStore from "../../../stores/fileStore";
 
 const STAGES = {
   welcome: <ButtonsContainer />,
@@ -12,12 +13,15 @@ const STAGES = {
 const WelcomeModal = () => {
   const isOpen = useWelcomeModalStore((state) => state.isOpen);
   const stage = useWelcomeModalStore((state) => state.stage);
+  const rootPath = useFileStore((state) => state.rootPath);
 
   return (
     <div
-      className={`fixed z-20 flex h-screen w-screen items-center justify-center bg-[url('/welcome/low-poly-grid-haikei.png')] bg-contain bg-center backdrop-blur-sm ${
-        !isOpen && "hidden"
-      }`}
+      className={`fixed z-20 flex h-screen w-screen items-center justify-center ${
+        rootPath
+          ? "bg-black bg-opacity-30"
+          : "bg-[url('/welcome/low-poly-grid-haikei.png')]"
+      } bg-contain bg-center backdrop-blur-sm ${!isOpen && "hidden"}`}
     >
       <div>
         <div>

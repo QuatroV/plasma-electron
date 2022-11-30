@@ -4,6 +4,10 @@ import { createWindow } from "./helpers";
 import fs from "fs";
 import { spawn } from "child_process";
 import FileTree from "./helpers/FileTree";
+import os from "os";
+const pty = require("node-pty");
+
+const shell = os.platform() === "win32" ? "powershell.exe" : "bash";
 
 const isProd: boolean = process.env.NODE_ENV === "production";
 
@@ -39,6 +43,20 @@ if (isProd) {
     await mainWindow.loadURL(`http://localhost:${port}/home`);
     mainWindow.webContents.openDevTools();
   }
+
+  const ptyProcess = pty.spawn(shell, [], {
+    name: "xterm-color",
+    cols: 80,
+    rows: 6,
+    cwd: process.env.HOME,
+    env: process.env,
+  });
+
+  ptyProcess.onData((data) =>
+    mainWindow.webContents.send("terminal:get-data", data)
+  );
+
+  ipcMain.on("terminal:send-data", (event, data) => ptyProcess.write(data));
 
   ipcMain.handle("quit-app", () => {
     app.quit();

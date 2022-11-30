@@ -1,4 +1,4 @@
-import useWelcomeModalStore from "../stores/modalStore";
+import useWelcomeModalStore from "../../../stores/modalStore";
 import MainButton from "./MainButton";
 import OpenExistingProjectButton from "./OpenExistingProjectButton";
 

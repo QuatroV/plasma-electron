@@ -5,6 +5,7 @@ import MenuFileElement from "./MenuFileElement";
 import MenuRunElement from "./MenuRunElement";
 import WindowOperationsIcons from "../../windowOperations/components/WindowOperationsIcons";
 import WindowName from "./WindowName";
+import MenuProjectElement from "./MenuProjectElement";
 
 const MenuBar = () => {
   return (
@@ -13,6 +14,7 @@ const MenuBar = () => {
         <Logo />
         <MenuFileElement />
         <MenuElement title="Edit" />
+        <MenuProjectElement />
         <MenuElement title="Selection" />
         <MenuElement title="Terminal" />
         <MenuRunElement />

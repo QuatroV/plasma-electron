@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
-import useWelcomeModalStore from "../stores/modalStore";
+import useFileStore from "../../../stores/fileStore";
+import useWelcomeModalStore from "../../../stores/modalStore";
 
 const CreateProjectContainer = () => {
   const setStage = useWelcomeModalStore((state) => state.setStage);
+  const setIsOpen = useWelcomeModalStore((state) => state.setIsOpen);
+  const rootPath = useFileStore((state) => state.rootPath);
 
   const [userInput, setUserInput] = useState<string>();
   const [projectName, setProjectName] = useState<string>();
@@ -37,7 +40,7 @@ const CreateProjectContainer = () => {
             alt="Icon"
             height="32"
             width="32"
-            onClick={() => setStage("welcome")}
+            onClick={() => (rootPath ? setIsOpen(false) : setStage("welcome"))}
           />
         </div>
         <div className="animate-slow-appear">
