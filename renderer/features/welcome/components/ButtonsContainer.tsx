@@ -1,9 +1,20 @@
+import { useEffect, useState } from "react";
 import useWelcomeModalStore from "../../../stores/modalStore";
 import MainButton from "./MainButton";
 import OpenExistingProjectButton from "./OpenExistingProjectButton";
 
 const ButtonsContainer = () => {
   const setStage = useWelcomeModalStore((state) => state.setStage);
+  const [recentProjects, setRecentProjects] =
+    useState<{ name: string; path: string }[]>();
+
+  useEffect(() => {
+    console.log(localStorage.getItem("recentProjects"));
+    setRecentProjects(
+      JSON.parse(localStorage.getItem("recentProjects") || "[]")
+    );
+  }, []);
+
   return (
     <div className="flex w-full animate-slow-appear flex-row gap-3">
       <div className="w-2/3">
@@ -37,16 +48,21 @@ const ButtonsContainer = () => {
           Recent projects
         </div>
         <ul className=" flex-2 w-full">
-          <li
-            className={`flex w-full cursor-pointer flex-row items-center gap-2 rounded text-gray-900 hover:underline active:font-bold`}
-          >
-            HelloWorld.asm
-          </li>
-          <li
-            className={`flex w-full cursor-pointer flex-row items-center gap-2 rounded text-gray-900 hover:underline active:font-bold`}
-          >
-            Lab2.asm
-          </li>
+          {recentProjects &&
+            recentProjects.map((fileInfo, idx) => (
+              <li
+                key={idx}
+                className={`flex w-full cursor-pointer flex-col items-start overflow-hidden hover:underline active:font-bold`}
+              >
+                <div className="text-gray-900">{fileInfo.name}</div>
+                <div
+                  title={fileInfo.path}
+                  className=" w-full overflow-hidden text-ellipsis whitespace-nowrap text-xs font-light text-gray-500"
+                >
+                  {fileInfo.path}
+                </div>
+              </li>
+            ))}
         </ul>
       </div>
     </div>

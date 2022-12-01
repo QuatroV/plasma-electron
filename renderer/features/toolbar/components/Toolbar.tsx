@@ -1,7 +1,8 @@
 import Image from "next/image";
+import useSaveFile from "../../../hooks/useSaveFile";
 
 const Toolbar = () => {
-  console.log("dsfdsfdfds");
+  const { saveFile } = useSaveFile();
   return (
     <div className="flex items-center justify-start gap-2 bg-gray-100 pr-2 pl-2 pb-1">
       <div className="flex flex-row gap-1 rounded border border-dotted border-gray-300 bg-opacity-70 p-1">
@@ -23,17 +24,18 @@ const Toolbar = () => {
         />
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Save file"
           width="20"
           height="20"
           alt="Create"
           src="/toolbar/save_FILL0_wght400_GRAD0_opsz48.svg"
+          onClick={() => saveFile()}
         />
       </div>
       <div className="flex flex-row gap-1 rounded border border-dotted border-gray-300 bg-opacity-70 p-1">
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Undo"
           width="20"
           height="20"
           alt="Create"
@@ -41,7 +43,7 @@ const Toolbar = () => {
         />
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Redo"
           width="20"
           height="20"
           alt="Create"
@@ -49,7 +51,7 @@ const Toolbar = () => {
         />
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Cut"
           width="20"
           height="20"
           alt="Create"
@@ -57,7 +59,7 @@ const Toolbar = () => {
         />
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Copy"
           width="20"
           height="20"
           alt="Create"
@@ -65,7 +67,7 @@ const Toolbar = () => {
         />
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Paste"
           width="20"
           height="20"
           alt="Create"
@@ -75,7 +77,7 @@ const Toolbar = () => {
       <div className="flex flex-row gap-1 rounded border border-dotted border-gray-300 bg-opacity-70 p-1">
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Build"
           width="20"
           height="20"
           alt="Create"
@@ -83,7 +85,7 @@ const Toolbar = () => {
         />
         <Image
           className=" cursor-pointer rounded stroke-white after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Run"
           width="20"
           height="20"
           alt="Create"
@@ -91,7 +93,7 @@ const Toolbar = () => {
         />
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
-          title="Open file"
+          title="Stop"
           width="20"
           height="20"
           alt="Create"

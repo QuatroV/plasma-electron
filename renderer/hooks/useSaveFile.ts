@@ -1,5 +1,5 @@
 import { ipcRenderer } from "electron";
-import useFileStore from "../../../stores/fileStore";
+import useFileStore from "../stores/fileStore";
 
 const useSaveFile = () => {
   const rootPath = useFileStore((state) => state.rootPath);

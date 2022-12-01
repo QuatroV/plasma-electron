@@ -7,6 +7,26 @@ const getLastDirFromPath = (path: string) => {
   return last;
 };
 
+const saveToRecentProjects = (projectInfo: { name: string; path: string }) => {
+  const recentProjects = JSON.parse(
+    localStorage.getItem("recentProjects") || "[]"
+  );
+
+  if (
+    !recentProjects.find(
+      ({ path: existingPath }) => existingPath === projectInfo.path
+    )
+  ) {
+    recentProjects.push(projectInfo);
+  }
+
+  if (recentProjects.length > 5) {
+    recentProjects.shift();
+  }
+
+  localStorage.setItem("recentProjects", JSON.stringify(recentProjects));
+};
+
 export default function useOpenDirectory(callback?: () => void) {
   const addFile = useFileStore((state) => state.addFile);
   const setRootPath = useFileStore((state) => state.setRootPath);
@@ -17,11 +37,15 @@ export default function useOpenDirectory(callback?: () => void) {
   const openDir = async () => {
     const { files, rootPath } = await ipcRenderer.invoke("app:on-dir-open");
 
+    const projectName = getLastDirFromPath(rootPath);
+
+    saveToRecentProjects({ name: projectName, path: rootPath });
+
     clearAllFiles();
     clearOpenedFiles();
 
     setRootPath(rootPath);
-    setProjectName(getLastDirFromPath(rootPath));
+    setProjectName(projectName);
 
     const parsedFiles = JSON.parse(files);
 
