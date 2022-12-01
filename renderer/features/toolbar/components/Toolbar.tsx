@@ -3,7 +3,7 @@ import Image from "next/image";
 const Toolbar = () => {
   console.log("dsfdsfdfds");
   return (
-    <div className="flex items-center justify-start gap-2 bg-gradient-to-b from-gray-100 to-gray-200 pr-2 pl-2 pb-1">
+    <div className="flex items-center justify-start gap-2 bg-gray-100 pr-2 pl-2 pb-1">
       <div className="flex flex-row gap-1 rounded border border-dotted border-gray-300 bg-opacity-70 p-1">
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"

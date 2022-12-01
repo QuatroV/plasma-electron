@@ -80,8 +80,8 @@ const Explorer = () => {
   };
 
   return (
-    <aside className=" w-48 min-w-[12rem]  bg-gray-200 font-rubik">
-      <div className=" min-h-[37.8px] bg-gradient-to-tr from-white to-gray-200 p-2 text-sm font-semibold">
+    <aside className=" w-48 min-w-[12rem] bg-gray-200 font-rubik">
+      <div className=" min-h-[36.8px] bg-gray-300 p-2 text-sm font-semibold">
         {projectName || "Explorer"}
       </div>
       <div className=" scrollbar relative mb-1 h-[calc(100vh-68px)] overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">

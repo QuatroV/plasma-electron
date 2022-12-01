@@ -18,7 +18,7 @@ const Tabs = () => {
   };
 
   return (
-    <div className="scrollbar flex w-full max-w-full overflow-auto whitespace-nowrap bg-gray-200 font-rubik">
+    <div className="scrollbar flex w-full max-w-full overflow-auto whitespace-nowrap bg-gradient-to-b from-gray-100 to-gray-200 font-rubik">
       {openedFiles.map((openedFile, idx) => (
         <Tab
           key={idx}

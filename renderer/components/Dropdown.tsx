@@ -13,11 +13,11 @@ const Dropdown = (
   ref
 ) => {
   return (
-    <div ref={ref}>
+    <div className="flex flex-col justify-center" ref={ref}>
       <div onClick={onClick}>{children}</div>
       {dropdownOpen && (
         <div
-          className={`absolute z-10 flex flex-col gap-1 rounded-b bg-white p-1 font-rubik shadow-lg`}
+          className={`absolute top-3/4 z-10 flex flex-col gap-1 rounded-b rounded-tr bg-white p-1 font-rubik shadow-lg`}
         >
           {options.map((el, idx) => (
             <div

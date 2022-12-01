@@ -1,5 +1,4 @@
 import Editor, { loader } from "@monaco-editor/react";
-import * as monaco from "monaco-editor";
 import { useEffect, useRef, useState } from "react";
 import useFileStore from "../../../stores/fileStore";
 const path = require("path");
