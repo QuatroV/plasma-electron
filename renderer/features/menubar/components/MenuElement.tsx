@@ -22,8 +22,8 @@ const MenuElement = ({ title, options }: MenuElementProps) => {
       dropdownOpen={dropdownOpen}
     >
       <div
-        className={`cursor-pointer hover:bg-white p-1 active:outline-emerald-400 active:outline outline-1 active:scale-105 transition-all non-draggable ${
-          dropdownOpen ? "bg-white rounded-t-lg shadow-lg" : "rounded-lg"
+        className={`non-draggable cursor-pointer p-1 font-rubik outline-1 transition-all hover:bg-white active:scale-105 active:outline active:outline-emerald-400 ${
+          dropdownOpen ? "rounded-t-lg bg-white shadow-lg" : "rounded-lg"
         }`}
       >
         {title}

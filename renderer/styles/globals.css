@@ -9,4 +9,32 @@
     .non-draggable {
         -webkit-app-region: none
     }
-  }
+}
+
+@layer utilities {
+    .scrollbar::-webkit-scrollbar {
+      position: absolute;
+      width: 10px;
+      height: 20px;
+    }
+  
+    .scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  
+    .scrollbar::-webkit-scrollbar-thumb {
+      background: #9b9b9b80;
+    }
+  
+    .scrollbar::-webkit-scrollbar-thumb:active {
+      background: #808080;
+      width: 20px;
+    }
+}
+
+@layer base { 
+    @font-face {
+        font-family: 'Rubik';
+        src: url('../public/Mulish-VariableFont_wght.ttf') format("truetype");
+    }
+}

@@ -8,6 +8,7 @@ import Image from "next/image";
 import MonacoEditorComponent from "../features/editor/components/Editor";
 import dynamic from "next/dynamic";
 import Tabs from "../features/tabs/components/Tabs";
+import Toolbar from "../features/toolbar/components/Toolbar";
 
 const Terminal = dynamic(
   () => import("../features/terminal/components/Terminal"),
@@ -18,9 +19,10 @@ const Terminal = dynamic(
 
 const Home: NextPage = () => {
   return (
-    <div className="overflow-hidden bg-gray-400">
+    <div className=" bg-gray-400">
       <WelcomeModal />
       <MenuBar />
+      <Toolbar />
       <main className="flex h-[calc(100vh-40px)] w-full">
         <Explorer />
         <div className="z-0 flex-1">

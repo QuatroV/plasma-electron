@@ -62,12 +62,21 @@ export default function MonacoEditorComponent() {
   };
 
   return (
-    <Editor
-      height="calc(100vh - 72px)"
-      language="javascript"
-      value={editorText}
-      onMount={handleMount}
-      onChange={handleChange}
-    />
+    <div className="relative">
+      {!currentFileContent && (
+        <div className="absolute z-10 flex h-full w-full items-center justify-center bg-black bg-opacity-25 font-rubik backdrop-blur-sm">
+          <div className=" text-3xl font-extrabold text-white">
+            Open a file to see content here
+          </div>
+        </div>
+      )}
+      <Editor
+        height="calc(100vh - 72px)"
+        language="javascript"
+        value={editorText}
+        onMount={handleMount}
+        onChange={handleChange}
+      />
+    </div>
   );
 }

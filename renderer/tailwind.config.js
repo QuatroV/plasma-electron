@@ -23,6 +23,9 @@ module.exports = {
         "slow-appear-no-opacity": 'slow-appear-no-opacity 0.25s linear',
       },
     },
+    fontFamily: {
+      rubik: ['Rubik', 'sans-serif']
+    }
   },
   plugins: [],
 };

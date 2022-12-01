@@ -17,11 +17,11 @@ const Dropdown = (
       <div onClick={onClick}>{children}</div>
       {dropdownOpen && (
         <div
-          className={`absolute z-10 bg-white p-1 rounded-b flex flex-col gap-1 shadow-lg`}
+          className={`absolute z-10 flex flex-col gap-1 rounded-b bg-white p-1 font-rubik shadow-lg`}
         >
           {options.map((el, idx) => (
             <div
-              className=" rounded cursor-pointer hover:bg-gray-200 pl-2 pr-2 pt-1 pb-1 active:shadow-inner"
+              className=" cursor-pointer rounded pl-2 pr-2 pt-1 pb-1 hover:bg-gray-200 active:shadow-inner"
               key={idx}
             >
               {el()}

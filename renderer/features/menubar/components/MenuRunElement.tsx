@@ -6,15 +6,9 @@ const MenuRunElement = () => {
   return (
     <div
       onClick={runFile}
-      className="flex items-center cursor-pointer bg-white rounded-lg p-1 hover:outline-emerald-400 hover:outline outline-2 active:scale-105 transition-all non-draggable"
+      className="non-draggable flex cursor-pointer items-center rounded-lg bg-white p-1 font-rubik outline-2 transition-all hover:outline hover:outline-emerald-400 active:scale-105"
     >
-      Run{" "}
-      <Image
-        src="/menubar/play_arrow_FILL0_wght400_GRAD0_opsz48.svg"
-        alt="Icon"
-        height="24"
-        width="24"
-      />
+      Run
     </div>
   );
 };

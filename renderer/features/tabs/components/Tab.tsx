@@ -13,10 +13,10 @@ interface TabProps {
 const Tab = ({ openedFile, active, onClose, onClick }: TabProps) => {
   return (
     <div
-      className={`group flex cursor-pointer flex-row items-start gap-2 p-2 text-sm ${
+      className={`group flex cursor-pointer flex-row items-start gap-2 pt-2 pl-2 pr-2 pb-1 text-sm first:rounded-tl-xl last:rounded-tr-xl ${
         active
-          ? "bg-white font-semibold "
-          : " -right-0 bg-gray-200 outline outline-1 outline-gray-300 "
+          ? " bg-white font-semibold"
+          : " -right-0 border-t border-l border-r border-gray-300 bg-gray-200 "
       }`}
       onClick={(e) => onClick(e, openedFile)}
     >

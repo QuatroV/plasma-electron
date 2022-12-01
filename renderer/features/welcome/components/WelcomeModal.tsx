@@ -36,7 +36,7 @@ const WelcomeModal = () => {
             </h1>
           </div>
 
-          <div className=" m-4 flex flex-col gap-4 rounded-xl border-2 border-white bg-white bg-opacity-80 p-4 backdrop-blur-md backdrop-filter transition-all md:w-[600px] md:flex-row">
+          <div className=" m-4 flex flex-col gap-4 rounded-xl border-2 border-white bg-white bg-opacity-80 p-4 font-rubik backdrop-blur-md backdrop-filter transition-all md:w-[600px] md:flex-row">
             {STAGES[stage]}
           </div>
         </div>
