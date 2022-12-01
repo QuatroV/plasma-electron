@@ -22,7 +22,7 @@ const Terminal = () => {
   const [tab, setTab] = useState<Tab>("terminal");
 
   return (
-    <div className="fixed bottom-0 w-full border-t-2 border-gray-300 bg-gray-300">
+    <div className="fixed bottom-0 w-full border-t-2 border-gray-300 bg-gray-300 text-sm">
       <div className="flex gap-2 p-1 font-rubik">
         <div
           className={`cursor-pointer rounded-full pt-1 pb-1 pr-3 pl-3 transition-all ${
