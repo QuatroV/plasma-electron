@@ -42,7 +42,7 @@ const WelcomeModal = () => {
         </div>
       </div>
 
-      <div className="absolute top-0 right-0 m-2 rounded bg-white bg-opacity-80 p-2 backdrop-blur-md backdrop-filter ">
+      <div className="absolute top-0 right-0 m-2 rounded bg-gray-200 bg-opacity-80 p-2 backdrop-blur-md backdrop-filter ">
         <WindowOperationsIcons />
       </div>
     </div>

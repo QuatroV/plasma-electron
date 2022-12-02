@@ -17,7 +17,7 @@ const Tab = ({ openedFile, active, onClose, onClick }: TabProps) => {
         active
           ? "after:invert-round-active bg-white font-semibold after:-right-2.5"
           : "border-l border-r border-gray-300 bg-gray-200 after:-right-3 first:border-l-0"
-      }  after:absolute after:bottom-0 last:after:h-3 last:after:w-5`}
+      }  after:absolute after:bottom-0 last:after:h-3 last:after:w-4`}
       onClick={(e) => onClick(e, openedFile)}
     >
       <div

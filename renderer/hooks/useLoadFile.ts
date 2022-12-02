@@ -26,11 +26,12 @@ export default function useLoadFile() {
         file.path
       );
 
-      setCurrentFile(file.name);
+      const { items, ...rest } = file;
+
+      setCurrentFile(rest);
       setCurrentFileContent(fileContent);
 
       if (!openedFiles.find((openedFile) => openedFile.path === file.path)) {
-        const { items, ...rest } = file;
         addOpenedFile(rest);
       }
     }

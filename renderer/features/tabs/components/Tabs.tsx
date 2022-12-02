@@ -25,7 +25,7 @@ const Tabs = () => {
           openedFile={openedFile}
           onClose={handleClose}
           onClick={handleClick}
-          active={openedFile.name === currentFile}
+          active={openedFile.name === currentFile.name}
         />
       ))}
     </div>

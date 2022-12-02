@@ -16,13 +16,13 @@ export type FileInfoWithoutNesting = Omit<FileInfo, "items">;
 interface FileState {
   rootPath: string;
   projectName: string;
-  currentFile: string;
+  currentFile: FileInfoWithoutNesting;
   currentFileContent: Uint8Array;
   files: FileInfo[];
   openedFiles: FileInfoWithoutNesting[];
   setFiles: (files: FileInfo[]) => void;
   addFile: (file: FileInfo) => void;
-  setCurrentFile: (currentFile: string) => void;
+  setCurrentFile: (currentFile: FileInfoWithoutNesting) => void;
   addOpenedFile: (openedFile: FileInfoWithoutNesting) => void;
   removeOpenedFile: (openedFile: FileInfoWithoutNesting) => void;
   clearAllFiles: () => void;
@@ -40,7 +40,7 @@ const useFileStore = create<FileState>()(
     rootPath: "",
     currentFileContent: new Uint8Array(),
     openedFiles: [],
-    currentFile: "",
+    currentFile: undefined,
     files: [],
     visibleFiles: [],
     setFiles: (files: FileInfo[]) => {
@@ -49,7 +49,7 @@ const useFileStore = create<FileState>()(
     addFile: (file: FileInfo) => {
       set((state) => ({ files: state.files.concat(file) }));
     },
-    setCurrentFile: (currentFile: string) => {
+    setCurrentFile: (currentFile: FileInfoWithoutNesting) => {
       set({ currentFile });
     },
     addOpenedFile: (openedFile: FileInfoWithoutNesting) => {
@@ -63,7 +63,7 @@ const useFileStore = create<FileState>()(
         return {
           openedFiles: updatedOpenedFiles,
           currentFile: updatedOpenedFiles.length
-            ? updatedOpenedFiles.at(-1).name
+            ? updatedOpenedFiles.at(-1)
             : undefined,
         };
       });

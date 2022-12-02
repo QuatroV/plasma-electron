@@ -1,5 +1,7 @@
 import Editor, { loader } from "@monaco-editor/react";
 import { useEffect, useRef, useState } from "react";
+import useKeyPress from "../../../hooks/useKeyPress";
+import useSaveFile from "../../../hooks/useSaveFile";
 import useFileStore from "../../../stores/fileStore";
 const path = require("path");
 
@@ -60,8 +62,12 @@ export default function MonacoEditorComponent() {
     setCurrentFileContent(new TextEncoder().encode(value));
   };
 
+  const { saveFile } = useSaveFile();
+  const editorContainerRef = useRef(null);
+  useKeyPress(["s"], () => saveFile(), editorContainerRef.current, "ctrlKey");
+
   return (
-    <div className="relative">
+    <div className="relative" ref={editorContainerRef}>
       <Editor
         height="calc(100vh - 72px)"
         language="javascript"
