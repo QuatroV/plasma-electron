@@ -25,9 +25,9 @@ const Explorer = () => {
 
   const getItemIcon = (file) => {
     if (file.kind === "file") {
-      return "/explorer/draft_FILL0_wght400_GRAD0_opsz48.svg";
+      return "/sidebar/draft_FILL0_wght400_GRAD0_opsz48.svg";
     }
-    return "/explorer/expand_more_FILL0_wght400_GRAD0_opsz48.svg";
+    return "/sidebar/expand_more_FILL0_wght400_GRAD0_opsz48.svg";
   };
 
   const renderItems = (files) => {
@@ -80,14 +80,14 @@ const Explorer = () => {
   };
 
   return (
-    <aside className=" w-48 min-w-[12rem] bg-gray-200 font-rubik">
-      <div className=" min-h-[36.8px] bg-gray-300 p-2 text-sm font-semibold">
+    <>
+      <div className=" min-h-[36.8px] bg-gray-300 p-2 text-sm font-semibold uppercase">
         {projectName || "Explorer"}
       </div>
-      <div className=" scrollbar relative mb-1 h-[calc(100vh-68px)] overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
+      <div className=" scrollbar relative overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
         {renderItems(visibleFiles)}
       </div>
-    </aside>
+    </>
   );
 };
 

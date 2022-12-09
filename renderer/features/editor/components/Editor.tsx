@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import useKeyPress from "../../../hooks/useKeyPress";
 import useSaveFile from "../../../hooks/useSaveFile";
 import useFileStore from "../../../stores/fileStore";
+import * as monaco from "monaco-editor";
+
 const path = require("path");
 
 function ensureFirstBackSlash(str) {

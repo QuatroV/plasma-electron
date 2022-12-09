@@ -16,8 +16,8 @@ const Tab = ({ openedFile, active, onClose, onClick }: TabProps) => {
       className={`group relative flex cursor-pointer flex-row items-start gap-2 pt-2 pl-2 pr-2 pb-1 text-sm last:rounded-tr-xl ${
         active
           ? "after:invert-round-active bg-white font-semibold after:-right-2.5"
-          : "border-l border-r border-gray-300 bg-gray-200 after:-right-3 first:border-l-0"
-      }  after:absolute after:bottom-0 last:after:h-3 last:after:w-4`}
+          : "border-l border-r border-gray-300 bg-gray-200 after:-right-3 first:border-l-0 hover:bg-gradient-to-b hover:from-gray-200 hover:via-gray-100 hover:to-gray-100"
+      }  after:absolute after:bottom-0 last:after:h-3 last:after:w-4 `}
       onClick={(e) => onClick(e, openedFile)}
     >
       <div

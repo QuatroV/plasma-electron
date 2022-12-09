@@ -9,7 +9,6 @@ const ButtonsContainer = () => {
     useState<{ name: string; path: string }[]>();
 
   useEffect(() => {
-    console.log(localStorage.getItem("recentProjects"));
     setRecentProjects(
       JSON.parse(localStorage.getItem("recentProjects") || "[]")
     );
