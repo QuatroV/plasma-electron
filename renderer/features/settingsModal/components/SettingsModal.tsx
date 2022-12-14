@@ -19,7 +19,7 @@ const SettingsModal = () => {
 
   return (
     <Modal {...props}>
-      <div className=" min-w-[600px]">
+      <div className=" min-h-[400px] min-w-[600px]">
         <div className="mb-2 flex flex-row gap-2">
           <div className="h-[40px] w-fit cursor-pointer rounded-full bg-white p-1 transition-all hover:scale-105 hover:bg-white hover:drop-shadow active:outline active:outline-2 active:outline-emerald-400">
             <Image
@@ -32,7 +32,7 @@ const SettingsModal = () => {
           </div>
           <div>
             <div>Settings</div>
-            <div className="flex flex-row gap-3">
+            <div className="flex flex-row gap-4">
               <div
                 className={` cursor-pointer text-3xl transition-all ${
                   tab === "general" ? "font-black" : ""

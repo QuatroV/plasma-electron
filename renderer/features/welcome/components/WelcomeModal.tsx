@@ -19,9 +19,9 @@ const WelcomeModal = () => {
     <div
       className={`fixed z-20 flex h-screen w-screen items-center justify-center ${
         rootPath
-          ? "bg-black bg-opacity-30"
-          : "bg-[url('/welcome/low-poly-grid-haikei.png')]"
-      } bg-contain bg-center backdrop-blur-sm ${!isOpen && "hidden"}`}
+          ? "bg-black bg-opacity-60 bg-acrylic"
+          : "bg-[url('/welcome/low-poly-grid-haikei.png')] bg-contain bg-center"
+      }  backdrop-blur-sm ${!isOpen && "hidden"}`}
     >
       <div>
         <div>
@@ -36,7 +36,7 @@ const WelcomeModal = () => {
             </h1>
           </div>
 
-          <div className=" m-4 flex flex-col gap-4 rounded-xl border-2 border-white bg-white bg-opacity-80 p-4 font-rubik backdrop-blur-md backdrop-filter transition-all md:w-[600px] md:flex-row">
+          <div className="m-4 flex flex-col gap-4 rounded-xl  bg-gray-200 bg-opacity-80 p-4 font-rubik shadow backdrop-blur backdrop-filter transition-all md:w-[600px] md:flex-row">
             {STAGES[stage]}
           </div>
         </div>

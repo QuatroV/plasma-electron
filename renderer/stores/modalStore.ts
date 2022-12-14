@@ -8,7 +8,7 @@ interface ModalState {
 
 const useModalStore = create<ModalState>()(
   devtools((set) => ({
-    isOpen: true,
+    isOpen: false,
     setIsOpen: (isOpen: boolean) => {
       set({ isOpen });
     },

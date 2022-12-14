@@ -16,7 +16,7 @@ const Modal = ({ children, open, setOpen }: ModalProps): ReactPortal => {
       onClick={() => setOpen(false)}
     >
       <div
-        className=" rounded-xl bg-gray-200 bg-opacity-60 bg-gradient-to-tr  p-4 shadow backdrop-blur"
+        className=" rounded-xl bg-gray-200 bg-opacity-80 p-4 shadow backdrop-blur"
         onClick={(e) => e.stopPropagation()}
       >
         {children}
