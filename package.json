@@ -17,6 +17,7 @@
     ]
   },
   "dependencies": {
+    "@koale/useworker": "^4.0.2",
     "@monaco-editor/react": "^4.4.6",
     "@types/wicg-file-system-access": "^2020.9.5",
     "electron-serve": "^1.1.0",

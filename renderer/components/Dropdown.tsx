@@ -1,20 +1,22 @@
-import { useState, useRef, forwardRef } from "react";
-import useOnClickOutside from "../hooks/useOnClickOutside";
+import { forwardRef } from "react";
 
 interface DropdownProps {
   children: React.ReactNode;
   options: (() => JSX.Element)[];
   dropdownOpen: boolean;
-  onClick: () => void;
+  onClick?: () => void;
+  onContextMenu?: (e: any) => void;
 }
 
 const Dropdown = (
-  { children, options, dropdownOpen, onClick }: DropdownProps,
+  { children, options, dropdownOpen, onClick, onContextMenu }: DropdownProps,
   ref
 ) => {
   return (
     <div className="flex flex-col justify-center" ref={ref}>
-      <div onClick={onClick}>{children}</div>
+      <div onClick={onClick} onContextMenu={onContextMenu}>
+        {children}
+      </div>
       {dropdownOpen && (
         <div
           className={`absolute top-3/4 z-10 flex flex-col gap-1 rounded-b rounded-tr bg-white p-1 font-rubik shadow-lg`}

@@ -7,7 +7,7 @@ const Flags = () => {
     <div className="">
       <div
         onClick={() => setCollapsed((prevState) => !prevState)}
-        className=" group flex cursor-pointer justify-between border-t border-gray-400 bg-gray-300 py-1 px-2 text-sm font-semibold uppercase outline-offset-[-3px] outline-gray-400 transition-all hover:outline active:bg-gray-400"
+        className=" group flex cursor-pointer items-center justify-between border-t border-gray-400 bg-gray-300 py-1 px-2 text-xs font-semibold uppercase outline-offset-[-3px] outline-gray-400 transition-all hover:outline active:bg-gray-400"
       >
         Flags
         <Image

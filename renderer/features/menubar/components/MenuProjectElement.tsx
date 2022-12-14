@@ -1,5 +1,5 @@
 import useOpenDirectory from "../../../hooks/useOpenDirectory";
-import useWelcomeModalStore from "../../../stores/modalStore";
+import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 import useSaveFile from "../../../hooks/useSaveFile";
 import MenuElement from "./MenuElement";
 

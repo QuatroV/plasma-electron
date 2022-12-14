@@ -1,5 +1,5 @@
 import WindowOperationsIcons from "../../windowOperations/components/WindowOperationsIcons";
-import useWelcomeModalStore from "../../../stores/modalStore";
+import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 import ButtonsContainer from "./ButtonsContainer";
 import CreateProjectContainer from "./CreateProjectContainer";
 import Logo from "./Logo";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useWelcomeModalStore from "../../../stores/modalStore";
+import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 import MainButton from "./MainButton";
 import OpenExistingProjectButton from "./OpenExistingProjectButton";
 

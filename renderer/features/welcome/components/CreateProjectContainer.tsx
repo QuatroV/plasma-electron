@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import useFileStore from "../../../stores/fileStore";
-import useWelcomeModalStore from "../../../stores/modalStore";
+import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 
 const CreateProjectContainer = () => {
   const setStage = useWelcomeModalStore((state) => state.setStage);

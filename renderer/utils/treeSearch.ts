@@ -15,3 +15,32 @@ export const searchTree = (element, matchingTitle, keyTitle, childrenTitle) => {
   }
   return null;
 };
+
+export const searchTreeForManyItems = (
+  element,
+  matchingTitle,
+  keyTitle,
+  childrenTitle,
+  resArr = [],
+  nestingLevel = 0
+) => {
+  nestingLevel++;
+  if (element[keyTitle].indexOf(matchingTitle) !== -1) {
+    resArr.push(element);
+  }
+  if (element[childrenTitle] !== null) {
+    for (let i = 0; i < element[childrenTitle].length; i++) {
+      searchTreeForManyItems(
+        element[childrenTitle][i],
+        matchingTitle,
+        keyTitle,
+        childrenTitle,
+        resArr,
+        nestingLevel
+      );
+    }
+  }
+  if (nestingLevel === 1) {
+    return resArr;
+  }
+};

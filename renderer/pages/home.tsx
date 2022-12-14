@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Tabs from "../features/tabs/components/Tabs";
 import Toolbar from "../features/toolbar/components/Toolbar";
 import Sidebar from "../features/sidebar/components/Sidebar";
+import SettingsModal from "../features/settingsModal/components/SettingsModal";
 
 const Terminal = dynamic(
   () => import("../features/terminal/components/Terminal"),
@@ -21,19 +22,22 @@ const MonacoEditorComponent = dynamic(
 
 const Home: NextPage = () => {
   return (
-    <div className=" bg-gray-400">
-      <WelcomeModal />
-      <MenuBar />
-      <Toolbar />
-      <main className="flex h-[calc(100vh-40px)] w-full">
-        <Sidebar />
-        <div className="z-0 flex-1">
-          <Tabs />
-          <MonacoEditorComponent />
-          <Terminal />
-        </div>
-      </main>
-    </div>
+    <>
+      <SettingsModal />
+      <div className=" bg-gray-400">
+        <WelcomeModal />
+        <MenuBar />
+        <Toolbar />
+        <main className="flex h-[calc(100vh-40px)] w-full">
+          <Sidebar />
+          <div className="relative z-0 flex-1">
+            <Tabs />
+            <MonacoEditorComponent />
+            <Terminal />
+          </div>
+        </main>
+      </div>
+    </>
   );
 };
 
