@@ -27,7 +27,7 @@ const Terminal = () => {
     <div className="absolute bottom-10 w-full">
       <div
         className={`mx-5 rounded-lg border border-gray-300 bg-gradient-to-b from-gray-200 to-gray-300 p-2 shadow backdrop-blur-sm transition-all ${
-          collapsed ? "cursor-pointer" : ""
+          collapsed ? "cursor-pointer hover:scale-[1.005]" : ""
         }`}
         onClick={() => collapsed && setCollapsed(false)}
       >
