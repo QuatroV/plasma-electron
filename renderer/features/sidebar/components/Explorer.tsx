@@ -38,13 +38,14 @@ const Explorer = () => {
     const nodes = [];
     files.forEach((file, idx) => {
       const { items, nestingLevel, name, kind } = file;
+      const isCurrentlyOpen = currentFile?.name === file.name;
       nodes.push(
         <ExplorerContextMenu>
           <div
-            className={`${getMarginLeftByNesting(
+            className={`group ${getMarginLeftByNesting(
               nestingLevel
             )} relative flex cursor-pointer items-center gap-1 p-0.5 text-sm hover:bg-gray-300 ${
-              currentFile === file.name &&
+              isCurrentlyOpen &&
               "bg-gray-300 outline-1 transition-all hover:outline hover:outline-emerald-400"
             } ${
               nestingLevel > 0 &&
@@ -70,6 +71,9 @@ const Explorer = () => {
             </div>
             <div className="flex-1 overflow-hidden text-ellipsis" title={name}>
               {name}
+              <span className=" ml-1 inline-block transition-all group-hover:translate-x-1">
+                {isCurrentlyOpen && " →"}
+              </span>
               {kind === "directory" && !file.items.length && (
                 <span className="font-light text-gray-400"> (empty)</span>
               )}

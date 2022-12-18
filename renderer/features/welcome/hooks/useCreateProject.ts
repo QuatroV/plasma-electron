@@ -1,3 +1,3 @@
-const useCreateDirectory = () => {};
+const useCreateProject = () => {};
 
-export default useCreateDirectory;
+export default useCreateProject;
