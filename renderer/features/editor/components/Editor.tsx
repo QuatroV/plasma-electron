@@ -35,8 +35,9 @@ export default function MonacoEditorComponent() {
   };
 
   const handleResize = () => {
+    console.log(editorRef?.current);
     if (!editorRef?.current) return;
-    editorRef.current.layout();
+    editorRef.current.layout({});
   };
 
   useEffect(() => {
@@ -69,7 +70,7 @@ export default function MonacoEditorComponent() {
   useKeyPress(["s"], () => saveFile(), editorContainerRef.current, "ctrlKey");
 
   return (
-    <div className="relative" ref={editorContainerRef}>
+    <div className="relative">
       <Editor
         height="calc(100vh - 72px)"
         language="javascript"

@@ -2,8 +2,9 @@ import Image from "next/image";
 import { useState } from "react";
 import useFileStore from "../../../stores/fileStore";
 import useWelcomeModalStore from "../../../stores/welcomeModalStore";
+import useCreateProject from "../hooks/useCreateProject";
 
-const CreateProjectContainer = () => {
+const CreateProjectContainer = (callback?: () => void) => {
   const setStage = useWelcomeModalStore((state) => state.setStage);
   const setIsOpen = useWelcomeModalStore((state) => state.setIsOpen);
   const rootPath = useFileStore((state) => state.rootPath);
@@ -13,7 +14,11 @@ const CreateProjectContainer = () => {
   const [architecture, setArchitecture] = useState<string>();
   const [assembly, setAssembly] = useState<string>();
 
-  const handleChooseDir = () => {};
+  const { createProject } = useCreateProject(() => setIsOpen(false));
+
+  const handleChooseDir = () => {
+    createProject({ name: userInput, architecture, assembly });
+  };
 
   const getTitleByStage = (projectName, architecture, assembly) => {
     switch (true) {
