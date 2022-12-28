@@ -19,24 +19,21 @@ const WelcomeModal = () => {
     <div
       className={`fixed z-20 flex h-screen w-screen items-center justify-center ${
         rootPath
-          ? "bg-black bg-opacity-60 bg-acrylic"
-          : "bg-[url('/welcome/low-poly-grid-haikei.png')] bg-contain bg-center"
+          ? "bg-black bg-opacity-60 "
+          : "bg-mesh-gradient bg-contain bg-center"
       }  backdrop-blur-sm ${!isOpen && "hidden"}`}
     >
       <div>
         <div>
-          <div className="flex flex-row items-center justify-center">
+          <div className="flex flex-row items-center justify-start gap-4 pl-4">
             <Logo />
-            <h1 className="flex justify-center text-6xl font-extrabold text-white">
-              PL
-              <span className=" bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                ASM
-              </span>
-              A
-            </h1>
           </div>
 
-          <div className="m-4 flex flex-col gap-4 rounded-xl  bg-gray-200 bg-opacity-80 p-4 font-rubik shadow backdrop-blur backdrop-filter transition-all md:w-[600px] md:flex-row">
+          <div
+            className={` m-4 flex flex-col gap-4 rounded-xl p-4 font-rubik shadow backdrop-blur backdrop-filter transition-all md:w-[600px] md:flex-row ${
+              rootPath ? "bg-gray-200 bg-opacity-80" : "bg-glass "
+            }`}
+          >
             {STAGES[stage]}
           </div>
         </div>

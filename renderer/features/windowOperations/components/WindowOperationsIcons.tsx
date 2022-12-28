@@ -2,6 +2,9 @@ import Image from "next/image";
 import { ipcRenderer } from "electron";
 import useModalStore from "../../../stores/modalStore";
 
+import { FiMaximize2 } from "react-icons/fi";
+import { BiWindows } from "react-icons/bi";
+
 const WindowOperationsIcons = () => {
   const setOpen = useModalStore((state) => state.setIsOpen);
   return (
@@ -33,12 +36,7 @@ const WindowOperationsIcons = () => {
           onClick={() => ipcRenderer.invoke("max-window")}
           className="flex h-min w-10 cursor-pointer items-center justify-center p-1 outline-1 transition-all hover:bg-gray-300 active:scale-105 active:outline active:outline-yellow-400"
         >
-          <Image
-            src="/menubar/open_in_full_FILL0_wght400_GRAD0_opsz48.svg"
-            height="20"
-            width="20"
-            alt=""
-          />
+          <FiMaximize2 size={20} />
         </div>
         <div
           onClick={() => ipcRenderer.invoke("quit-app")}

@@ -6,6 +6,7 @@ import Tabs from "../features/tabs/components/Tabs";
 import Toolbar from "../features/toolbar/components/Toolbar";
 import Sidebar from "../features/sidebar/components/Sidebar";
 import SettingsModal from "../features/settingsModal/components/SettingsModal";
+import Breadcrumbs from "../features/editor/components/Breadcrumbs";
 
 const Terminal = dynamic(
   () => import("../features/terminal/components/Terminal"),
@@ -32,6 +33,7 @@ const Home: NextPage = () => {
           <Sidebar />
           <div className="relative z-0 flex-1">
             <Tabs />
+            <Breadcrumbs />
             <MonacoEditorComponent />
             <Terminal />
           </div>

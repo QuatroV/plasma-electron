@@ -1,9 +1,8 @@
-import Blob from "../../../public/welcome/blob.svg";
+import Image from "next/image";
+import BlobLogo from "../../../../resources/blob-logo.png";
 
 const Logo = () => {
-  return (
-    <Blob className=" h-32 w-36 cursor-pointer transition-all hover:scale-105 active:scale-110" />
-  );
+  return <Image src={BlobLogo} alt="Logo" height={120} width={120} />;
 };
 
 export default Logo;

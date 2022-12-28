@@ -45,3 +45,23 @@
         src: url('../public/Mulish-VariableFont_wght.ttf') format("truetype");
     }
 }
+
+@layer utilities {
+  .bg-mesh-gradient {
+    background-color:#99fffd;
+    background-image:
+    radial-gradient(at 2% 97%, hsla(195,78%,65%,1) 0px, transparent 50%),
+    radial-gradient(at 97% 94%, hsla(270,80%,63%,1) 0px, transparent 50%),
+    radial-gradient(at 91% 14%, hsla(259,75%,75%,0.63) 0px, transparent 50%),
+    radial-gradient(at 8% 7%, hsla(275,63%,49%,0.76) 0px, transparent 50%),
+    radial-gradient(at 68% 13%, hsla(8,96%,48%,0.57) 0px, transparent 50%);
+  }
+
+  .bg-glass {
+    background: rgba(243, 243, 243, 0.571);
+    box-shadow: 0 8px 32px 0 rgba(122, 122, 122, 0.37);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
+}

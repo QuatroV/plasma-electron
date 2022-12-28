@@ -104,7 +104,7 @@ const Explorer = () => {
 
   return (
     <>
-      <div className=" flex min-h-[36.8px] flex-row items-center justify-between bg-gray-300 p-2 text-sm font-semibold uppercase">
+      <div className=" bg-gradient flex flex-row items-center justify-between bg-gray-300 py-1 px-2 text-sm font-semibold uppercase">
         {projectName || "Explorer"}
         <Image
           onClick={() => setSearchFormOpened((prevState) => !prevState)}

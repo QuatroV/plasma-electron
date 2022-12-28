@@ -31,6 +31,7 @@ if (isProd) {
   await app.whenReady();
 
   const mainWindow = createWindow("main", {
+    icon: "resources/blob-logo.png",
     frame: false,
     width: 1000,
     height: 600,

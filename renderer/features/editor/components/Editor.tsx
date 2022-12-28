@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import useKeyPress from "../../../hooks/useKeyPress";
 import useSaveFile from "../../../hooks/useSaveFile";
 import useFileStore from "../../../stores/fileStore";
-import * as monaco from "monaco-editor";
+
+import { AiOutlineCode } from "react-icons/ai";
 
 const path = require("path");
 
@@ -27,6 +28,30 @@ loader.config({
   },
 });
 
+const OpenFilePlaceholder = () => {
+  return (
+    <div className="flex h-2/3 items-center justify-center ">
+      <div className="flex flex-col items-center ">
+        <AiOutlineCode size={140} color="#d4d4d8" />
+        <span className="font-light text-zinc-500">
+          Open some file to see content here...
+        </span>
+      </div>
+    </div>
+  );
+};
+
+const LoadingPlaceholder = () => {
+  return (
+    <div className="flex h-2/3 items-center justify-center ">
+      <div className="flex flex-col items-center ">
+        <AiOutlineCode size={140} color="#d4d4d8" />
+        <span className="font-light text-zinc-500">Openning file...</span>
+      </div>
+    </div>
+  );
+};
+
 export default function MonacoEditorComponent() {
   const editorRef = useRef(null);
 
@@ -35,7 +60,6 @@ export default function MonacoEditorComponent() {
   };
 
   const handleResize = () => {
-    console.log(editorRef?.current);
     if (!editorRef?.current) return;
     editorRef.current.layout({});
   };
@@ -70,14 +94,19 @@ export default function MonacoEditorComponent() {
   useKeyPress(["s"], () => saveFile(), editorContainerRef.current, "ctrlKey");
 
   return (
-    <div className="relative">
-      <Editor
-        height="calc(100vh - 72px)"
-        language="javascript"
-        value={editorText || "//Open some file to see content here..."}
-        onMount={handleMount}
-        onChange={handleChange}
-      />
+    <div className="relative h-full bg-white">
+      {editorText ? (
+        <Editor
+          height="calc(100vh - 72px)"
+          language="javascript"
+          loading={LoadingPlaceholder()}
+          value={editorText}
+          onMount={handleMount}
+          onChange={handleChange}
+        />
+      ) : (
+        OpenFilePlaceholder()
+      )}
     </div>
   );
 }

@@ -36,7 +36,7 @@ const Tab = ({ openedFile, active, onClose, onClick }: TabProps) => {
           height="20"
           width="20"
           alt=""
-          className="rounded hover:bg-gray-400"
+          className="rounded hover:bg-gray-300 active:bg-gray-400"
         />
       </div>
     </div>

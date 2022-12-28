@@ -39,7 +39,7 @@ const CreateProjectContainer = (callback?: () => void) => {
   return (
     <div className="w-full">
       <div className="mb-2 flex flex-row gap-2">
-        <div className="h-[40px] w-fit cursor-pointer rounded-full bg-white p-1 transition-all hover:scale-105 hover:bg-white hover:drop-shadow active:outline active:outline-2 active:outline-emerald-400">
+        <div className=" h-[40px] w-fit cursor-pointer rounded-full bg-white p-1 transition-all hover:scale-105 hover:bg-white hover:drop-shadow active:outline active:outline-2 active:outline-emerald-400">
           <Image
             src="/welcome/arrow_back_FILL0_wght400_GRAD0_opsz48.svg"
             alt="Icon"
