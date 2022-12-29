@@ -31,10 +31,13 @@ loader.config({
 const OpenFilePlaceholder = () => {
   return (
     <div className="flex h-2/3 items-center justify-center ">
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center gap-1">
         <AiOutlineCode size={140} color="#d4d4d8" />
         <span className="font-light text-zinc-500">
           Open some file to see content here...
+        </span>
+        <span className="text-xs font-light text-zinc-500">
+          You can do this by choosing file in the sidebar
         </span>
       </div>
     </div>
@@ -46,7 +49,7 @@ const LoadingPlaceholder = () => {
     <div className="flex h-2/3 items-center justify-center ">
       <div className="flex flex-col items-center ">
         <AiOutlineCode size={140} color="#d4d4d8" />
-        <span className="font-light text-zinc-500">Openning file...</span>
+        <span className="font-light text-zinc-500">Opening file...</span>
       </div>
     </div>
   );
@@ -99,13 +102,13 @@ export default function MonacoEditorComponent() {
         <Editor
           height="calc(100vh - 72px)"
           language="javascript"
-          loading={LoadingPlaceholder()}
+          loading={<LoadingPlaceholder />}
           value={editorText}
           onMount={handleMount}
           onChange={handleChange}
         />
       ) : (
-        OpenFilePlaceholder()
+        <OpenFilePlaceholder />
       )}
     </div>
   );
