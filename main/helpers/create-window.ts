@@ -2,6 +2,7 @@ import {
   screen,
   BrowserWindow,
   BrowserWindowConstructorOptions,
+  app,
 } from "electron";
 import Store from "electron-store";
 
@@ -78,6 +79,9 @@ export default (
       webSecurity: false,
       nodeIntegration: true,
       contextIsolation: false,
+      additionalArguments: [
+        app.isPackaged ? "--packaged=true" : "--packaged=false",
+      ],
       ...options.webPreferences,
     },
   };

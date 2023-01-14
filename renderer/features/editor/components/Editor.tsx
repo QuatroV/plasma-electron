@@ -5,6 +5,7 @@ import useSaveFile from "../../../hooks/useSaveFile";
 import useFileStore from "../../../stores/fileStore";
 
 import { AiOutlineCode } from "react-icons/ai";
+import isPackaged from "../../../utils/isPackaged";
 
 const path = require("path");
 
@@ -17,14 +18,13 @@ function uriFromPath(_path) {
   return encodeURI("file://" + ensureFirstBackSlash(pathName));
 }
 
+const editorLocation = isPackaged()
+  ? "../../../resources/extraResources/react-monaco/vs"
+  : "../../../../../../extraResources/react-monaco/vs";
+
 loader.config({
   paths: {
-    vs: uriFromPath(
-      path.join(
-        __dirname,
-        "../../../../../../node_modules/monaco-editor/min/vs"
-      )
-    ),
+    vs: uriFromPath(path.join(__dirname, editorLocation)),
   },
 });
 

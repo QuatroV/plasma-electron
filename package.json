@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "my-nextron-app",
-  "description": "My application description",
+  "name": "plasma-ide",
+  "description": "IDE for assembly language",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "ktm",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",

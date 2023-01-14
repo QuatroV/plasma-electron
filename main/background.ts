@@ -125,13 +125,13 @@ if (isProd) {
 
     console.log("arg ", arg);
 
-    const TASMpath = `${process.resourcesPath}/../extraResources`;
+    const NASMpath = `${process.resourcesPath}/../extraResources/NASM`;
 
-    const tasmDir = await fs.promises.readdir(TASMpath);
+    const nasmDir = await fs.promises.readdir(NASMpath);
 
     // await run(`${TASMpath} ${currentFilePath}`);
 
-    console.log(tasmDir);
+    // console.log(tasmDir);
     return files;
   });
 })();

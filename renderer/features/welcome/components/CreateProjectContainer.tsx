@@ -4,7 +4,7 @@ import useFileStore from "../../../stores/fileStore";
 import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 import useCreateProject from "../hooks/useCreateProject";
 
-const CreateProjectContainer = (callback?: () => void) => {
+const CreateProjectContainer = () => {
   const setStage = useWelcomeModalStore((state) => state.setStage);
   const setIsOpen = useWelcomeModalStore((state) => state.setIsOpen);
   const rootPath = useFileStore((state) => state.rootPath);
