@@ -18,7 +18,7 @@ jobs:
       - name: Set git config name
         run: git config --local user.name "Timofei Kurohtin"
       - name: Get branch name
-        run: echo ${GITHUB_REF##*/}
+        run: echo ${{ github.ref_name }}
       - name: Bump version
         run: npm version patch --git-tag-version false
       - name: Commit new version
