@@ -10,6 +10,10 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+      - uses: jungwinter/split@v2
+        id: branch_name
+        with:
+          msg: ${{ github.head_ref }}
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -17,10 +21,12 @@ jobs:
         run: git config --local user.email "forgwent@gmail.com"
       - name: Set git config name
         run: git config --local user.name "Timofei Kurohtin"
-      - name: Get branch name
-        run: echo ${{ github.head_ref }}
-      - name: Bump version
+      - name: Bump version patch
+        if: steps.split.outputs._0 == 'hotfix'
         run: npm version patch --git-tag-version false
+      - name: Bump version minor
+        if: steps.split.outputs._0 == 'feature'
+        run: npm version minor --git-tag-version false
       - name: Commit new version
         uses: EndBug/add-and-commit@v9
         with:
