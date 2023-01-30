@@ -8,9 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Bump version
+      - name: Set git config email
         run: git config --local user.email "forgwent@gmail.com"
+      - name: Set git config name
         run: git config --local user.name "Timofei Kurohtin"
+      - name: Bump version
         run: npm version patch
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v1
