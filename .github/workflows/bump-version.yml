@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: jungwinter/split@v2
         id: get_branch_tag
+        separator: /
         with:
           msg: ${{ github.head_ref }}
       - uses: actions/checkout@v3
