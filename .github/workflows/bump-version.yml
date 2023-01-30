@@ -9,6 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Bump version
+        run: git config --local user.email "forgwent@gmail.com"
+        run: git config --local user.name "Timofei Kurohtin"
         run: npm version patch
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v1
