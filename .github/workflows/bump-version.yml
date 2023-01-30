@@ -15,6 +15,6 @@ jobs:
       - name: Bump version
         run: npm version patch --git-tag-version false
       - name: Commit new version
-      - uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v9
         with:
           new_branch: master
