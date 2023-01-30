@@ -18,7 +18,3 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           new_branch: master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Bump version
-          title: Bump version
