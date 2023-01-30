@@ -16,5 +16,9 @@ jobs:
         run: npm version patch --git-tag-version false
       - name: Commit new version
         uses: EndBug/add-and-commit@v9
+          with:
+            new_branch: master
         with:
-          new_branch: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Bump version
+          title: Bump version
