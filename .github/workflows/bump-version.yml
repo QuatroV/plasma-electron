@@ -14,8 +14,6 @@ jobs:
         run: git config --local user.name "Timofei Kurohtin"
       - name: Bump version
         run: npm version patch
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Bump version
