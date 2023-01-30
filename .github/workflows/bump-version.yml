@@ -14,6 +14,8 @@ jobs:
         run: git config --local user.name "Timofei Kurohtin"
       - name: Bump version
         run: npm version patch
+      - name: Commit new version
+        uses: EndBug/add-and-commit@v9
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Bump version
