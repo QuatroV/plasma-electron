@@ -7,7 +7,9 @@ jobs:
   bump-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set git config email
         run: git config --local user.email "forgwent@gmail.com"
       - name: Set git config name
