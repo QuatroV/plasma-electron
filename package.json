@@ -2,7 +2,7 @@
   "private": true,
   "name": "plasma-ide",
   "description": "IDE for assembly language",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "ktm",
   "main": "app/background.js",
   "scripts": {
