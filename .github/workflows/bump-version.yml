@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: jungwinter/split@v2
-        id: branch_name
+        id: get_branch_tag
         with:
           msg: ${{ github.head_ref }}
       - uses: actions/checkout@v3
@@ -21,11 +21,13 @@ jobs:
         run: git config --local user.email "forgwent@gmail.com"
       - name: Set git config name
         run: git config --local user.name "Timofei Kurohtin"
+      - name: Output branch tag
+        run: echo ${{ steps.get_branch_tag.outputs._0 }}
       - name: Bump version patch
-        if: steps.split.outputs._0 == 'hotfix'
+        if: steps.get_branch_tag.outputs._0 == 'hotfix'
         run: npm version patch --git-tag-version false
       - name: Bump version minor
-        if: steps.split.outputs._0 == 'feature'
+        if: steps.get_branch_tag.outputs._0 == 'feature'
         run: npm version minor --git-tag-version false
       - name: Commit new version
         uses: EndBug/add-and-commit@v9
