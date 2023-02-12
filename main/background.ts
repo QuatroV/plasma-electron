@@ -1,19 +1,8 @@
-import { app, ipcMain } from "electron";
+import { app } from "electron";
 import serve from "electron-serve";
 import { createWindow } from "./helpers";
-import { spawn } from "child_process";
 import rootEventsHandler from "./features";
 import { isProd } from "./constants";
-
-const run = (commandLine: string) =>
-  new Promise<string>((resolve, reject) => {
-    const [command, ...args] = commandLine.split(/\s+/);
-    const child = spawn(command, args);
-    const output = [] as string[];
-    child.stdout.on("data", (chunk) => output.push(chunk));
-    child.on("close", () => resolve(output.join("").trim()));
-    child.on("error", (error) => reject(error));
-  });
 
 if (isProd) {
   serve({ directory: "app" });
@@ -49,6 +38,11 @@ if (isProd) {
     await mainWindow.loadURL("app://./home.html");
   } else {
     const port = process.argv[2];
+    await loadingWindow.loadURL(`http://localhost:${port}/loading`);
+    setTimeout(() => {
+      loadingWindow.close();
+      mainWindow.show();
+    }, 3000);
     await mainWindow.loadURL(`http://localhost:${port}/home`);
     mainWindow.webContents.openDevTools();
   }

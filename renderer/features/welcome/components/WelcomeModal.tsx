@@ -39,8 +39,13 @@ const WelcomeModal = () => {
         </div>
       </div>
 
-      <div className="absolute top-0 right-0 m-2 rounded bg-gray-200 bg-opacity-80 p-2 backdrop-blur-md backdrop-filter ">
-        <WindowOperationsIcons />
+      <div className="draggable absolute top-0 z-10 flex h-10 w-screen justify-between bg-gray-100 text-sm">
+        <div className="flex w-full items-center justify-between rounded bg-gray-200  p-2">
+          <span className="ml-2 font-rubik text-lg font-extrabold text-gray-700">
+            Plasma IDE
+          </span>
+          <WindowOperationsIcons />
+        </div>
       </div>
     </div>
   );

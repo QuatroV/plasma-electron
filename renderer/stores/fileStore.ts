@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import produce, { current } from "immer";
 import { searchTree } from "../utils/treeSearch";
