@@ -8,9 +8,9 @@ import useSearchFile from "../hooks/useSearchFile";
 import { TbRefresh } from "react-icons/tb";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
-import useOpenDirectory from "../../../hooks/useOpenDirectory";
 import useRefreshDir from "../hooks/useRefreshDir";
 import clsxm from "../../../utils/clsxm";
+import ExplorerItemIcon from "./ExplorerItemIcon";
 
 const Explorer = () => {
   const visibleFiles = useFileStore((state) => state.files);
@@ -31,13 +31,6 @@ const Explorer = () => {
       default:
         return "ml-0";
     }
-  };
-
-  const getItemIcon = (file) => {
-    if (file.kind === "file") {
-      return "/sidebar/draft_FILL0_wght400_GRAD0_opsz48.svg";
-    }
-    return "/sidebar/expand_more_FILL0_wght400_GRAD0_opsz48.svg";
   };
 
   const renderItems = (files) => {
@@ -61,19 +54,7 @@ const Explorer = () => {
             onClick={(e) => openFile(e, file, true)}
           >
             <div className="flex w-[16px] items-center">
-              <Image
-                alt={kind === "directory" ? "d" : "f"}
-                src={getItemIcon(file)}
-                className={`${
-                  kind === "directory" &&
-                  file.items.length &&
-                  !file.items[0].visible
-                    ? "-rotate-90"
-                    : ""
-                }`}
-                height="16"
-                width="16"
-              />
+              <ExplorerItemIcon file={file} />
             </div>
             <div className="flex-1 overflow-hidden text-ellipsis" title={name}>
               {name}
@@ -109,19 +90,7 @@ const Explorer = () => {
             onClick={(e) => openFile(e, file, true)}
           >
             <div className="flex w-[16px] items-center">
-              <Image
-                alt={kind === "directory" ? "d" : "f"}
-                src={getItemIcon(file)}
-                className={`${
-                  kind === "directory" &&
-                  file.items.length &&
-                  !file.items[0].visible
-                    ? "-rotate-90"
-                    : ""
-                }`}
-                height="16"
-                width="16"
-              />
+              <ExplorerItemIcon file={file} />
             </div>
             <div className="flex-1 overflow-hidden text-ellipsis" title={name}>
               {name}
