@@ -30,7 +30,7 @@ const Home: NextPage = () => {
       <div className=" bg-gray-400">
         <WelcomeModal />
         <MenuBar />
-        <Toolbar />
+        {/* <Toolbar /> */}
         <main className="flex h-[calc(100vh-40px)] w-full">
           <Sidebar />
           <div className="relative z-0 flex-1">

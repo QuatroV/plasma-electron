@@ -3,7 +3,6 @@ import { ipcRenderer } from "electron";
 import useModalStore from "../../../stores/modalStore";
 
 import { FiMaximize2 } from "react-icons/fi";
-import { BiWindows } from "react-icons/bi";
 
 const WindowOperationsIcons = () => {
   const setOpen = useModalStore((state) => state.setIsOpen);

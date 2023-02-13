@@ -14,7 +14,7 @@ const Sidebar = () => {
   const tab = useSidebarStore((state) => state.tab);
 
   return (
-    <aside className=" flex h-[calc(100vh-74px)] w-64 min-w-[12rem] flex-col bg-gray-200 font-rubik">
+    <aside className=" flex h-[calc(100vh-40px)] w-64 min-w-[12rem] flex-col bg-gray-200 font-rubik">
       <SidebarTabs />
       {tabsContents[tab]}
       <Registers />

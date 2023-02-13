@@ -12,7 +12,7 @@ const TerminalContainer = () => {
   const [hasOutputNotification, setHasOutputNotification] = useState(false);
 
   return (
-    <div className="absolute bottom-10 w-full">
+    <div className="absolute bottom-2 w-full">
       <div
         className={`mx-5 rounded-lg border border-gray-300 bg-gradient-to-b from-gray-200 to-gray-300 p-2 shadow backdrop-blur-sm transition-all ${
           collapsed ? "cursor-pointer hover:scale-[1.005]" : ""
@@ -51,7 +51,7 @@ const TerminalContainer = () => {
                 >
                   Output{" "}
                   {hasOutputNotification && (
-                    <span className="ml-1 animate-ping-appear">●</span>
+                    <span className="animate-ping-appear ml-1">●</span>
                   )}
                 </div>
               </>
