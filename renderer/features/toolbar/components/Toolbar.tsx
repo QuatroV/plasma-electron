@@ -1,5 +1,6 @@
 import Image from "next/image";
 import useSaveFile from "../../../hooks/useSaveFile";
+import ToolbarItemRun from "./ToolbarItemRun";
 
 const Toolbar = () => {
   const { saveFile } = useSaveFile();
@@ -83,14 +84,7 @@ const Toolbar = () => {
           alt="Create"
           src="/toolbar/build_FILL0_wght400_GRAD0_opsz48.svg"
         />
-        <Image
-          className=" cursor-pointer rounded stroke-white after:bg-cyan-500 active:scale-125"
-          title="Run"
-          width="20"
-          height="20"
-          alt="Create"
-          src="/toolbar/play_arrow_FILL0_wght400_GRAD0_opsz48.svg"
-        />
+        <ToolbarItemRun />
         <Image
           className=" cursor-pointer rounded after:bg-cyan-500 active:scale-125"
           title="Stop"
