@@ -22,7 +22,7 @@ const MenuBar = () => {
         <MenuProjectElement />
         <MenuElement title="Selection" />
         <MenuElement title="Terminal" />
-        {/* <MenuRunElement /> */}
+        <MenuRunElement />
       </div>
       <WindowName />
       <WindowOperationsIcons />

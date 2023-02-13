@@ -7,9 +7,10 @@ import Toolbar from "../features/toolbar/components/Toolbar";
 import Sidebar from "../features/sidebar/components/Sidebar";
 import SettingsModal from "../features/settingsModal/components/SettingsModal";
 import Breadcrumbs from "../features/editor/components/Breadcrumbs";
+import ErrorModal from "../features/error/components/ErrorModal";
 
-const Terminal = dynamic(
-  () => import("../features/terminal/components/Terminal"),
+const TerminalContainer = dynamic(
+  () => import("../features/terminal/components/TerminalContainer"),
   {
     ssr: false,
   }
@@ -24,6 +25,7 @@ const MonacoEditorComponent = dynamic(
 const Home: NextPage = () => {
   return (
     <>
+      <ErrorModal />
       <SettingsModal />
       <div className=" bg-gray-400">
         <WelcomeModal />
@@ -35,7 +37,7 @@ const Home: NextPage = () => {
             <Tabs />
             <Breadcrumbs />
             <MonacoEditorComponent />
-            <Terminal />
+            <TerminalContainer />
           </div>
         </main>
       </div>

@@ -6,11 +6,10 @@ const useRunFile = () => {
   const rootPath = useFileStore((state) => state.rootPath);
 
   const runFile = async () => {
+    console.log(`${rootPath}\\${currentFile.name}`);
     await ipcRenderer.invoke("app:on-run-file", {
-      currentFilePath: `${rootPath}\\${currentFile}`,
+      currentFilePath: `${rootPath}\\${currentFile.name}`,
     });
-    console.log(`${rootPath}\\${currentFile}`);
-    console.log(process.resourcesPath);
   };
 
   return { runFile };
