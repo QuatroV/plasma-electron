@@ -16,7 +16,7 @@ export const searchTree = (element, matchingTitle, keyTitle, childrenTitle) => {
   return null;
 };
 
-export const searchTreeForManyItems = (
+export const searchTreeForManyItems = async (
   element,
   matchingTitle,
   keyTitle,
@@ -25,12 +25,15 @@ export const searchTreeForManyItems = (
   nestingLevel = 0
 ) => {
   nestingLevel++;
-  if (element[keyTitle].indexOf(matchingTitle) !== -1) {
+  if (
+    element[keyTitle].indexOf(matchingTitle) !== -1 &&
+    element.kind === "file"
+  ) {
     resArr.push(element);
   }
   if (element[childrenTitle] !== null) {
     for (let i = 0; i < element[childrenTitle].length; i++) {
-      searchTreeForManyItems(
+      await searchTreeForManyItems(
         element[childrenTitle][i],
         matchingTitle,
         keyTitle,

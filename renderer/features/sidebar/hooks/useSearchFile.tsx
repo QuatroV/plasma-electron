@@ -1,4 +1,4 @@
-import { useWorker, WORKER_STATUS } from "@koale/useworker";
+import { ipcRenderer } from "electron";
 import { useState } from "react";
 import useFileStore from "../../../stores/fileStore";
 import { searchTreeForManyItems } from "../../../utils/treeSearch";
@@ -6,30 +6,33 @@ import { searchTreeForManyItems } from "../../../utils/treeSearch";
 const useSearchFile = () => {
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [searchWorker, { status }] = useWorker(
-    (searchPhrase) =>
-      searchTreeForManyItems(
-        { path: "", items: files },
-        searchPhrase,
-        "path",
-        "items",
-        []
-      ),
-    { autoTerminate: true }
-  );
+  const [resultsCount, setResultsCount] = useState(0);
 
   const files = useFileStore((state) => state.files);
 
   const searchFiles = async (searchPhrase) => {
     setLoading(true);
     console.log("FILES ", files, navigator.hardwareConcurrency, status);
-    const foundMatches = await searchWorker(searchPhrase);
+    const foundMatches = await searchTreeForManyItems(
+      { path: "", items: files },
+      searchPhrase,
+      "path",
+      "items",
+      []
+    );
+
+    setResultsCount(foundMatches.length);
+
+    if (foundMatches.length > 100) {
+      setSearchResults(foundMatches.slice(0, 100));
+    } else {
+      setSearchResults(foundMatches);
+    }
     console.log("foundMatches ", foundMatches);
     setLoading(false);
-    setSearchResults(foundMatches);
   };
 
-  return { searchResults, loading, searchFiles };
+  return { searchResults, loading, searchFiles, resultsCount };
 };
 
 export default useSearchFile;

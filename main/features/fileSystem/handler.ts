@@ -50,6 +50,15 @@ const fileSystemHandler = ({ app, mainWindow }) => {
     const { filename, data } = arg;
     await fs.promises.writeFile(filename, data);
   });
+
+  ipcMain.handle("app:on-dir-refresh", async (event, arg) => {
+    const { rootPath } = arg;
+    const fileTree = new FileTree(rootPath);
+
+    fileTree.build();
+
+    return { files: JSON.stringify(fileTree.items) };
+  });
 };
 
 export default fileSystemHandler;

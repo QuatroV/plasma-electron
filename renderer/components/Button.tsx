@@ -1,6 +1,10 @@
 import clsxm from "../utils/clsxm";
 
-const Button = ({ className, ...other }) => {
+type Props = {
+  className?: string;
+} & any;
+
+const Button = ({ className, ...other }: Props) => {
   return (
     <button
       className={clsxm(
