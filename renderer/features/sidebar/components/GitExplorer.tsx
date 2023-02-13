@@ -43,10 +43,10 @@ const GitExplorer = () => {
           <div className="flex h-full w-full flex-col justify-start p-2">
             <div className="mb-2 flex flex-col gap-2">
               <Input
-                className="w-full px-2 py-0.5"
+                className="w-full px-2 py-0.5 text-sm"
                 placeholder="Commit message"
               />
-              <div className="flex w-full gap-2">
+              <div className="flex w-full gap-2 text-sm">
                 <Button className="flex-1 py-0.5">Commit</Button>
                 <div className="relative flex items-stretch">
                   <Dropdown
