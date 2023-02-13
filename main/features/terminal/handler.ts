@@ -1,4 +1,5 @@
 import { ipcMain } from "electron";
+import { sendMessageToRenderer } from "../../utils";
 import { shell } from "./constants";
 
 const pty = require("node-pty");
@@ -19,7 +20,7 @@ const terminalHandler = ({ app, mainWindow }) => {
   const ptyProcess = initPtyProcess();
 
   ptyProcess.onData((data) =>
-    mainWindow.webContents.send("terminal:get-data", data)
+    sendMessageToRenderer(mainWindow, "terminal:get-data", data)
   );
 
   ipcMain.on("terminal:send-data", (event, data) => ptyProcess.write(data));
