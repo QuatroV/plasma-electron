@@ -2,7 +2,6 @@ import useOpenDirectory from "../../../hooks/useOpenDirectory";
 import useSaveFile from "../../../hooks/useSaveFile";
 import useFileStore from "../../../stores/fileStore";
 import useModalStore from "../../../stores/modalStore";
-import useCreateFile from "../hooks/useCreateFile";
 import MenuElement from "./MenuElement";
 
 const MenuFileElement = () => {
@@ -13,16 +12,32 @@ const MenuFileElement = () => {
     (state) => state.setPathToCreateFile
   );
   const rootPath = useFileStore((state) => state.rootPath);
+  const setCreateFileType = useModalStore((state) => state.setCreateFileType);
 
   const NewFileOption = () => {
     return (
       <div
         onClick={() => {
+          setCreateFileType("file");
           setPathToCreateFile(rootPath);
           setIsCreateFileModalOpen(true);
         }}
       >
         New File
+      </div>
+    );
+  };
+
+  const NewFolderOption = () => {
+    return (
+      <div
+        onClick={() => {
+          setCreateFileType("directory");
+          setPathToCreateFile(rootPath);
+          setIsCreateFileModalOpen(true);
+        }}
+      >
+        New Folder
       </div>
     );
   };
@@ -35,7 +50,12 @@ const MenuFileElement = () => {
     return <div onClick={saveFile}>Save File</div>;
   };
 
-  const options = [NewFileOption, OpenDirectoryOption, SaveFileOption];
+  const options = [
+    NewFileOption,
+    NewFolderOption,
+    OpenDirectoryOption,
+    SaveFileOption,
+  ];
 
   return <MenuElement title="File" options={options} />;
 };

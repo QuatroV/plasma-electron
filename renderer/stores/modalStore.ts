@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
+export type FileType = "directory" | "file";
+
 interface ModalState {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -8,6 +10,8 @@ interface ModalState {
   pathToCreateFile: string;
   setIsCreateFileModalOpen: (value: boolean) => void;
   setPathToCreateFile: (value: string) => void;
+  createFileType?: FileType;
+  setCreateFileType: (createFileType: FileType) => void;
 }
 
 const useModalStore = create<ModalState>()(
@@ -23,6 +27,10 @@ const useModalStore = create<ModalState>()(
     },
     setPathToCreateFile: (pathToCreateFile) => {
       set({ pathToCreateFile });
+    },
+    createFileType: undefined,
+    setCreateFileType: (createFileType) => {
+      set({ createFileType });
     },
   }))
 );

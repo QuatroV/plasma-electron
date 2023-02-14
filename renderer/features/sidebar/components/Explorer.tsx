@@ -1,7 +1,5 @@
-import Image from "next/image";
 import useFileStore from "../../../stores/fileStore";
 import useLoadFile from "../../../hooks/useLoadFile";
-import ExplorerContextMenu from "./ExplorerContextMenu";
 import { useState } from "react";
 import Spinner from "../../../components/Spinner";
 import useSearchFile from "../hooks/useSearchFile";
@@ -11,6 +9,7 @@ import { IoMdClose } from "react-icons/io";
 import useRefreshDir from "../hooks/useRefreshDir";
 import clsxm from "../../../utils/clsxm";
 import ExplorerItemIcon from "./ExplorerItemIcon";
+import useContextMenuStore from "../../../stores/contextMenuStore";
 
 const Explorer = () => {
   const visibleFiles = useFileStore((state) => state.files);
@@ -33,14 +32,33 @@ const Explorer = () => {
     }
   };
 
-  const renderItems = (files) => {
+  const renderItems = (
+    files,
+    setContextMenuOpen,
+    setPoint,
+    setVariant,
+    setContextData
+  ) => {
     const nodes = [];
     files.forEach((file, idx) => {
       const { items, nestingLevel, name, kind } = file;
       const isCurrentlyOpen = currentFile?.name === file.name;
+
+      const handleContextMenu = (e) => {
+        if (file.kind === "file") {
+          setVariant("explorerFile");
+        } else {
+          setVariant("explorerDirectory");
+        }
+        setContextData({ file });
+        setPoint({ x: e.clientX, y: e.clientY });
+        setContextMenuOpen(true);
+      };
+
       nodes.push(
-        <ExplorerContextMenu>
+        <>
           <div
+            onContextMenu={handleContextMenu}
             className={`group ${getMarginLeftByNesting(
               nestingLevel
             )} relative flex cursor-pointer items-center gap-1 p-0.5 text-sm hover:bg-gray-300 ${
@@ -66,21 +84,35 @@ const Explorer = () => {
               )}
             </div>
           </div>
-          {items.length && items[0].visible ? renderItems(items) : null}
-        </ExplorerContextMenu>
+          {items.length && items[0].visible
+            ? renderItems(
+                items,
+                setContextMenuOpen,
+                setPoint,
+                setVariant,
+                setContextData
+              )
+            : null}
+        </>
       );
     });
 
     return nodes.map((node) => node);
   };
 
-  const renderSearchResults = (files) => {
+  const renderSearchResults = (
+    files,
+    setContextMenuOpen,
+    setPoint,
+    setVariant,
+    setContextData
+  ) => {
     const nodes = [];
     files.forEach((file, idx) => {
       const { items, name, kind } = file;
       const isCurrentlyOpen = currentFile?.name === file.name;
       nodes.push(
-        <ExplorerContextMenu>
+        <>
           <div
             className={`group relative flex cursor-pointer items-center gap-1 p-0.5 text-sm hover:bg-gray-300 ${
               isCurrentlyOpen &&
@@ -102,8 +134,16 @@ const Explorer = () => {
               )}
             </div>
           </div>
-          {items.length && items[0].visible ? renderSearchResults(items) : null}
-        </ExplorerContextMenu>
+          {items.length && items[0].visible
+            ? renderSearchResults(
+                items,
+                setContextMenuOpen,
+                setPoint,
+                setVariant,
+                setContextData
+              )
+            : null}
+        </>
       );
     });
 
@@ -112,6 +152,11 @@ const Explorer = () => {
 
   const [searchFormOpened, setSearchFormOpened] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
+  const setContextMenuOpen = useContextMenuStore((state) => state.setIsOpen);
+  const setPoint = useContextMenuStore((state) => state.setPoint);
+  const setVariant = useContextMenuStore((state) => state.setVariant);
+  const setContextData = useContextMenuStore((state) => state.setContextData);
 
   const { searchFiles, searchResults, loading, resultsCount } = useSearchFile();
   const { refreshDir } = useRefreshDir();
@@ -182,7 +227,13 @@ const Explorer = () => {
       </div>
       {showDirectory && (
         <div className=" scrollbar relative overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
-          {renderItems(visibleFiles)}
+          {renderItems(
+            visibleFiles,
+            setContextMenuOpen,
+            setPoint,
+            setVariant,
+            setContextData
+          )}
         </div>
       )}
       {loading && (
@@ -192,7 +243,13 @@ const Explorer = () => {
       )}
       {showSearchResults ? (
         <div className=" scrollbar relative overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
-          {renderSearchResults(searchResults)}
+          {renderSearchResults(
+            searchResults,
+            setContextMenuOpen,
+            setPoint,
+            setVariant,
+            setContextData
+          )}
         </div>
       ) : null}
       {showNothingFound ? (

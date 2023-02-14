@@ -3,7 +3,8 @@ import dynamic from "next/dynamic";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import useModalStore from "../../../stores/modalStore";
-import useCreateFile from "../../menubar/hooks/useCreateFile";
+import useCreateFile from "../../../hooks/useCreateFile";
+import { BsFileEarmark, BsFolder } from "react-icons/bs";
 
 const Modal = dynamic(() => import("../../../components/Modal"), {
   ssr: false,
@@ -20,8 +21,9 @@ const CreateFileModal = () => {
   const setPathToCreateFile = useModalStore(
     (state) => state.setPathToCreateFile
   );
+  const createFileType = useModalStore((state) => state.createFileType);
 
-  const { createFile } = useCreateFile();
+  const { createFile, createFolder } = useCreateFile();
 
   const [fileName, setFileName] = useState("");
 
@@ -31,7 +33,13 @@ const CreateFileModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createFile(pathToCreateFile, fileName);
+    console.log({ pathToCreateFile, fileName });
+
+    if (createFileType === "file") {
+      createFile(pathToCreateFile, fileName);
+    } else {
+      createFolder(pathToCreateFile, fileName);
+    }
 
     handleCloseModal(false);
   };
@@ -43,9 +51,23 @@ const CreateFileModal = () => {
 
   return (
     <Modal open={isCreateFileModalOpen} setOpen={handleCloseModal}>
-      <div className="flex flex-col gap-1 text-sm">
+      <div className="flex flex-col gap-3 text-sm">
+        <div className="flex items-center gap-2 text-base font-black">
+          <div className=" h-[40px] w-fit rounded-full bg-white p-1 drop-shadow">
+            {createFileType === "file" ? (
+              <BsFileEarmark className="p-1" size={32} />
+            ) : (
+              <BsFolder className="p-1" size={32} />
+            )}
+          </div>
+          Create new {createFileType === "file" ? "file" : "folder"}
+        </div>
         <form onSubmit={handleSubmit} className="flex gap-2">
-          <Input placeholder="Enter the file name..." onChange={handleChange} />
+          <Input
+            autofocus
+            placeholder="Enter the name..."
+            onChange={handleChange}
+          />
           <Button className=" flex-1 whitespace-pre py-1">Create file</Button>
         </form>
       </div>

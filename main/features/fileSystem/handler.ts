@@ -95,6 +95,16 @@ const fileSystemHandler = ({ app, mainWindow }) => {
 
     return { files: JSON.stringify(fileTree.items) };
   });
+
+  ipcMain.handle("app:on-dir-create", async (event, arg) => {
+    const { name, path: pathStr, rootPath } = arg;
+
+    await fs.promises.mkdir(path.join(pathStr, name));
+
+    const fileTree = buildFileTree(rootPath);
+
+    return { files: JSON.stringify(fileTree.items) };
+  });
 };
 
 export default fileSystemHandler;

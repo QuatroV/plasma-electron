@@ -9,6 +9,7 @@ import SettingsModal from "../features/settingsModal/components/SettingsModal";
 import Breadcrumbs from "../features/editor/components/Breadcrumbs";
 import ErrorModal from "../features/error/components/ErrorModal";
 import CreateFileModal from "../features/createFileModal/components/CreateFileModal";
+import ContextMenu from "../features/contextMenu/components/ContextMenu";
 
 const TerminalContainer = dynamic(
   () => import("../features/terminal/components/TerminalContainer"),
@@ -26,6 +27,7 @@ const MonacoEditorComponent = dynamic(
 const Home: NextPage = () => {
   return (
     <>
+      <ContextMenu />
       <CreateFileModal />
       <ErrorModal />
       <SettingsModal />
