@@ -1,5 +1,7 @@
 import { ipcRenderer } from "electron";
-import useFileStore from "../../../stores/fileStore";
+import useFileStore, {
+  SupportedAssemblyLanguage,
+} from "../../../stores/fileStore";
 
 interface CreateProjectOptions {
   name: string;
@@ -39,6 +41,9 @@ const useCreateProject = (callback?: () => void) => {
   const clearAllFiles = useFileStore((state) => state.clearAllFiles);
   const clearOpenedFiles = useFileStore((state) => state.clearOpenedFiles);
   const setProjectName = useFileStore((state) => state.setProjectName);
+  const setProjectAssemblyLanguage = useFileStore(
+    (state) => state.setProjectAssemblyLanguage
+  );
 
   const createProject = async (options: CreateProjectOptions) => {
     const { files, rootPath, originalProjectName } = await ipcRenderer.invoke(
@@ -55,6 +60,7 @@ const useCreateProject = (callback?: () => void) => {
 
     setRootPath(rootPath);
     setProjectName(projectName);
+    setProjectAssemblyLanguage(options.assembly as SupportedAssemblyLanguage);
 
     const parsedFiles = JSON.parse(files);
 

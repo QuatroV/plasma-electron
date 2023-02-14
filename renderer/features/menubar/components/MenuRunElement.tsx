@@ -17,11 +17,19 @@ const MenuRunElement = (props) => {
     >
       <div
         onClick={runFile}
-        className=" flex h-[30px] items-center rounded-l-lg border-r py-1 px-2 active:bg-gray-300 active:shadow-inner"
+        className={clsxm(
+          " flex h-[30px] items-center rounded-l-lg border-r py-1 px-2 ",
+          currentFileCanBeExecuted && "active:bg-gray-300 active:shadow-inner"
+        )}
       >
         Run
       </div>
-      <div className="flex h-[30px] w-full items-center rounded-r-lg py-1 px-1 active:bg-gray-200 active:shadow-inner">
+      <div
+        className={clsxm(
+          "flex h-[30px] w-full items-center rounded-r-lg py-1 px-1 ",
+          currentFileCanBeExecuted && "active:bg-gray-200 active:shadow-inner"
+        )}
+      >
         {isExecuting ? (
           <ImSpinner9 color="#727272" className="animate-spin" size={18} />
         ) : (

@@ -33,11 +33,16 @@ export default function useOpenDirectory(callback?: () => void) {
   const clearAllFiles = useFileStore((state) => state.clearAllFiles);
   const clearOpenedFiles = useFileStore((state) => state.clearOpenedFiles);
   const setProjectName = useFileStore((state) => state.setProjectName);
+  const setProjectAssemblyLanguage = useFileStore(
+    (state) => state.setProjectAssemblyLanguage
+  );
 
   const openDir = async () => {
-    const { files, rootPath } = await ipcRenderer.invoke("app:on-dir-open");
+    const { files, rootPath, projectFileInfo } = await ipcRenderer.invoke(
+      "app:on-dir-open"
+    );
 
-    const projectName = getLastDirFromPath(rootPath);
+    const projectName = projectFileInfo.name || getLastDirFromPath(rootPath);
 
     saveToRecentProjects({ name: projectName, path: rootPath });
 
@@ -46,6 +51,7 @@ export default function useOpenDirectory(callback?: () => void) {
 
     setRootPath(rootPath);
     setProjectName(projectName);
+    setProjectAssemblyLanguage(projectFileInfo.assembly);
 
     const parsedFiles = JSON.parse(files);
 

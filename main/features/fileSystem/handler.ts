@@ -13,7 +13,39 @@ const fileSystemHandler = ({ app, mainWindow }) => {
 
     fileTree.build();
 
-    return { files: JSON.stringify(fileTree.items), rootPath };
+    const projectFile = fileTree.items.find((item) => {
+      const splittedItemName = item.name.split(".");
+      return (
+        splittedItemName.at(-1) === "json" &&
+        splittedItemName.at(-2) === "plasma"
+      );
+    });
+
+    console.log({ projectFile });
+
+    if (projectFile) {
+      const projectFileContents = await fs.promises.readFile(projectFile.path);
+
+      console.log("Strnig ", projectFileContents.toString());
+
+      const parsedProjectInfo = JSON.parse(projectFileContents.toString());
+
+      console.log("JSON ", parsedProjectInfo);
+
+      return {
+        files: JSON.stringify(fileTree.items),
+        rootPath,
+        projectFileInfo: {
+          projectName: parsedProjectInfo.name,
+          assembly: parsedProjectInfo.assembly,
+        },
+      };
+    }
+
+    return {
+      files: JSON.stringify(fileTree.items),
+      rootPath,
+    };
   });
 
   ipcMain.handle("app:on-create-project", async (event, options) => {

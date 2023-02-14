@@ -13,9 +13,12 @@ export type FileInfo = {
 
 export type FileInfoWithoutNesting = Omit<FileInfo, "items">;
 
+export type SupportedAssemblyLanguage = "nasm";
+
 interface FileState {
   rootPath: string;
   projectName: string;
+  projectAssemblyLanguage?: SupportedAssemblyLanguage;
   currentFile: FileInfoWithoutNesting;
   currentFileContent: Uint8Array;
   files: FileInfo[];
@@ -32,11 +35,15 @@ interface FileState {
   setProjectName: (projectName: string) => void;
   openSubdir: (path: string) => void;
   closeSubdir: (path: string) => void;
+  setProjectAssemblyLanguage: (
+    projectAssemblyLanguage: SupportedAssemblyLanguage
+  ) => void;
 }
 
 const useFileStore = create<FileState>()(
   devtools((set) => ({
     projectName: "",
+    projectAssemblyLanguage: undefined,
     rootPath: "",
     currentFileContent: new Uint8Array(),
     openedFiles: [],
@@ -114,6 +121,11 @@ const useFileStore = create<FileState>()(
           });
         })
       );
+    },
+    setProjectAssemblyLanguage: (
+      projectAssemblyLanguage: SupportedAssemblyLanguage
+    ) => {
+      set((state) => ({ projectAssemblyLanguage }));
     },
   }))
 );
