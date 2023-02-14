@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { IoMdClose } from "react-icons/io";
 import useFileStore, {
   FileInfoWithoutNesting,
 } from "../../../stores/fileStore";
@@ -13,7 +14,7 @@ interface TabProps {
 const Tab = ({ openedFile, active, onClose, onClick }: TabProps) => {
   return (
     <div
-      className={`group relative flex cursor-pointer flex-row items-start gap-2 pt-2 pl-2 pr-2 pb-1 text-sm last:rounded-tr-xl ${
+      className={`group relative flex cursor-pointer flex-row items-start gap-2 border-t border-gray-300 pt-2 pl-2 pr-2 pb-1 text-sm last:rounded-tr-xl ${
         active
           ? "after:invert-round-active bg-white font-semibold after:-right-2.5"
           : "border-l border-r border-gray-300 bg-gray-200 after:-right-3 first:border-l-0 hover:bg-gradient-to-b hover:from-gray-200 hover:via-gray-100 hover:to-gray-100"
@@ -30,13 +31,10 @@ const Tab = ({ openedFile, active, onClose, onClick }: TabProps) => {
       <div
         className={`${active ? "visible" : "invisible group-hover:visible"}`}
       >
-        <Image
+        <IoMdClose
+          className="cursor-pointer rounded hover:bg-gray-300 active:bg-gray-400"
           onClick={() => onClose(openedFile)}
-          src="/editor/close_FILL0_wght400_GRAD0_opsz48.svg"
-          height="20"
-          width="20"
-          alt=""
-          className="rounded hover:bg-gray-300 active:bg-gray-400"
+          size={20}
         />
       </div>
     </div>

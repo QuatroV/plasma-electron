@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { BsFileEarmark } from "react-icons/bs";
 import { GoCode, GoGear, GoZap } from "react-icons/go";
-import { SiJson } from "react-icons/si";
+import { VscJson } from "react-icons/vsc";
 
 export const ExplorerItemIcon = ({ file }) => {
   if (file.kind === "file") {
@@ -19,7 +19,7 @@ export const ExplorerItemIcon = ({ file }) => {
       case "exe":
         return <GoZap size={16} />;
       case "json":
-        return <SiJson size={16} />;
+        return <VscJson size={16} />;
       default:
         return <BsFileEarmark size={16} />;
     }
