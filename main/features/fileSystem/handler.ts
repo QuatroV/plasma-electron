@@ -1,6 +1,7 @@
 import { dialog, ipcMain } from "electron";
-import FileTree from "./FileTree";
 import fs from "fs";
+import path from "path";
+import { buildFileTree } from "./utils";
 
 const fileSystemHandler = ({ app, mainWindow }) => {
   ipcMain.handle("app:on-dir-open", async (event, file) => {
@@ -9,9 +10,7 @@ const fileSystemHandler = ({ app, mainWindow }) => {
     });
     const rootPath = dialogReturnValue.filePaths[0];
 
-    const fileTree = new FileTree(rootPath);
-
-    fileTree.build();
+    const fileTree = buildFileTree(rootPath);
 
     const projectFile = fileTree.items.find((item) => {
       const splittedItemName = item.name.split(".");
@@ -21,16 +20,10 @@ const fileSystemHandler = ({ app, mainWindow }) => {
       );
     });
 
-    console.log({ projectFile });
-
     if (projectFile) {
       const projectFileContents = await fs.promises.readFile(projectFile.path);
 
-      console.log("Strnig ", projectFileContents.toString());
-
       const parsedProjectInfo = JSON.parse(projectFileContents.toString());
-
-      console.log("JSON ", parsedProjectInfo);
 
       return {
         files: JSON.stringify(fileTree.items),
@@ -62,9 +55,7 @@ const fileSystemHandler = ({ app, mainWindow }) => {
       "utf8"
     );
 
-    const fileTree = new FileTree(rootPath);
-
-    fileTree.build();
+    const fileTree = buildFileTree(rootPath);
 
     return {
       files: JSON.stringify(fileTree.items),
@@ -85,9 +76,22 @@ const fileSystemHandler = ({ app, mainWindow }) => {
 
   ipcMain.handle("app:on-dir-refresh", async (event, arg) => {
     const { rootPath } = arg;
-    const fileTree = new FileTree(rootPath);
 
-    fileTree.build();
+    const fileTree = buildFileTree(rootPath);
+
+    return { files: JSON.stringify(fileTree.items) };
+  });
+
+  ipcMain.handle("app:on-file-create", async (event, arg) => {
+    const { nameWithExtension, path: pathStr, rootPath } = arg;
+
+    await fs.promises.writeFile(
+      path.join(pathStr, nameWithExtension),
+      "",
+      "utf8"
+    );
+
+    const fileTree = buildFileTree(rootPath);
 
     return { files: JSON.stringify(fileTree.items) };
   });

@@ -71,6 +71,7 @@ export default function MonacoEditorComponent() {
     window.addEventListener("resize", handleResize);
   }, []);
 
+  const currentFile = useFileStore((state) => state.currentFile);
   const currentFileContent = useFileStore((state) => state.currentFileContent);
   const setCurrentFileContent = useFileStore(
     (state) => state.setCurrentFileContent
@@ -98,7 +99,7 @@ export default function MonacoEditorComponent() {
 
   return (
     <div className="relative h-full bg-white">
-      {editorText ? (
+      {editorText || currentFile ? (
         <Editor
           height="calc(100vh - 72px)"
           language="javascript"
