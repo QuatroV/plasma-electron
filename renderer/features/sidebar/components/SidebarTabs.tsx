@@ -1,4 +1,4 @@
-import { FaGitAlt } from "react-icons/fa";
+import { FaBook, FaGitAlt } from "react-icons/fa";
 import { BsFolder } from "react-icons/bs";
 import useSidebarStore, { Tab } from "../stores/sidebarStore";
 import clsxm from "../../../utils/clsxm";
@@ -7,6 +7,7 @@ import capitalize from "../../../utils/capitalize";
 const tabs = [
   { name: "files", icon: <BsFolder /> },
   { name: "git", icon: <FaGitAlt /> },
+  { name: "study", icon: <FaBook /> },
 ];
 
 const SidebarTabs = () => {

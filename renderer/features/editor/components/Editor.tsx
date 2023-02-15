@@ -101,8 +101,7 @@ export default function MonacoEditorComponent() {
     <div className="relative h-full bg-white">
       {editorText || currentFile ? (
         <Editor
-          height="calc(100vh - 72px)"
-          language="javascript"
+          language={undefined}
           loading={<LoadingPlaceholder />}
           value={editorText}
           onMount={handleMount}

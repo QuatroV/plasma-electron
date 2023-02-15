@@ -1,3 +1,5 @@
+import { ipcRenderer } from "electron";
+import { DropdownDivider } from "../../../components/Dropdown";
 import useOpenDirectory from "../../../hooks/useOpenDirectory";
 import useSaveFile from "../../../hooks/useSaveFile";
 import useFileStore from "../../../stores/fileStore";
@@ -46,15 +48,25 @@ const MenuFileElement = () => {
     return <div onClick={openDir}>Open Directory</div>;
   };
 
+  const OpenRecentOption = () => {
+    return <div onClick={() => null}>Open Recent</div>;
+  };
+
   const SaveFileOption = () => {
     return <div onClick={saveFile}>Save File</div>;
+  };
+
+  const ExitOption = () => {
+    return <div onClick={() => ipcRenderer.invoke("quit-app")}>Exit</div>;
   };
 
   const options = [
     NewFileOption,
     NewFolderOption,
     OpenDirectoryOption,
+    OpenRecentOption,
     SaveFileOption,
+    ExitOption,
   ];
 
   return <MenuElement title="File" options={options} />;

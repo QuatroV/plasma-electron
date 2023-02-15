@@ -60,7 +60,14 @@ const CreateFileModal = () => {
               <BsFolder className="p-1" size={32} />
             )}
           </div>
-          Create new {createFileType === "file" ? "file" : "folder"}
+          <div>
+            <div>
+              Create new {createFileType === "file" ? "file" : "folder"}
+            </div>
+            <div className="text-xs font-thin text-gray-600">
+              in {pathToCreateFile}
+            </div>
+          </div>
         </div>
         <form onSubmit={handleSubmit} className="flex gap-2">
           <Input

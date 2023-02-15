@@ -1,6 +1,5 @@
 import useOpenDirectory from "../../../hooks/useOpenDirectory";
 import useWelcomeModalStore from "../../../stores/welcomeModalStore";
-import useSaveFile from "../../../hooks/useSaveFile";
 import MenuElement from "./MenuElement";
 
 const MenuProjectElement = () => {
@@ -15,7 +14,7 @@ const MenuProjectElement = () => {
           setStage("createProject");
         }}
       >
-        Create new project
+        Create New Project
       </div>
     );
   };
@@ -25,10 +24,14 @@ const MenuProjectElement = () => {
   });
 
   const OpenProjectOption = () => {
-    return <div onClick={openDir}>Open project</div>;
+    return <div onClick={openDir}>Open Project</div>;
   };
 
-  const options = [CreateProjectOption, OpenProjectOption];
+  const SaveProjectOption = () => {
+    return <div>Save project</div>;
+  };
+
+  const options = [CreateProjectOption, OpenProjectOption, SaveProjectOption];
 
   return <MenuElement title="Project" options={options} />;
 };

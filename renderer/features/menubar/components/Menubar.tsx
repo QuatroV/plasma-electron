@@ -16,10 +16,8 @@ const MenuBar = () => {
     <nav className="w-100 draggable sticky top-0 z-10 flex justify-between bg-gray-100 pr-2 text-sm">
       <div className="flex items-center justify-center gap-1 p-1">
         <MenuFileElement />
-        <MenuElement title="Edit" />
         <MenuProjectElement />
-        <MenuElement title="Selection" />
-        <MenuElement title="Terminal" />
+        <MenuElement title="Build" />
         <MenuRunElement title="Run program" />
       </div>
       <WindowName />
