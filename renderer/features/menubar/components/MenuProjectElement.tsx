@@ -28,7 +28,7 @@ const MenuProjectElement = () => {
   };
 
   const SaveProjectOption = () => {
-    return <div>Save project</div>;
+    return <div>Save Project</div>;
   };
 
   const options = [CreateProjectOption, OpenProjectOption, SaveProjectOption];

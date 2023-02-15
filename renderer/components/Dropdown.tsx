@@ -8,6 +8,7 @@ interface DropdownProps {
   onClick?: () => void;
   onContextMenu?: (e: any) => void;
   align?: "right" | "left";
+  dropdownStyles?: string;
 }
 
 const Dropdown = (
@@ -18,6 +19,7 @@ const Dropdown = (
     onClick,
     onContextMenu,
     align,
+    dropdownStyles,
   }: DropdownProps,
   ref
 ) => {
@@ -30,7 +32,8 @@ const Dropdown = (
         <div
           className={clsxm(
             `absolute top-3/4 z-10 flex flex-col gap-1 rounded-b rounded-tr bg-white p-1 font-rubik shadow-lg`,
-            align === "right" && "right-0"
+            align === "right" && "right-0",
+            dropdownStyles
           )}
         >
           {options.map((el, idx) => {

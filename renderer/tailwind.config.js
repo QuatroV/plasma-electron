@@ -23,12 +23,51 @@ module.exports = {
         "roll": {
           from: { transform: 'rotate(0deg)'},
           to: { transform: 'rotate(-360deg)'},
+        },
+        "shake": {
+          "10%":{
+            transform: "translate3d(-1px, 0, 0)",
+          },
+          
+          "20%":{
+            transform: "translate3d(2px, 0, 0)",
+          },
+        
+          "30%":{
+            transform: "translate3d(-4px, 0, 0)",
+          },
+        
+          "40%":{
+            transform: "translate3d(4px, 0, 0)",
+          },
+
+          "50%":{
+            transform: "translate3d(-4px, 0, 0)",
+          },
+        
+          "60%":{
+            transform: "translate3d(4px, 0, 0)",
+          },
+
+          "70%":{
+            transform: "translate3d(4px, 0, 0)",
+          },
+
+          "80%":{
+            transform: "translate3d(2px, 0, 0)",
+          },
+
+          "90%":{
+            transform: "translate3d(-1px, 0, 0)",
+          },
+          
         }
       },
       animation: {
         'slow-appear': 'slow-appear 0.25s linear',
         "slow-appear-no-opacity": 'slow-appear-no-opacity 0.25s linear',
-        'one-roll': 'roll .25s linear'
+        'one-roll': 'roll .25s linear',
+        'fast-shake': 'shake .25s linear'
       },
     },
     fontFamily: {
