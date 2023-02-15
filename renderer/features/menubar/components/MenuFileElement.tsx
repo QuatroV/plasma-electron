@@ -1,5 +1,4 @@
 import { ipcRenderer } from "electron";
-import { DropdownDivider } from "../../../components/Dropdown";
 import useOpenDirectory from "../../../hooks/useOpenDirectory";
 import useSaveFile from "../../../hooks/useSaveFile";
 import useFileStore from "../../../stores/fileStore";
@@ -63,9 +62,12 @@ const MenuFileElement = () => {
   const options = [
     NewFileOption,
     NewFolderOption,
+    "divider",
     OpenDirectoryOption,
     OpenRecentOption,
+    "divider",
     SaveFileOption,
+    "divider",
     ExitOption,
   ];
 

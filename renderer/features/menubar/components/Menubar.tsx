@@ -6,6 +6,7 @@ import WindowOperationsIcons from "../../windowOperations/components/WindowOpera
 import WindowName from "./WindowName";
 import MenuProjectElement from "./MenuProjectElement";
 import useWelcomeModalStore from "../../../stores/welcomeModalStore";
+import MenuBuildElement from "./MenuBuildElement";
 
 const MenuBar = () => {
   const isWelcomeModalOpen = useWelcomeModalStore((state) => state.isOpen);
@@ -17,7 +18,7 @@ const MenuBar = () => {
       <div className="flex items-center justify-center gap-1 p-1">
         <MenuFileElement />
         <MenuProjectElement />
-        <MenuElement title="Build" />
+        <MenuBuildElement />
         <MenuRunElement title="Run program" />
       </div>
       <WindowName />

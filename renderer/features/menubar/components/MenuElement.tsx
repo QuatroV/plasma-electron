@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef, useState, ReactNode } from "react";
 import Dropdown from "../../../components/Dropdown";
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
 
 interface MenuElementProps {
   title: string;
-  options?: (() => JSX.Element)[];
+  options?: ((() => JSX.Element) | string)[];
 }
 
 const MenuElement = ({ title, options }: MenuElementProps) => {

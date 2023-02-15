@@ -3,7 +3,7 @@ import clsxm from "../utils/clsxm";
 
 interface DropdownProps {
   children: React.ReactNode;
-  options: (() => JSX.Element)[];
+  options: ((() => JSX.Element) | string)[];
   dropdownOpen: boolean;
   onClick?: () => void;
   onContextMenu?: (e: any) => void;
@@ -33,14 +33,18 @@ const Dropdown = (
             align === "right" && "right-0"
           )}
         >
-          {options.map((el, idx) => (
-            <div
-              className=" cursor-pointer whitespace-pre rounded pl-2 pr-2 pt-1 pb-1 hover:bg-gray-200 active:shadow-inner"
-              key={idx}
-            >
-              {el()}
-            </div>
-          ))}
+          {options.map((el, idx) => {
+            return typeof el === "string" ? (
+              <hr className="" />
+            ) : (
+              <div
+                className=" cursor-pointer whitespace-pre rounded pl-2 pr-2 pt-1 pb-1 hover:bg-gray-200 active:shadow-inner"
+                key={idx}
+              >
+                {el()}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
