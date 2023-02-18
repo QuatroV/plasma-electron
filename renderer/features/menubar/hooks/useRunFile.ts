@@ -47,6 +47,33 @@ const useRunFile = () => {
     setIsExecuting(false);
   };
 
+  const buildProject = async () => {
+    setIsExecuting(true);
+    await ipcRenderer.invoke("app:on-build-project", {
+      rootPath,
+    });
+    setIsExecuting(false);
+  };
+
+  const linkProject = async () => {
+    setIsExecuting(true);
+    await ipcRenderer.invoke("app:on-link-project", {
+      rootPath,
+    });
+    setIsExecuting(false);
+  };
+
+  const buildLinkAndRunProject = async () => {
+    setIsExecuting(true);
+    await ipcRenderer.invoke("app:on-build-project", {
+      rootPath,
+    });
+    await ipcRenderer.invoke("app:on-link-project", {
+      rootPath,
+    });
+    setIsExecuting(false);
+  };
+
   useEffect(() => {
     if (currentFile) {
       const currentFileExtension = currentFile.name.split(".").pop();
@@ -67,6 +94,9 @@ const useRunFile = () => {
     isExecuting,
     buildFile,
     linkFile,
+    buildProject,
+    linkProject,
+    buildLinkAndRunProject,
   };
 };
 

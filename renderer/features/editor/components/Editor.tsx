@@ -1,4 +1,4 @@
-import Editor, { loader } from "@monaco-editor/react";
+import Editor, { loader, Monaco } from "@monaco-editor/react";
 import { useEffect, useRef, useState } from "react";
 import useKeyPress from "../../../hooks/useKeyPress";
 import useSaveFile from "../../../hooks/useSaveFile";
@@ -6,6 +6,7 @@ import useFileStore from "../../../stores/fileStore";
 
 import { AiOutlineCode } from "react-icons/ai";
 import isPackaged from "../../../utils/isPackaged";
+import { NASM_SYNTAX } from "../constants/nasmSyntax";
 
 const path = require("path");
 
@@ -97,15 +98,22 @@ export default function MonacoEditorComponent() {
   const editorContainerRef = useRef(null);
   useKeyPress(["s"], () => saveFile(), editorContainerRef.current, "ctrlKey");
 
+  const handleEditorWillMount = (monaco: Monaco) => {
+    monaco.languages.register({ id: "nasm" });
+    monaco.languages.setMonarchTokensProvider("nasm", NASM_SYNTAX as any);
+  };
+
   return (
     <div className="relative h-full bg-white">
       {editorText || currentFile ? (
         <Editor
-          language={undefined}
+          language="nasm"
+          theme="vs"
           loading={<LoadingPlaceholder />}
           value={editorText}
           onMount={handleMount}
           onChange={handleChange}
+          beforeMount={handleEditorWillMount}
         />
       ) : (
         <OpenFilePlaceholder />

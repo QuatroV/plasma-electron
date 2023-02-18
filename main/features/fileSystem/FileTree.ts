@@ -50,4 +50,38 @@ export default class FileTree {
 
     return fileArray;
   }
+
+  private recursiveGetFilesByCondition(
+    fileArray: Item[],
+    conditionCallback: (file: Item) => boolean,
+    foundFiles: Item[]
+  ) {
+    fileArray.forEach((file) => {
+      const conditionResult = conditionCallback(file);
+
+      if (conditionResult) {
+        foundFiles.push(file);
+      }
+
+      if (file.kind === "directory") {
+        this.recursiveGetFilesByCondition(
+          file.items,
+          conditionCallback,
+          foundFiles
+        );
+      }
+    });
+  }
+
+  getFilesByCondition(conditionCallback: (file: Item) => boolean): Item[] {
+    const foundFiles: Item[] = [];
+
+    this.recursiveGetFilesByCondition(
+      this.items,
+      conditionCallback,
+      foundFiles
+    );
+
+    return foundFiles;
+  }
 }
