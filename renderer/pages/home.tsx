@@ -10,6 +10,8 @@ import Breadcrumbs from "../features/editor/components/Breadcrumbs";
 import ErrorModal from "../features/error/components/ErrorModal";
 import CreateFileModal from "../features/createFileModal/components/CreateFileModal";
 import ContextMenu from "../features/contextMenu/components/ContextMenu";
+import RenameFileModal from "../features/renameFileModal/components/RenameFileModal";
+import ApproveDeleteModal from "../features/approveDeleteModal/components/ApproveDeleteModal";
 
 const TerminalContainer = dynamic(
   () => import("../features/terminal/components/TerminalContainer"),
@@ -28,6 +30,8 @@ const Home: NextPage = () => {
   return (
     <>
       <ContextMenu />
+      <ApproveDeleteModal />
+      <RenameFileModal />
       <CreateFileModal />
       <ErrorModal />
       <SettingsModal />

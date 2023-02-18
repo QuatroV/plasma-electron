@@ -105,6 +105,28 @@ const fileSystemHandler = ({ app, mainWindow }) => {
 
     return { files: JSON.stringify(fileTree.items) };
   });
+
+  ipcMain.handle("app:on-file-rename", async (event, arg) => {
+    const { oldPath, newPath, rootPath } = arg;
+
+    console.log({ oldPath, newPath });
+
+    await fs.promises.rename(oldPath, newPath);
+
+    const fileTree = buildFileTree(rootPath);
+
+    return { files: JSON.stringify(fileTree.items) };
+  });
+
+  ipcMain.handle("app:on-file-delete", async (event, arg) => {
+    const { path, rootPath } = arg;
+
+    await fs.promises.rm(path, { recursive: true, force: true });
+
+    const fileTree = buildFileTree(rootPath);
+
+    return { files: JSON.stringify(fileTree.items) };
+  });
 };
 
 export default fileSystemHandler;
