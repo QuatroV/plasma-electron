@@ -14,7 +14,7 @@ if (isProd) {
   await app.whenReady();
 
   const loadingWindow = createWindow("loading-app", {
-    icon: "resources/blob-logo.png",
+    icon: "resources/blob-logo-white.png",
     frame: false,
     width: 300,
     height: 250,
@@ -22,7 +22,7 @@ if (isProd) {
   loadingWindow.setResizable(false);
 
   const mainWindow = createWindow("main", {
-    icon: "resources/blob-logo.png",
+    icon: "resources/blob-logo-white.png",
     frame: false,
     width: 1000,
     height: 600,

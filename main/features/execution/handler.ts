@@ -186,7 +186,7 @@ const executionHandler = ({ mainWindow, app }) => {
 
       const linkOutput = await linkFiles(
         objPaths as ArrayOf<"at least", 1, string>,
-        path.join(rootPath, "project.exe")
+        path.join(rootPath, "_project.exe")
       );
 
       console.log("File successfully created! The output is: ", linkOutput);

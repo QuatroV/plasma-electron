@@ -10,7 +10,9 @@ export const runCommandInCmd = (commandLine: string) =>
     const output = [] as string[];
     child.stdout.on("data", (chunk) => output.push(chunk));
     child.on("close", () => resolve(output.join("").trim()));
-    child.on("error", (error) => reject(error));
+    child.on("error", (error) => {
+      reject(error);
+    });
   });
 
 export const changeExtension = (file: string, extension?: string) => {
@@ -39,12 +41,11 @@ export const buildFiles = async (
 
 export const linkFiles = async (
   paths: ArrayOf<"at least", 1, string>,
-  executableFilePath = changeExtension(paths[0], ".exe"),
-  additionalParams = ""
+  executableFilePath = changeExtension(paths[0], ".exe")
 ) => {
   const linkCommand = `${GCC_EXE_LOCATION} ${paths.join(
     " "
-  )} -o ${executableFilePath} ${additionalParams}`;
+  )} -o ${executableFilePath}`;
 
   console.log("link command ", linkCommand);
 
