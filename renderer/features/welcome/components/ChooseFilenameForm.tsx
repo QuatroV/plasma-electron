@@ -37,6 +37,7 @@ const ChooseFilenameForm = (props: Props) => {
         invalid={invalidInput}
         value={userInput}
         onChange={handleChange}
+        className=" w-auto"
       />
       <Button
         invalid={invalidInput}
