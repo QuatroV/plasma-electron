@@ -14,19 +14,18 @@ const RemotesList = (props: Props) => {
   return (
     <div className="flex flex-col gap-1">
       <div>Remotes</div>
-      {remotes.length ? (
-        remotes.map((remote, idx) => (
-          <div key={idx}>
-            <div className="flex justify-between">
-              <div>{remote.name}</div>
-              <HiDotsVertical className="cursor-pointer" size={14} />
+      {remotes.length
+        ? remotes.map((remote, idx) => (
+            <div key={idx}>
+              <div className="flex justify-between">
+                <div>{remote.name}</div>
+                <HiDotsVertical className="cursor-pointer" size={14} />
+              </div>
+              <div className="text-xs text-gray-500">{remote.refs.fetch}</div>
             </div>
-            <div className="text-xs text-gray-500">{remote.url}</div>
-          </div>
-        ))
-      ) : (
-        <AddRemoteForm addRemote={addRemote} />
-      )}
+          ))
+        : null}
+      <AddRemoteForm addRemote={addRemote} />
     </div>
   );
 };

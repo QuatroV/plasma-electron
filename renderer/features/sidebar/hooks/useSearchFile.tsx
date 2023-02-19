@@ -12,7 +12,6 @@ const useSearchFile = () => {
 
   const searchFiles = async (searchPhrase) => {
     setLoading(true);
-    console.log("FILES ", files, navigator.hardwareConcurrency, status);
     const foundMatches = await searchTreeForManyItems(
       { path: "", items: files },
       searchPhrase,
@@ -28,7 +27,6 @@ const useSearchFile = () => {
     } else {
       setSearchResults(foundMatches);
     }
-    console.log("foundMatches ", foundMatches);
     setLoading(false);
   };
 

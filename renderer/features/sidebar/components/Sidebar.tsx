@@ -16,7 +16,12 @@ const Sidebar = () => {
   return (
     <aside className=" flex h-[calc(100vh-40px)] w-64 min-w-[12rem] flex-col bg-gray-200 font-rubik">
       <SidebarTabs />
-      {tabsContents[tab]}
+      <div className={tab !== "files" ? "hidden" : null}>
+        <Explorer />
+      </div>
+      <div className={tab !== "git" ? "hidden" : null}>
+        <GitExplorer />
+      </div>
       <Registers />
       <Flags />
     </aside>

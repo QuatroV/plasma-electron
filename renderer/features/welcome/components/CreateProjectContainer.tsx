@@ -3,6 +3,7 @@ import { useState } from "react";
 import useFileStore from "../../../stores/fileStore";
 import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 import useCreateProject from "../hooks/useCreateProject";
+import ChooseFilenameForm from "./ChooseFilenameForm";
 
 const CreateProjectContainer = () => {
   const setStage = useWelcomeModalStore((state) => state.setStage);
@@ -58,20 +59,11 @@ const CreateProjectContainer = () => {
         </div>
       </div>
 
-      <div className="mb-3 flex animate-slow-appear flex-row items-center gap-3">
-        <label className="whitespace-nowrap">Project name</label>
-        <input
-          type="text"
-          className="w-full rounded p-1"
-          onChange={(e) => e.target.value && setUserInput(e.target.value)}
-        ></input>
-        <button
-          className={`float-right whitespace-nowrap rounded bg-white p-1 font-medium transition-all hover:scale-105 hover:shadow-lg active:outline active:outline-emerald-400`}
-          onClick={() => userInput && setProjectName(userInput)}
-        >
-          Set project name
-        </button>
-      </div>
+      <ChooseFilenameForm
+        userInput={userInput}
+        setUserInput={setUserInput}
+        setProjectName={setProjectName}
+      />
 
       <div
         className={`mb-3 flex animate-slow-appear-no-opacity flex-row gap-2 ${

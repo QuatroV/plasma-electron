@@ -17,7 +17,7 @@ const AddRemoteForm = ({ addRemote }: Props) => {
   };
 
   return open ? (
-    <div className="flex flex-col gap-2 ">
+    <div className="mb-2 flex flex-col gap-2">
       <Input
         placeholder="Remote name..."
         className="py-0.5"
@@ -41,7 +41,7 @@ const AddRemoteForm = ({ addRemote }: Props) => {
     </div>
   ) : (
     <Button className="w-full py-0.5" onClick={() => setOpen(true)}>
-      Add remote
+      Add Remote
     </Button>
   );
 };

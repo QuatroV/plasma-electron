@@ -33,7 +33,6 @@ const CreateFileModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ pathToCreateFile, fileName });
 
     if (createFileType === "file") {
       createFile(pathToCreateFile, fileName);

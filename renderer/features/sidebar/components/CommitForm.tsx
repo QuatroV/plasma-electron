@@ -33,7 +33,13 @@ const CommitForm = ({ commit }: Props) => {
 
   useOnClickOutside(dropdownListRef, () => setDropdownOpen(false));
 
+  const [validInput, setValidInput] = useState(true);
+
   const handleCommit = () => {
+    if (commitMessage.length > 72) {
+      setValidInput(false);
+      return;
+    }
     commit(commitMessage);
     setCommitMessage("");
   };
@@ -41,13 +47,19 @@ const CommitForm = ({ commit }: Props) => {
   return (
     <div className="mb-2 flex flex-col gap-2 px-2 pt-2">
       <Input
-        className="w-full px-2 py-0.5 text-sm"
+        className="w-full break-words px-2 py-0.5 text-sm"
         placeholder="Commit message"
         value={commitMessage}
+        invalid={!validInput}
+        multiline
         onChange={(e) => setCommitMessage(e.target.value)}
       />
       <div className="flex w-full gap-2 text-sm">
-        <Button className="flex-1 py-0.5" onClick={handleCommit}>
+        <Button
+          className="flex-1 py-0.5"
+          invalid={!validInput}
+          onClick={handleCommit}
+        >
           Commit
         </Button>
         <div className="relative flex items-stretch">

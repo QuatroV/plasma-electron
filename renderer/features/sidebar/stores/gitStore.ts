@@ -1,10 +1,15 @@
-import { StatusResult } from "simple-git";
+import { BranchSummaryBranch, StatusResult } from "simple-git";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
 export type Remote = {
   name: string;
-  url: string;
+  current: boolean;
+  refs: {
+    fetch: string;
+    push: string;
+  };
+  branches: BranchSummaryBranch[];
 };
 
 export interface GitState {

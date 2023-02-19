@@ -11,9 +11,6 @@ type Props = {
 
 const CommitChanges = (props: Props) => {
   const { gitStatus, addFilesToStaged, removeFilesFromStaged } = props;
-  console.log({ gitStatus });
-
-  if (!gitStatus) return null;
 
   const { not_added, staged } = gitStatus;
 

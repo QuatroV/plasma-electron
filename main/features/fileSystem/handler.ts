@@ -109,8 +109,6 @@ const fileSystemHandler = ({ app, mainWindow }) => {
   ipcMain.handle("app:on-file-rename", async (event, arg) => {
     const { oldPath, newPath, rootPath } = arg;
 
-    console.log({ oldPath, newPath });
-
     await fs.promises.rename(oldPath, newPath);
 
     const fileTree = buildFileTree(rootPath);

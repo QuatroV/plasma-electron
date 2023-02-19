@@ -5,7 +5,6 @@ import useGitStore from "../stores/gitStore";
 
 const useGit = () => {
   const [isRepo, setIsRepo] = useState(false);
-  const gitStatus = useGitStore((state) => state.gitStatus);
   const setGitStatus = useGitStore((state) => state.setGitStatus);
   const rootPath = useFileStore((state) => state.rootPath);
 
@@ -22,9 +21,17 @@ const useGit = () => {
     setGitStatus(gitStatus);
   }, [setGitStatus]);
 
-  const addRemote = async (remoteName: string, url: string) => {
-    await gitConnector.addRemote(remoteName, url);
-    setRemotes(remotes.concat({ name: remoteName, url }));
+  const addRemote = async (remoteName: string, ref: string) => {
+    await gitConnector.addRemote(remoteName, ref);
+    const remoteBranches = await gitConnector.getRemoteBranches();
+    setRemotes(
+      remotes.concat({
+        name: remoteName,
+        current: true,
+        refs: { fetch: ref, push: ref },
+        branches: remoteBranches,
+      })
+    );
   };
 
   const addFilesToStaged = async (fileNames: string[]) => {
@@ -42,24 +49,43 @@ const useGit = () => {
     await syncGitStatus();
   };
 
+  const push = async () => {
+    await gitConnector.push();
+    await syncGitStatus();
+  };
+
+  const pull = async () => {
+    await gitConnector.pull();
+    await syncGitStatus();
+  };
+
+  const sync = async () => {
+    await gitConnector.pull();
+    await gitConnector.push();
+    await syncGitStatus();
+  };
+
   useEffect(() => {
     const init = async () => {
       await gitConnector.init(rootPath);
       setIsRepo(gitConnector.isRepo);
+      setRemotes(gitConnector.remoteUrls);
       syncGitStatus();
     };
 
     init();
-  }, [rootPath, syncGitStatus]);
+  }, [rootPath, syncGitStatus, setRemotes]);
 
   return {
     initRepo,
     isRepo,
-    gitStatus,
     addRemote,
     addFilesToStaged,
     removeFilesFromStaged,
     commit,
+    push,
+    pull,
+    sync,
   };
 };
 

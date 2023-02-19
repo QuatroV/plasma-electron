@@ -1,12 +1,15 @@
 import useFileStore from "../../../stores/fileStore";
 import { FaGitAlt } from "react-icons/fa";
 import useGit from "../hooks/useGit";
-import { IoMdClose } from "react-icons/io";
-import { useState, useRef } from "react";
-import { CgRemote } from "react-icons/cg";
+import { useState } from "react";
 import RemotesList from "./RemotesList";
 import CommitChanges from "./CommitChanges";
 import CommitForm from "./CommitForm";
+import GitHeader from "./GitHeader";
+import { GoGitBranch } from "react-icons/go";
+import { IoIosArrowDown } from "react-icons/io";
+import BranchDropdown from "./BranchDropdown";
+import useGitStore from "../stores/gitStore";
 
 const GitExplorer = () => {
   const projectName = useFileStore((state) => state.projectName);
@@ -14,46 +17,48 @@ const GitExplorer = () => {
   const {
     isRepo,
     initRepo,
-    gitStatus,
     addRemote,
     addFilesToStaged,
     removeFilesFromStaged,
     commit,
+    push,
+    pull,
+    sync,
   } = useGit();
 
   const [remotesOpened, setRemotesOpened] = useState(false);
+  const gitStatus = useGitStore((state) => state.gitStatus);
+
+  console.log({ gitStatus });
 
   return (
     <>
-      <div className=" bg-gradient flex flex-row items-center justify-between bg-gray-300 py-1 px-2 text-sm font-semibold uppercase">
-        {projectName}
-        {!remotesOpened ? (
-          <CgRemote
-            size={18}
-            className="cursor-pointer"
-            title="Remotes"
-            onClick={() => setRemotesOpened((prev) => !prev)}
+      {gitStatus ? (
+        <>
+          <GitHeader
+            projectName={projectName}
+            setRemotesOpened={setRemotesOpened}
+            remotesOpened={remotesOpened}
+            push={push}
+            pull={pull}
+            sync={sync}
+            gitStatus={gitStatus}
           />
-        ) : (
-          <IoMdClose
-            className="cursor-pointer"
-            onClick={() => setRemotesOpened(false)}
-            size={18}
-          />
-        )}
-      </div>
-      <div
-        className={`${
-          remotesOpened
-            ? "scrollbar h-64 overflow-auto"
-            : "h-0 overflow-hidden "
-        }  bg-gray-300 px-2 text-sm transition-all`}
-      >
-        <RemotesList addRemote={addRemote} />
-      </div>
+          <div
+            className={`${
+              remotesOpened
+                ? "scrollbar h-24 overflow-auto"
+                : "h-0 overflow-hidden "
+            }  bg-gray-300 px-2 text-sm transition-all`}
+          >
+            <RemotesList addRemote={addRemote} />
+          </div>
+        </>
+      ) : null}
       <div className="flex h-full flex-col items-center justify-center">
-        {isRepo ? (
+        {isRepo && gitStatus ? (
           <div className="flex h-full w-full flex-col justify-start ">
+            <BranchDropdown gitStatus={gitStatus} />
             <CommitForm commit={commit} />
             <CommitChanges
               gitStatus={gitStatus}
