@@ -28,7 +28,7 @@ const MonacoEditorComponent = dynamic(
 
 const Home: NextPage = () => {
   return (
-    <>
+    <div className="select-none">
       <ContextMenu />
       <ApproveDeleteModal />
       <RenameFileModal />
@@ -49,7 +49,7 @@ const Home: NextPage = () => {
           </div>
         </main>
       </div>
-    </>
+    </div>
   );
 };
 

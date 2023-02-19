@@ -75,7 +75,7 @@ export default (
     ...options,
     ...state,
     webPreferences: {
-      // TODO: Return web security
+      // TODO: Return web security, needed for react-monaco
       webSecurity: false,
       nodeIntegration: true,
       contextIsolation: false,

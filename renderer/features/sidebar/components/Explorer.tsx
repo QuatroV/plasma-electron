@@ -62,8 +62,7 @@ const Explorer = () => {
             className={`group ${getMarginLeftByNesting(
               nestingLevel
             )} relative flex cursor-pointer items-center gap-1 p-0.5 text-sm hover:bg-gray-300 ${
-              isCurrentlyOpen &&
-              "bg-gray-300 outline-1 transition-all hover:outline hover:outline-emerald-400"
+              isCurrentlyOpen && "bg-gray-300 outline-1 transition-all"
             } ${
               nestingLevel > 0 &&
               "before:absolute before:-left-0.5 before:h-full before:w-0.5 before:bg-gray-300"
@@ -115,8 +114,7 @@ const Explorer = () => {
         <>
           <div
             className={`group relative flex cursor-pointer items-center gap-1 p-0.5 text-sm hover:bg-gray-300 ${
-              isCurrentlyOpen &&
-              "bg-gray-300 outline-1 transition-all hover:outline hover:outline-emerald-400"
+              isCurrentlyOpen && "bg-gray-300 outline-1 transition-all"
             }`}
             key={idx}
             onClick={(e) => openFile(e, file, true)}

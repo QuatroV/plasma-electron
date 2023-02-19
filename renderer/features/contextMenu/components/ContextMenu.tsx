@@ -33,7 +33,7 @@ const ContextMenu = () => {
   return (
     <div
       ref={contextMenuRef}
-      className="absolute z-20 w-48 rounded-b rounded-tr border bg-white p-1 font-rubik text-sm shadow-lg"
+      className="absolute z-20 w-48 rounded border bg-white p-1 font-rubik text-sm shadow-lg"
     >
       {ContextMenuContent[variant]}
     </div>

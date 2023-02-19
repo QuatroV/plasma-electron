@@ -1,28 +1,10 @@
 import Image from "next/image";
-import { BsFileEarmark } from "react-icons/bs";
-import { GoCode, GoGear, GoZap } from "react-icons/go";
-import { VscJson } from "react-icons/vsc";
+import FileIcon from "./FileIcon";
 
 export const ExplorerItemIcon = ({ file }) => {
   if (file.kind === "file") {
     const fileExtension = file.name.split(".").pop();
-    switch (fileExtension) {
-      case "asm":
-      case "c":
-      case "cpp":
-      case "h":
-        return <GoCode size={16} />;
-      case "obj":
-      case "bin":
-      case "dll":
-        return <GoGear size={16} />;
-      case "exe":
-        return <GoZap size={16} />;
-      case "json":
-        return <VscJson size={16} />;
-      default:
-        return <BsFileEarmark size={16} />;
-    }
+    return <FileIcon fileExtension={fileExtension} />;
   }
   return (
     <Image
