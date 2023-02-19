@@ -18,7 +18,7 @@ const CommitChanges = (props: Props) => {
     <div>
       {staged.length ? (
         <>
-          <div className="mb-1 flex items-center justify-between pr-1 pl-2 text-sm font-bold">
+          <div className="mb-1 flex items-center justify-between px-2 text-sm font-bold">
             <div>Staged Changes</div>
             <CgRemoveR
               className="cursor-pointer text-gray-700 "
@@ -37,7 +37,7 @@ const CommitChanges = (props: Props) => {
                   <FileIcon fileExtension={fileName.split(".").pop()} />
                   <div>{fileName}</div>
                 </div>
-                <div className="invisible flex items-center gap-1 group-hover:visible">
+                <div className="invisible flex items-center gap-1 pr-1 group-hover:visible">
                   <CgRemoveR
                     className="cursor-pointer text-gray-700 "
                     title="Discard changes"
@@ -52,9 +52,9 @@ const CommitChanges = (props: Props) => {
       ) : null}
       {not_added.length ? (
         <>
-          <div className="my-1 flex justify-between pl-2 text-sm font-bold">
+          <div className="my-1 flex justify-between px-2 text-sm font-bold">
             <div>Changes</div>
-            <div className=" flex items-center gap-1 pr-1">
+            <div className=" flex items-center gap-1">
               <CgRemoveR
                 className="cursor-pointer text-gray-700 "
                 title="Discard all changes"
@@ -78,7 +78,7 @@ const CommitChanges = (props: Props) => {
                   <FileIcon fileExtension={fileName.split(".").pop()} />
                   <div>{fileName}</div>
                 </div>
-                <div className="invisible flex items-center gap-1 group-hover:visible">
+                <div className="invisible flex items-center gap-1 pr-1 group-hover:visible">
                   <CgRemoveR
                     className="cursor-pointer text-gray-700 "
                     title="Discard changes"
