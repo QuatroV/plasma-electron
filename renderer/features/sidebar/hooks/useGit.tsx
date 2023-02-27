@@ -11,15 +11,16 @@ const useGit = () => {
   const remotes = useGitStore((state) => state.remotes);
   const setRemotes = useGitStore((state) => state.setRemotes);
 
-  const initRepo = async () => {
-    await gitConnector.initRepo();
-    setIsRepo(true);
-  };
-
   const syncGitStatus = useCallback(async () => {
     const gitStatus = await gitConnector.getStatus();
     setGitStatus(gitStatus);
   }, [setGitStatus]);
+
+  const initRepo = async () => {
+    await gitConnector.initRepo();
+    setIsRepo(true);
+    syncGitStatus();
+  };
 
   const addRemote = async (remoteName: string, ref: string) => {
     await gitConnector.addRemote(remoteName, ref);
@@ -66,11 +67,15 @@ const useGit = () => {
   };
 
   useEffect(() => {
+    if (!rootPath) return;
+
     const init = async () => {
       await gitConnector.init(rootPath);
       setIsRepo(gitConnector.isRepo);
       setRemotes(gitConnector.remoteUrls);
-      syncGitStatus();
+      if (gitConnector.isRepo) {
+        syncGitStatus();
+      }
     };
 
     init();

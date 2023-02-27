@@ -35,7 +35,9 @@ const BranchDropdown = ({ gitStatus }: Props) => {
     state.remotes.find((remote) => remote.current)
   );
 
-  const options = currentRemote.branches
+  const currentRemoteBranches = currentRemote?.branches || [];
+
+  const options = currentRemoteBranches
     .map(
       (branch, idx) =>
         function BranchDropdownItem() {

@@ -27,8 +27,6 @@ const GitExplorer = () => {
   const [remotesOpened, setRemotesOpened] = useState(false);
   const gitStatus = useGitStore((state) => state.gitStatus);
 
-  console.log({ gitStatus });
-
   return (
     <>
       {gitStatus ? (

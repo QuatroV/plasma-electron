@@ -30,14 +30,18 @@ const CommitChanges = (props: Props) => {
           <div>
             {staged.map((fileName, idx) => (
               <div
-                className="group flex items-center justify-between py-0.5 px-1 text-sm hover:bg-gray-300"
+                className="group relative flex items-center justify-between py-0.5 px-1 text-sm hover:bg-gray-300"
                 key={idx}
               >
-                <div className="flex items-center gap-1">
-                  <FileIcon fileExtension={fileName.split(".").pop()} />
-                  <div>{fileName}</div>
+                <div className="flex items-center gap-1 overflow-hidden">
+                  <div>
+                    <FileIcon fileExtension={fileName.split(".").pop()} />
+                  </div>
+                  <div className="w-inherit overflow-hidden text-ellipsis whitespace-nowrap">
+                    {fileName}
+                  </div>
                 </div>
-                <div className="invisible flex items-center gap-1 pr-1 group-hover:visible">
+                <div className="invisible absolute right-0 flex items-center gap-1 rounded bg-gray-300 px-1 group-hover:visible">
                   <CgRemoveR
                     className="cursor-pointer text-gray-700 "
                     title="Discard changes"
@@ -71,14 +75,18 @@ const CommitChanges = (props: Props) => {
           <div>
             {not_added.map((fileName, idx) => (
               <div
-                className="group flex items-center justify-between py-0.5 px-1 text-sm hover:bg-gray-300"
+                className="group relative flex items-center justify-between py-0.5 px-1 text-sm hover:bg-gray-300"
                 key={idx}
               >
-                <div className="flex items-center gap-1">
-                  <FileIcon fileExtension={fileName.split(".").pop()} />
-                  <div>{fileName}</div>
+                <div className="flex items-center gap-1 overflow-hidden">
+                  <div>
+                    <FileIcon fileExtension={fileName.split(".").pop()} />
+                  </div>
+                  <div className="w-inherit overflow-hidden text-ellipsis whitespace-nowrap">
+                    {fileName}
+                  </div>
                 </div>
-                <div className="invisible flex items-center gap-1 pr-1 group-hover:visible">
+                <div className="invisible absolute right-0 flex items-center gap-1 rounded bg-gray-300 px-1 group-hover:visible">
                   <CgRemoveR
                     className="cursor-pointer text-gray-700 "
                     title="Discard changes"

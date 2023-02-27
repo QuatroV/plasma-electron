@@ -1,5 +1,6 @@
 import Resizable from "../../../components/Resizable";
 import useSidebarStore from "../stores/sidebarStore";
+import DebugSidebar from "./DebugSidebar";
 import Explorer from "./Explorer";
 import Flags from "./Flags";
 import GitExplorer from "./GitExplorer";
@@ -17,11 +18,14 @@ const Sidebar = () => {
     >
       <aside className=" flex h-[calc(100vh-40px)] min-w-[12rem] flex-col bg-gray-200 font-rubik">
         <SidebarTabs />
-        <div className={tab !== "files" ? "hidden" : null}>
+        <div className={tab !== "files" ? "hidden" : "h-full"}>
           <Explorer />
         </div>
-        <div className={tab !== "git" ? "hidden" : null}>
+        <div className={tab !== "git" ? "hidden" : "h-full"}>
           <GitExplorer />
+        </div>
+        <div className={tab !== "debug" ? "hidden" : "h-full"}>
+          <DebugSidebar />
         </div>
         <Registers />
         <Flags />

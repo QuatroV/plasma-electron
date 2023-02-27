@@ -9,9 +9,9 @@ type Props = {
 const Button = ({ className, invalid, onClick, ...other }: Props) => {
   const [shakeEffect, setShakeEffect] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     if (onClick) {
-      onClick();
+      onClick(e);
     }
 
     if (invalid) {

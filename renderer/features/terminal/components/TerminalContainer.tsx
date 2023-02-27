@@ -27,7 +27,7 @@ const TerminalContainer = () => {
     <div className="absolute bottom-2 w-full font-rubik">
       {collapsed && hasOutputNotification ? <TerminalNotifications /> : null}
       <div
-        title="Terminal"
+        title={collapsed ? "Terminal" : undefined}
         className={`   border border-gray-300 bg-gradient-to-b from-gray-200 to-gray-300  p-2 shadow backdrop-blur-sm  ${
           collapsed
             ? " ml-auto mr-5 flex w-min cursor-pointer justify-center rounded-full p-5"

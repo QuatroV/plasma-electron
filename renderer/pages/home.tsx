@@ -39,7 +39,7 @@ const Home: NextPage = () => {
         <MenuBar />
         <main className="flex h-[calc(100vh-40px)] w-full">
           <Sidebar />
-          <div className="relative z-0 flex-1">
+          <div className="relative z-10 flex-1">
             <Tabs />
             <Breadcrumbs />
             <MonacoEditorComponent />

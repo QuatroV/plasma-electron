@@ -9,6 +9,7 @@ interface DropdownProps {
   onContextMenu?: (e: any) => void;
   align?: "right" | "left";
   dropdownStyles?: string;
+  unstyledOptions?: boolean;
 }
 
 const Dropdown = (
@@ -20,6 +21,7 @@ const Dropdown = (
     onContextMenu,
     align,
     dropdownStyles,
+    unstyledOptions = false,
   }: DropdownProps,
   ref
 ) => {
@@ -39,6 +41,8 @@ const Dropdown = (
           {options.map((el, idx) => {
             return typeof el === "string" ? (
               <hr className="" />
+            ) : unstyledOptions ? (
+              el()
             ) : (
               <div
                 className=" cursor-pointer whitespace-pre rounded pl-2 pr-2 pt-1 pb-1 hover:bg-gray-200 active:shadow-inner"

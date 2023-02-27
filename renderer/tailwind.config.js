@@ -1,5 +1,4 @@
-const colors = require('tailwindcss/colors');
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './renderer/pages/**/*.{js,ts,jsx,tsx}',
@@ -74,5 +73,7 @@ module.exports = {
       rubik: ['Rubik', 'sans-serif'],
     }
   },
-  plugins: [],
+  plugins:[
+    require('@tailwindcss/container-queries'),
+  ],
 };

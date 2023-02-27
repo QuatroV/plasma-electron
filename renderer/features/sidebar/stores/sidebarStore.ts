@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-export type Tab = "files" | "git";
+export type Tab = "files" | "git" | "study" | "debug";
 
 interface SidebarState {
   tab: Tab;
