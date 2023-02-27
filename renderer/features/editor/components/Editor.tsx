@@ -35,6 +35,7 @@ export default function MonacoEditorComponent() {
   };
 
   useEffect(() => {
+    window.addEventListener("resize-editor", handleResize);
     window.addEventListener("resize", handleResize);
   }, []);
 

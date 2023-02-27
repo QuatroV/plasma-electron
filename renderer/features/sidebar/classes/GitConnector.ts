@@ -11,9 +11,14 @@ class GitConnector {
   async init(rootPath: string, callback?: () => void) {
     this._git = simpleGit(rootPath);
     this._isRepo = await this._git.checkIsRepo(CheckRepoActions.IS_REPO_ROOT);
-    const remotes = await this._git.getRemotes(true);
 
     this._remoteUrls = [];
+
+    if (!this._isRepo) {
+      return;
+    }
+
+    const remotes = await this._git.getRemotes(true);
 
     for (let i = 0; i < remotes.length; i++) {
       const remoteBranches = await this.getRemoteBranches();

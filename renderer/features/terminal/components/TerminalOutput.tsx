@@ -52,11 +52,12 @@ const TerminalOutput = (props: Props) => {
   return (
     <div
       className={clsxm(
-        "relative w-full rounded-lg transition-all",
+        "relative w-full rounded-lg bg-black p-2 transition-all",
         collapsed ? "hidden" : ""
       )}
-      ref={outputTerminalRef}
-    />
+    >
+      <div ref={outputTerminalRef} />
+    </div>
   );
 };
 

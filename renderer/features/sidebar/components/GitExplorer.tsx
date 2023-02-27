@@ -6,8 +6,6 @@ import RemotesList from "./RemotesList";
 import CommitChanges from "./CommitChanges";
 import CommitForm from "./CommitForm";
 import GitHeader from "./GitHeader";
-import { GoGitBranch } from "react-icons/go";
-import { IoIosArrowDown } from "react-icons/io";
 import BranchDropdown from "./BranchDropdown";
 import useGitStore from "../stores/gitStore";
 

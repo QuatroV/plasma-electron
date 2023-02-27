@@ -1,4 +1,3 @@
-import Image from "next/image";
 import useLoadFile from "../../../hooks/useLoadFile";
 import useFileStore from "../../../stores/fileStore";
 import Tab from "./Tab";
@@ -18,7 +17,7 @@ const Tabs = () => {
   };
 
   return (
-    <div className="scrollbar flex w-full max-w-full overflow-auto whitespace-nowrap bg-gradient-to-b from-gray-100 to-gray-200 font-rubik">
+    <div className="scrollbar draggable flex w-full max-w-full overflow-auto whitespace-nowrap bg-gradient-to-b from-gray-100 to-gray-200 font-rubik">
       {openedFiles.map((openedFile, idx) => (
         <Tab
           key={idx}

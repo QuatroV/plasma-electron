@@ -34,11 +34,11 @@ const ButtonsContainer = () => {
             title="Open existing project"
             imgSrc="/welcome/file_open_black_24dp.svg"
           />
-          <MainButton
+          {/* <MainButton
             title="Education mode"
             imgSrc="/welcome/school_FILL0_wght400_GRAD0_opsz48.svg"
             onClick={() => null}
-          />
+          /> */}
         </div>
       </div>
 

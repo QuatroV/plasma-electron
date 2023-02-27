@@ -38,9 +38,11 @@ export default function useOpenDirectory(callback?: () => void) {
   );
 
   const openDir = async () => {
-    const { files, rootPath, projectFileInfo } = await ipcRenderer.invoke(
-      "app:on-dir-open"
-    );
+    const {
+      files,
+      rootPath,
+      projectFileInfo = {},
+    } = await ipcRenderer.invoke("app:on-dir-open");
 
     const projectName = projectFileInfo.name || getLastDirFromPath(rootPath);
 

@@ -73,7 +73,10 @@ const Explorer = () => {
             <div className="flex w-[16px] items-center">
               <ExplorerItemIcon file={file} />
             </div>
-            <div className="flex-1 overflow-hidden text-ellipsis" title={name}>
+            <div
+              className="flex-1 overflow-hidden text-ellipsis whitespace-pre"
+              title={name}
+            >
               {name}
               <span className=" ml-1 inline-block transition-all group-hover:translate-x-1">
                 {isCurrentlyOpen && " →"}
@@ -122,7 +125,10 @@ const Explorer = () => {
             <div className="flex w-[16px] items-center">
               <ExplorerItemIcon file={file} />
             </div>
-            <div className="flex-1 overflow-hidden text-ellipsis" title={name}>
+            <div
+              className="flex-1 overflow-hidden text-ellipsis whitespace-pre"
+              title={name}
+            >
               {name}
               <span className=" ml-1 inline-block transition-all group-hover:translate-x-1">
                 {isCurrentlyOpen && " →"}
