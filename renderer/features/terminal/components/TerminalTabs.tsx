@@ -49,8 +49,8 @@ const TerminalTabs = ({
 
             <IoIosArrowDown
               onClick={() => setCollapsed((prevState) => !prevState)}
-              className="mr-1 cursor-pointer"
-              size={20}
+              className="mr-1 cursor-pointer transition-all hover:translate-y-0.5"
+              size={24}
             />
           </>
         ) : (
