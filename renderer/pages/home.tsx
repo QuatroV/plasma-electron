@@ -11,15 +11,10 @@ import CreateFileModal from "../features/createFileModal/components/CreateFileMo
 import ContextMenu from "../features/contextMenu/components/ContextMenu";
 import RenameFileModal from "../features/renameFileModal/components/RenameFileModal";
 import ApproveDeleteModal from "../features/approveDeleteModal/components/ApproveDeleteModal";
+import MainView from "../features/mainView/components/MainView";
 
 const TerminalContainer = dynamic(
   () => import("../features/terminal/components/TerminalContainer"),
-  {
-    ssr: false,
-  }
-);
-const MonacoEditorComponent = dynamic(
-  import("../features/editor/components/Editor"),
   {
     ssr: false,
   }
@@ -42,7 +37,7 @@ const Home: NextPage = () => {
           <div className="relative z-10 flex-1">
             <Tabs />
             <Breadcrumbs />
-            <MonacoEditorComponent />
+            <MainView />
             <TerminalContainer />
           </div>
         </main>

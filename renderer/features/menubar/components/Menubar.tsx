@@ -1,4 +1,3 @@
-import Image from "next/image";
 import MenuFileElement from "./MenuFileElement";
 import MenuRunElement from "./MenuRunElement";
 import WindowOperationsIcons from "../../windowOperations/components/WindowOperationsIcons";
@@ -6,6 +5,7 @@ import WindowName from "./WindowName";
 import MenuProjectElement from "./MenuProjectElement";
 import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 import MenuBuildElement from "./MenuBuildElement";
+import MenuToolsElement from "./MenuToolsElement";
 
 const MenuBar = () => {
   const isWelcomeModalOpen = useWelcomeModalStore((state) => state.isOpen);
@@ -18,7 +18,8 @@ const MenuBar = () => {
         <MenuFileElement />
         <MenuProjectElement />
         <MenuBuildElement />
-        <MenuRunElement title="Run program" />
+        <MenuToolsElement />
+        <MenuRunElement />
       </div>
       <WindowName />
       <WindowOperationsIcons />
