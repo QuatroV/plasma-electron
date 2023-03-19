@@ -1,3 +1,4 @@
+import produce from "immer";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -17,6 +18,7 @@ interface TabsState {
   setActiveTab: (id: string) => void;
   deleteTab: (id: string) => void;
   clearTabs: () => void;
+  reorderTabs: (firstId: string, secondId: string) => void;
 }
 
 const useTabsStore = create<TabsState>()(
@@ -43,6 +45,20 @@ const useTabsStore = create<TabsState>()(
     deleteTab: (id) =>
       set((state) => ({ tabs: state.tabs.filter((tab) => tab.id !== id) })),
     clearTabs: () => set({ tabs: [] }),
+    reorderTabs: (firstId, secondId) =>
+      set(
+        produce((state) => {
+          const { tabs } = state;
+
+          const firstTabIndex = tabs.findIndex((tab) => tab.id === firstId);
+          const secondTabIndex = tabs.findIndex((tab) => tab.id === secondId);
+
+          [tabs[firstTabIndex], tabs[secondTabIndex]] = [
+            tabs[secondTabIndex],
+            tabs[firstTabIndex],
+          ];
+        })
+      ),
   }))
 );
 

@@ -27,8 +27,6 @@ const Sidebar = () => {
         <div className={tab !== "debug" ? "hidden" : "h-full"}>
           <DebugSidebar />
         </div>
-        <Registers />
-        <Flags />
       </aside>
     </Resizable>
   );

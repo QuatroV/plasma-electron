@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { BsFileEarmark, BsFolder } from "react-icons/bs";
 import Button from "../../../components/Button";
 import useApproveDeleteModalStore from "../../../stores/approveDeleteStore";
-import useEditFile from "../../contextMenu/hooks/useEditFile";
+import useEditFile from "../../../hooks/useEditFile";
 
 const Modal = dynamic(() => import("../../../components/Modal"), {
   ssr: false,

@@ -4,7 +4,7 @@ import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import { BsFileEarmark, BsFolder } from "react-icons/bs";
 import useRenameModalStore from "../../../stores/renameModalStore";
-import useEditFile from "../../contextMenu/hooks/useEditFile";
+import useEditFile from "../../../hooks/useEditFile";
 import { getFileName, getPathWithoutFilename } from "../../../utils/path";
 
 const Modal = dynamic(() => import("../../../components/Modal"), {

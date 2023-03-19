@@ -10,27 +10,12 @@ import useRefreshDir from "../hooks/useRefreshDir";
 import clsxm from "../../../utils/clsxm";
 import ExplorerItemIcon from "./ExplorerItemIcon";
 import useContextMenuStore from "../../../stores/contextMenuStore";
+import ExplorerItem from "./ExplorerItem";
 
 const Explorer = () => {
   const visibleFiles = useFileStore((state) => state.files);
   const projectName = useFileStore((state) => state.projectName);
   const { currentFile, openFile } = useLoadFile();
-
-  const getMarginLeftByNesting = (nestingLevel) => {
-    switch (nestingLevel) {
-      case 1:
-        return "ml-2";
-      case 2:
-        return "ml-4";
-      case 3:
-        return "ml-6";
-      case 4:
-        return "ml-8";
-      case 0:
-      default:
-        return "ml-0";
-    }
-  };
 
   const renderItems = (
     files,
@@ -41,51 +26,23 @@ const Explorer = () => {
   ) => {
     const nodes = [];
     files.forEach((file, idx) => {
-      const { items, nestingLevel, name, kind } = file;
+      const { items } = file;
       const isCurrentlyOpen = currentFile?.name === file.name;
 
-      const handleContextMenu = (e) => {
-        if (file.kind === "file") {
-          setVariant("explorerFile");
-        } else {
-          setVariant("explorerDirectory");
-        }
-        setContextData({ file });
-        setPoint({ x: e.clientX, y: e.clientY });
-        setContextMenuOpen(true);
+      const explorerItemProps = {
+        file,
+        setVariant,
+        setContextData,
+        setPoint,
+        isCurrentlyOpen,
+        setContextMenuOpen,
+        openFile,
+        idx,
       };
 
       nodes.push(
         <>
-          <div
-            onContextMenu={handleContextMenu}
-            className={`group ${getMarginLeftByNesting(
-              nestingLevel
-            )} relative flex cursor-pointer items-center gap-1 p-0.5 text-sm hover:bg-gray-300 ${
-              isCurrentlyOpen && "bg-gray-300 outline-1 transition-all"
-            } ${
-              nestingLevel > 0 &&
-              "before:absolute before:-left-0.5 before:h-full before:w-0.5 before:bg-gray-300"
-            }`}
-            key={idx}
-            onClick={(e) => openFile(e, file)}
-          >
-            <div className="flex w-[16px] items-center">
-              <ExplorerItemIcon file={file} />
-            </div>
-            <div
-              className="flex-1 overflow-hidden text-ellipsis whitespace-pre"
-              title={name}
-            >
-              {name}
-              <span className=" ml-1 inline-block transition-all group-hover:translate-x-1">
-                {isCurrentlyOpen && " →"}
-              </span>
-              {kind === "directory" && !file.items.length && (
-                <span className="font-light text-gray-400"> (empty)</span>
-              )}
-            </div>
-          </div>
+          <ExplorerItem {...explorerItemProps} />
           {items.length && items[0].visible
             ? renderItems(
                 items,

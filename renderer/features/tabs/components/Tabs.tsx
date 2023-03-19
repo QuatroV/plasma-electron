@@ -1,14 +1,15 @@
+import useTabsStore, { Tab as TabType } from "../../../hooks/tabsStore";
 import useLoadFile from "../../../hooks/useLoadFile";
 import useFileStore from "../../../stores/fileStore";
-import useTabsStore, { Tab as TabType } from "../../../hooks/tabsStore";
 import Tab from "./Tab";
 
 const Tabs = () => {
-  const { openFile } = useLoadFile();
-
   const tabs = useTabsStore((state) => state.tabs);
+  const reorderTabs = useTabsStore((state) => state.reorderTabs);
   const deleteTab = useTabsStore((state) => state.deleteTab);
   const setActiveTab = useTabsStore((state) => state.setActiveTab);
+
+  const { openFile } = useLoadFile();
 
   const handleClose = (tab: TabType) => {
     deleteTab(tab.id);
@@ -24,12 +25,14 @@ const Tabs = () => {
 
   return (
     <div className="scrollbar draggable flex w-full max-w-full overflow-auto whitespace-nowrap bg-gradient-to-b from-gray-100 to-gray-200 font-rubik">
-      {tabs.map((tab) => (
+      {tabs.map((tab, index) => (
         <Tab
-          key={tab.id}
-          tabInfo={tab}
+          key={index}
           onClose={handleClose}
           onClick={handleClick}
+          last={index === tabs.length - 1}
+          tabInfo={tab}
+          reorderTabs={reorderTabs}
         />
       ))}
     </div>
