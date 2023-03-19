@@ -68,7 +68,7 @@ const Explorer = () => {
               "before:absolute before:-left-0.5 before:h-full before:w-0.5 before:bg-gray-300"
             }`}
             key={idx}
-            onClick={(e) => openFile(e, file, true)}
+            onClick={(e) => openFile(e, file)}
           >
             <div className="flex w-[16px] items-center">
               <ExplorerItemIcon file={file} />
@@ -120,7 +120,7 @@ const Explorer = () => {
               isCurrentlyOpen && "bg-gray-300 outline-1 transition-all"
             }`}
             key={idx}
-            onClick={(e) => openFile(e, file, true)}
+            onClick={(e) => openFile(e, file)}
           >
             <div className="flex w-[16px] items-center">
               <ExplorerItemIcon file={file} />

@@ -1,4 +1,5 @@
 import { ipcRenderer } from "electron";
+import useTabsStore from "./tabsStore";
 import useFileStore, { FileInfo } from "../stores/fileStore";
 
 export default function useLoadFile() {
@@ -7,12 +8,12 @@ export default function useLoadFile() {
   const setCurrentFileContent = useFileStore(
     (state) => state.setCurrentFileContent
   );
-  const addOpenedFile = useFileStore((state) => state.addOpenedFile);
+  const addTab = useTabsStore((state) => state.addTab);
   const openSubdir = useFileStore((state) => state.openSubdir);
   const closeSubdir = useFileStore((state) => state.closeSubdir);
-  const openedFiles = useFileStore((state) => state.openedFiles);
+  const tabs = useTabsStore((state) => state.tabs);
 
-  const openFile = async (_e: any, file: FileInfo, appendFile?: boolean) => {
+  const openFile = async (_e: any, file: FileInfo) => {
     if (file.kind === "directory") {
       if (file.items.length && file.items[0].visible) {
         closeSubdir(file.path);
@@ -31,8 +32,8 @@ export default function useLoadFile() {
       setCurrentFile(rest);
       setCurrentFileContent(fileContent);
 
-      if (!openedFiles.find((openedFile) => openedFile.path === file.path)) {
-        addOpenedFile(rest);
+      if (!tabs.find((tab) => tab.path === file.path)) {
+        addTab({ ...rest, type: "file" });
       }
     }
   };

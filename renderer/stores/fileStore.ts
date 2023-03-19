@@ -22,16 +22,12 @@ interface FileState {
   currentFile: FileInfoWithoutNesting;
   currentFileContent: Uint8Array;
   files: FileInfo[];
-  openedFiles: FileInfoWithoutNesting[];
   setFiles: (files: FileInfo[]) => void;
   addFile: (file: FileInfo) => void;
   setCurrentFile: (currentFile: FileInfoWithoutNesting) => void;
-  addOpenedFile: (openedFile: FileInfoWithoutNesting) => void;
-  removeOpenedFile: (openedFile: FileInfoWithoutNesting) => void;
   clearAllFiles: () => void;
   setCurrentFileContent: (fileContent: Uint8Array) => void;
   setRootPath: (rootPath: string) => void;
-  clearOpenedFiles: () => void;
   setProjectName: (projectName: string) => void;
   openSubdir: (path: string) => void;
   closeSubdir: (path: string) => void;
@@ -59,22 +55,6 @@ const useFileStore = create<FileState>()(
     setCurrentFile: (currentFile: FileInfoWithoutNesting) => {
       set({ currentFile });
     },
-    addOpenedFile: (openedFile: FileInfoWithoutNesting) => {
-      set((state) => ({ openedFiles: state.openedFiles.concat(openedFile) }));
-    },
-    removeOpenedFile: (openedFile: FileInfoWithoutNesting) => {
-      set((state) => {
-        const updatedOpenedFiles = state.openedFiles.filter(
-          (file) => file.path !== openedFile.path
-        );
-        return {
-          openedFiles: updatedOpenedFiles,
-          currentFile: updatedOpenedFiles.length
-            ? updatedOpenedFiles.at(-1)
-            : undefined,
-        };
-      });
-    },
     clearAllFiles: () => {
       set(() => ({ files: [], visibleFiles: [] }));
     },
@@ -83,9 +63,6 @@ const useFileStore = create<FileState>()(
     },
     setRootPath: (rootPath) => {
       set(() => ({ rootPath }));
-    },
-    clearOpenedFiles: () => {
-      set(() => ({ openedFiles: [] }));
     },
     setProjectName: (projectName) => {
       set(() => ({ projectName }));

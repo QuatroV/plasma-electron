@@ -1,4 +1,5 @@
 import { ipcRenderer } from "electron";
+import useTabsStore from "./tabsStore";
 import useFileStore from "../stores/fileStore";
 
 const getLastDirFromPath = (path: string) => {
@@ -31,7 +32,7 @@ export default function useOpenDirectory(callback?: () => void) {
   const addFile = useFileStore((state) => state.addFile);
   const setRootPath = useFileStore((state) => state.setRootPath);
   const clearAllFiles = useFileStore((state) => state.clearAllFiles);
-  const clearOpenedFiles = useFileStore((state) => state.clearOpenedFiles);
+  const clearTabs = useTabsStore((state) => state.clearTabs);
   const setProjectName = useFileStore((state) => state.setProjectName);
   const setProjectAssemblyLanguage = useFileStore(
     (state) => state.setProjectAssemblyLanguage
@@ -49,7 +50,7 @@ export default function useOpenDirectory(callback?: () => void) {
     saveToRecentProjects({ name: projectName, path: rootPath });
 
     clearAllFiles();
-    clearOpenedFiles();
+    clearTabs();
 
     setRootPath(rootPath);
     setProjectName(projectName);
