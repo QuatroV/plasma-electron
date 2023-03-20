@@ -1,6 +1,7 @@
 import { BsPlusLg } from "react-icons/bs";
 import { CgRemoveR } from "react-icons/cg";
 import { StatusResult } from "simple-git";
+import Tooltip from "../../../components/Tooltip";
 import FileIcon from "./FileIcon";
 
 type Props = {
@@ -20,12 +21,14 @@ const CommitChanges = (props: Props) => {
         <>
           <div className="mb-1 flex items-center justify-between px-2 text-sm font-bold">
             <div>Staged Changes</div>
-            <CgRemoveR
-              className="cursor-pointer text-gray-700 "
-              title="Discard all staged changes"
-              size={16}
-              onClick={() => removeFilesFromStaged(["."])}
-            />
+            <Tooltip tooltip={<span>Discard all staged changes</span>}>
+              <CgRemoveR
+                className="cursor-pointer text-gray-700 "
+                title=""
+                size={16}
+                onClick={() => removeFilesFromStaged(["."])}
+              />
+            </Tooltip>
           </div>
           <div>
             {staged.map((fileName, idx) => (
@@ -59,17 +62,21 @@ const CommitChanges = (props: Props) => {
           <div className="my-1 flex justify-between px-2 text-sm font-bold">
             <div>Changes</div>
             <div className=" flex items-center gap-1">
-              <CgRemoveR
-                className="cursor-pointer text-gray-700 "
-                title="Discard all changes"
-                size={16}
-              />
-              <BsPlusLg
-                className="cursor-pointer text-gray-700 "
-                title="Add all files to commit"
-                size={12}
-                onClick={() => addFilesToStaged(["."])}
-              />
+              <Tooltip tooltip={<span>Discard all changes</span>}>
+                <CgRemoveR
+                  className="cursor-pointer text-gray-700 "
+                  size={16}
+                />
+              </Tooltip>
+              <Tooltip
+                tooltip={<span>Add all unstaged changes to commit</span>}
+              >
+                <BsPlusLg
+                  className="cursor-pointer text-gray-700 "
+                  size={12}
+                  onClick={() => addFilesToStaged(["."])}
+                />
+              </Tooltip>
             </div>
           </div>
           <div>
@@ -92,12 +99,13 @@ const CommitChanges = (props: Props) => {
                     title="Discard changes"
                     size={16}
                   />
-                  <BsPlusLg
-                    className="cursor-pointer text-gray-700 "
-                    title="Add file to commit"
-                    size={12}
-                    onClick={() => addFilesToStaged([fileName])}
-                  />
+                  <Tooltip tooltip={<span>Add file to commit</span>}>
+                    <BsPlusLg
+                      className="cursor-pointer text-gray-700 "
+                      size={12}
+                      onClick={() => addFilesToStaged([fileName])}
+                    />
+                  </Tooltip>
                 </div>
               </div>
             ))}

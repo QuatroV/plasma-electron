@@ -11,6 +11,8 @@ import clsxm from "../../../utils/clsxm";
 import ExplorerItemIcon from "./ExplorerItemIcon";
 import useContextMenuStore from "../../../stores/contextMenuStore";
 import ExplorerItem from "./ExplorerItem";
+import Tooltip from "../../../components/Tooltip";
+import ExplorerEmptySpace from "./ExplorerEmptySpace";
 
 const Explorer = () => {
   const visibleFiles = useFileStore((state) => state.files);
@@ -152,20 +154,27 @@ const Explorer = () => {
             />
           ) : (
             <>
-              <TbRefresh
-                onClick={handleRefresh}
-                className={clsxm(
-                  "cursor-pointer",
-                  refreshButtonRotate && "animate-one-roll "
-                )}
-                size={18}
-                onAnimationEnd={() => setRefreshButtonRotate(false)}
-              />
-              <AiOutlineSearch
-                className="cursor-pointer"
-                onClick={() => setSearchFormOpened(true)}
-                size={18}
-              />
+              <Tooltip
+                tooltip={<span>Update info about files in directory</span>}
+              >
+                <TbRefresh
+                  onClick={handleRefresh}
+                  className={clsxm(
+                    "cursor-pointer",
+                    refreshButtonRotate && "animate-one-roll "
+                  )}
+                  size={18}
+                  onAnimationEnd={() => setRefreshButtonRotate(false)}
+                />
+              </Tooltip>
+
+              <Tooltip tooltip={<span>Search files</span>}>
+                <AiOutlineSearch
+                  className="cursor-pointer"
+                  onClick={() => setSearchFormOpened(true)}
+                  size={18}
+                />
+              </Tooltip>
             </>
           )}
         </div>
@@ -187,7 +196,7 @@ const Explorer = () => {
         </div>
       </div>
       {showDirectory && (
-        <div className=" scrollbar relative overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
+        <div className=" relative flex h-full flex-col overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
           {renderItems(
             visibleFiles,
             setContextMenuOpen,
@@ -195,6 +204,12 @@ const Explorer = () => {
             setVariant,
             setContextData
           )}
+          <ExplorerEmptySpace
+            setContextMenuOpen={setContextMenuOpen}
+            setPoint={setPoint}
+            setVariant={setVariant}
+            setContextData={setContextData}
+          />
         </div>
       )}
       {loading && (

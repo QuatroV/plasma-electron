@@ -3,7 +3,7 @@ import { devtools } from "zustand/middleware";
 
 export type Point = { x: number; y: number };
 
-type ContextMenuVariant = "explorerDirectory" | "explorerFile";
+type ContextMenuVariant = "explorerDirectory" | "explorerFile" | "tab";
 
 interface ContextMenuState {
   isOpen: boolean;

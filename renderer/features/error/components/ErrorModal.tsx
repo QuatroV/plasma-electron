@@ -2,14 +2,11 @@ import { ipcRenderer } from "electron";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
+import { saveToClipboard } from "../../../utils/clipboard";
 
 const Modal = dynamic(() => import("../../../components/Modal"), {
   ssr: false,
 });
-
-const saveToClipboard = async (text: string) => {
-  await navigator.clipboard.writeText(text);
-};
 
 const ErrorModal = () => {
   const [open, setOpen] = useState(false);

@@ -3,6 +3,7 @@ import ContextMenuItem from "./ContextMenuItem";
 import useModalStore from "../../../stores/modalStore";
 import useRenameModalStore from "../../../stores/renameModalStore";
 import useApproveDeleteModalStore from "../../../stores/approveDeleteStore";
+import { saveToClipboard } from "../../../utils/clipboard";
 
 const ContextMenuExplorerDirectory = () => {
   const { file } = useContextMenuStore((state) => state.contextData);
@@ -54,11 +55,17 @@ const ContextMenuExplorerDirectory = () => {
     setIsDeleteApproveModalOpen(true);
   };
 
+  const handleCopyPath = async () => {
+    saveToClipboard(file.path);
+  };
+
   return (
     <>
       <h6 className="px-2 py-0.5 text-xs text-gray-500">{file.name}</h6>
       <ContextMenuItem onClick={handleCreateFile}>New File</ContextMenuItem>
       <ContextMenuItem onClick={handleCreateFolder}>New Folder</ContextMenuItem>
+      <hr className="m-1" />
+      <ContextMenuItem onClick={handleCopyPath}>Copy Path</ContextMenuItem>
       <hr className="m-1" />
       <ContextMenuItem onClick={handleRenameFolder}>
         Rename Folder

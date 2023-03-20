@@ -3,10 +3,12 @@ import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import useContextMenuStore from "../../../stores/contextMenuStore";
 import ContextMenuExplorerDirectory from "./ContextMenuExplorerDirectory";
 import ContextMenuExplorerFile from "./ContextMenuExplorerFile";
+import ContextMenuTab from "./ContextMenuTab";
 
 const ContextMenuContent = {
   explorerDirectory: <ContextMenuExplorerDirectory />,
   explorerFile: <ContextMenuExplorerFile />,
+  tab: <ContextMenuTab />,
 };
 
 const ContextMenu = () => {

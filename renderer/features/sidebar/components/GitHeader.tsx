@@ -3,6 +3,7 @@ import { CgRemote } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
 import { TbDownload, TbRefresh, TbUpload } from "react-icons/tb";
 import { StatusResult } from "simple-git";
+import Tooltip from "../../../components/Tooltip";
 
 type Props = {
   projectName: string;
@@ -36,36 +37,41 @@ const GitHeader = (props: Props) => {
                 {gitStatus.behind}
               </div>
             ) : null}
-            <TbDownload
-              size={18}
-              className="cursor-pointer"
-              title="Pull"
-              onClick={() => pull()}
-            />
+            <Tooltip tooltip={<span>Pull changes from remote</span>}>
+              <TbDownload
+                size={18}
+                className="cursor-pointer"
+                onClick={() => pull()}
+              />
+            </Tooltip>
           </div>
           <div className="flex gap-1">
             {gitStatus.ahead ? (
               <div className="flex items-center text-xs">{gitStatus.ahead}</div>
             ) : null}
-            <TbUpload
+            <Tooltip tooltip={<span>Push changes</span>}>
+              <TbUpload
+                size={18}
+                className="cursor-pointer"
+                onClick={() => push()}
+              />
+            </Tooltip>
+          </div>
+          <Tooltip tooltip={<span>Sync with remote repo</span>}>
+            <TbRefresh
               size={18}
               className="cursor-pointer"
-              title="Push"
-              onClick={() => push()}
+              onClick={() => sync()}
             />
-          </div>
-          <TbRefresh
-            size={18}
-            className="cursor-pointer"
-            title="Sync"
-            onClick={() => sync()}
-          />
-          <CgRemote
-            size={18}
-            className="cursor-pointer"
-            title="Remotes"
-            onClick={() => setRemotesOpened((prev) => !prev)}
-          />
+          </Tooltip>
+
+          <Tooltip tooltip={<span>List of remotes</span>}>
+            <CgRemote
+              size={18}
+              className="cursor-pointer"
+              onClick={() => setRemotesOpened((prev) => !prev)}
+            />
+          </Tooltip>
         </div>
       ) : (
         <IoMdClose

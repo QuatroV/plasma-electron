@@ -60,13 +60,18 @@ module.exports = {
             transform: "translate3d(-1px, 0, 0)",
           },
           
+        },
+        "scale": {
+          from: { transform: 'scale(0)'},
+          to: { transform: 'scale(1)'},
         }
       },
       animation: {
         'slow-appear': 'slow-appear 0.25s linear',
         "slow-appear-no-opacity": 'slow-appear-no-opacity 0.25s linear',
         'one-roll': 'roll .25s linear',
-        'fast-shake': 'shake .25s linear'
+        'fast-shake': 'shake .25s linear',
+        'scale': 'scale .12s linear',
       },
     },
     fontFamily: {

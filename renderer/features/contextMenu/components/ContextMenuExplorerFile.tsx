@@ -1,6 +1,7 @@
 import useApproveDeleteModalStore from "../../../stores/approveDeleteStore";
 import useContextMenuStore from "../../../stores/contextMenuStore";
 import useRenameModalStore from "../../../stores/renameModalStore";
+import { saveToClipboard } from "../../../utils/clipboard";
 import ContextMenuItem from "./ContextMenuItem";
 
 const ContextMenuExplorerFile = () => {
@@ -34,9 +35,15 @@ const ContextMenuExplorerFile = () => {
     setIsDeleteApproveModalOpen(true);
   };
 
+  const handleCopyPath = async () => {
+    saveToClipboard(file.path);
+  };
+
   return (
     <>
       <h6 className="px-2 py-0.5 text-xs text-gray-500">{file.name}</h6>
+      <ContextMenuItem onClick={handleCopyPath}>Copy Path</ContextMenuItem>
+      <hr className="m-1" />
       <ContextMenuItem onClick={handleRenameFile}>Rename File</ContextMenuItem>
       <ContextMenuItem onClick={handleDeleteFile}>Delete File</ContextMenuItem>
     </>

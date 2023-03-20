@@ -3,65 +3,75 @@
 @tailwind utilities;
 
 @layer components {
-    .draggable {
-        -webkit-app-region: drag
-    }
-    .non-draggable {
-        -webkit-app-region: none
-    }
-}
-
-@layer utilities {
-    .scrollbar::-webkit-scrollbar {
-      position: absolute;
-      width: 10px;
-      height: 20px;
-    }
-  
-    .scrollbar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-  
-    .scrollbar::-webkit-scrollbar-thumb {
-      background: #9b9b9b80;
-    }
-  
-    .scrollbar::-webkit-scrollbar-thumb:active {
-      background: #808080;
-      width: 20px;
-    }
-}
-
-@layer utilities {
-  .invert-round-active{
-    background-image:
-        radial-gradient(circle at 100% 0, rgba(255,0,0,0) 12px, rgb(255, 255, 255) 4px)
+  .draggable {
+    -webkit-app-region: drag;
+  }
+  .non-draggable {
+    -webkit-app-region: none;
   }
 }
 
-@layer base { 
-    @font-face {
-        font-family: 'Rubik';
-        src: url('../public/Mulish-VariableFont_wght.ttf') format("truetype");
-    }
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #9b9b9b80;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:active {
+    background: #808080;
+    width: 20px;
+  }
+}
+
+@layer utilities {
+  .invert-round-active {
+    background-image: radial-gradient(
+      circle at 100% 0,
+      rgba(255, 0, 0, 0) 12px,
+      rgb(255, 255, 255) 4px
+    );
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: "Rubik";
+    src: url("../public/Mulish-VariableFont_wght.ttf") format("truetype");
+  }
 }
 
 @layer utilities {
   .bg-mesh-gradient {
-    background-color:#99fffd;
-    background-image:
-    radial-gradient(at 2% 97%, hsla(195,78%,65%,1) 0px, transparent 50%),
-    radial-gradient(at 97% 94%, hsla(270,80%,63%,1) 0px, transparent 50%),
-    radial-gradient(at 91% 14%, hsla(259,75%,75%,0.63) 0px, transparent 50%),
-    radial-gradient(at 8% 7%, hsla(275,63%,49%,0.76) 0px, transparent 50%),
-    radial-gradient(at 68% 13%, hsla(8,96%,48%,0.57) 0px, transparent 50%);
+    background-color: #99fffd;
+    background-image: radial-gradient(
+        at 2% 97%,
+        hsla(195, 78%, 65%, 1) 0px,
+        transparent 50%
+      ),
+      radial-gradient(at 97% 94%, hsla(270, 80%, 63%, 1) 0px, transparent 50%),
+      radial-gradient(
+        at 91% 14%,
+        hsla(259, 75%, 75%, 0.63) 0px,
+        transparent 50%
+      ),
+      radial-gradient(at 8% 7%, hsla(275, 63%, 49%, 0.76) 0px, transparent 50%),
+      radial-gradient(at 68% 13%, hsla(8, 96%, 48%, 0.57) 0px, transparent 50%);
   }
 
   .bg-glass {
     background: rgba(243, 243, 243, 0.571);
     box-shadow: 0 8px 32px 0 rgba(122, 122, 122, 0.37);
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 }
