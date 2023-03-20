@@ -3,7 +3,7 @@ import Tippy from "@tippyjs/react/headless";
 
 const Tooltip = ({ children, tooltip, ...other }) => (
   <Tippy
-    delay={11500}
+    delay={500}
     render={(attrs) => (
       <div
         className="animate-scale rounded bg-gray-800 p-2 text-xs text-white shadow transition-all"
