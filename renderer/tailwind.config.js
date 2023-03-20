@@ -62,7 +62,7 @@ module.exports = {
           
         },
         "scale": {
-          from: { transform: 'scale(0)'},
+          from: { transform: 'scale(0.75)'},
           to: { transform: 'scale(1)'},
         }
       },
