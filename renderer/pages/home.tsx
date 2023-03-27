@@ -12,6 +12,7 @@ import ContextMenu from "../features/contextMenu/components/ContextMenu";
 import RenameFileModal from "../features/renameFileModal/components/RenameFileModal";
 import ApproveDeleteModal from "../features/approveDeleteModal/components/ApproveDeleteModal";
 import MainView from "../features/mainView/components/MainView";
+import AuthModal from "../features/auth/components/AuthModal";
 
 const TerminalContainer = dynamic(
   () => import("../features/terminal/components/TerminalContainer"),
@@ -29,6 +30,7 @@ const Home: NextPage = () => {
       <CreateFileModal />
       <ErrorModal />
       <SettingsModal />
+      <AuthModal />
       <WelcomeModal />
       <div className=" bg-gray-300">
         <MenuBar />

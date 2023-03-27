@@ -86,7 +86,7 @@ const CreateProjectContainer = () => {
             />
             x86
           </li>
-          <li
+          {/* <li
             className={`flex cursor-pointer flex-row items-center gap-2 rounded p-1 transition-all hover:bg-slate-100 active:outline active:outline-2 active:outline-emerald-400 ${
               architecture === "avr" ? " bg-white" : ""
             }
@@ -100,7 +100,7 @@ const CreateProjectContainer = () => {
               width="32"
             />
             AVR
-          </li>
+          </li> */}
         </ul>
 
         <ul
@@ -117,14 +117,6 @@ const CreateProjectContainer = () => {
                 onClick={() => setAssembly("masm")}
               >
                 MASM
-              </li>
-              <li
-                className={`flex h-[40px] cursor-pointer flex-row items-center rounded p-2 hover:underline ${
-                  assembly === "tasm" ? "font-bold" : ""
-                }`}
-                onClick={() => setAssembly("tasm")}
-              >
-                TASM
               </li>
               <li
                 className={`flex h-[40px] cursor-pointer flex-row items-center rounded p-2 hover:underline ${
