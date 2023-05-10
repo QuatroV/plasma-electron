@@ -13,6 +13,8 @@ import RenameFileModal from "../features/renameFileModal/components/RenameFileMo
 import ApproveDeleteModal from "../features/approveDeleteModal/components/ApproveDeleteModal";
 import MainView from "../features/mainView/components/MainView";
 import AuthModal from "../features/auth/components/AuthModal";
+import { useEffect } from "react";
+import { ipcRenderer } from "electron";
 
 const TerminalContainer = dynamic(
   () => import("../features/terminal/components/TerminalContainer"),
@@ -22,6 +24,12 @@ const TerminalContainer = dynamic(
 );
 
 const Home: NextPage = () => {
+  useEffect(() => {
+    ipcRenderer.on("deeplink:redirect", (evt, message) => {
+      console.log({ message });
+    });
+  }, []);
+
   return (
     <div className="select-none">
       <ContextMenu />

@@ -50,7 +50,7 @@ const CreateFileModal = () => {
 
   return (
     <Modal open={isCreateFileModalOpen} setOpen={handleCloseModal}>
-      <div className="flex flex-col gap-3 text-sm">
+      <div className="flex flex-col gap-3 font-rubik text-sm">
         <div className="flex items-center gap-2 text-base font-black">
           <div className=" h-[40px] w-fit rounded-full bg-white p-1 drop-shadow">
             {createFileType === "file" ? (

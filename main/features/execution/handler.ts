@@ -16,8 +16,6 @@ const executionHandler = ({ mainWindow, app }) => {
   ipcMain.handle("app:on-run-file", async (event, arg) => {
     const { currentFilePath } = arg;
 
-    console.log("arg ", arg);
-
     try {
       const generateObjCommand = `${NASM_EXE_LOCATION} -f win32 ${currentFilePath}`;
 

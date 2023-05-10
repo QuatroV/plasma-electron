@@ -3,9 +3,11 @@ import windowHandler from "./window";
 import fileSystemHandler from "./fileSystem";
 import executionHandler from "./execution";
 import { sendMessageToRenderer } from "../utils";
+import deeplinkingHandler from "./deeplinking";
 
 const rootHandler = ({ mainWindow, app }) => {
   try {
+    deeplinkingHandler({ mainWindow, app });
     terminalHandler({ mainWindow, app });
     windowHandler({ mainWindow, app });
     fileSystemHandler({ mainWindow, app });

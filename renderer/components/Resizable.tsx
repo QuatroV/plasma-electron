@@ -28,7 +28,10 @@ const Resizable = (props: Props): JSX.Element => {
   const [resized, setResized] = useState(false);
 
   const handleMouseMove = (e: any) => {
-    if (!resizableRef.current || resizableRef.current.style.width < minWidth)
+    if (
+      !resizableRef.current ||
+      Number(resizableRef.current.style.width) < minWidth
+    )
       return;
     resizableRef.current.style.width = dragRef.current.dragX + "px";
     dragRef.current.dragX = e.clientX;

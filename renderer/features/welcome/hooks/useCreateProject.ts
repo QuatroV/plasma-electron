@@ -39,7 +39,6 @@ const useCreateProject = (callback?: () => void) => {
   const addFile = useFileStore((state) => state.addFile);
   const setRootPath = useFileStore((state) => state.setRootPath);
   const clearAllFiles = useFileStore((state) => state.clearAllFiles);
-  const clearOpenedFiles = useFileStore((state) => state.clearOpenedFiles);
   const setProjectName = useFileStore((state) => state.setProjectName);
   const setProjectAssemblyLanguage = useFileStore(
     (state) => state.setProjectAssemblyLanguage
@@ -56,7 +55,6 @@ const useCreateProject = (callback?: () => void) => {
     saveToRecentProjects({ name: projectName, path: rootPath });
 
     clearAllFiles();
-    clearOpenedFiles();
 
     setRootPath(rootPath);
     setProjectName(projectName);
