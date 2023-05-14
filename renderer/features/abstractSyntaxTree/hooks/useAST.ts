@@ -1,5 +1,4 @@
 import { CharStream, CommonTokenStream } from "antlr4";
-import { useEffect } from "react";
 import useTabsStore from "../../../hooks/tabsStore";
 import useFileStore from "../../../stores/fileStore";
 import asmMASMLexer from "../../../utils/parsers/MASM/asmMASMLexer";

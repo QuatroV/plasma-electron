@@ -1,5 +1,6 @@
-import { ipcMain } from "electron";
 import path from "path";
+import { ipcMain } from "electron";
+
 import { ArrayOf } from "../../../types";
 import { sendMessageToRenderer } from "../../utils";
 import { buildFileTree } from "../fileSystem/utils";
@@ -23,7 +24,7 @@ const executionHandler = ({ mainWindow, app }) => {
 
       console.log(
         "File successfully created! The output is: ",
-        nasmObjGenerationOutput
+        nasmObjGenerationOutput,
       );
 
       const objectFilePath = changeExtension(currentFilePath, ".obj");
@@ -39,27 +40,27 @@ const executionHandler = ({ mainWindow, app }) => {
 
       console.log(
         "Executable successfully created! The output is: ",
-        linkingOutput
+        linkingOutput,
       );
 
       const executingOutput = await runCommandInCmd(executableFilePath);
 
       console.log(
         "Program successfully executed! The output is:",
-        executingOutput
+        executingOutput,
       );
 
       sendMessageToRenderer(
         mainWindow,
         "terminal:output-send-data",
-        executingOutput
+        executingOutput,
       );
     } catch (error) {
       console.error(`Something went wrong during running the file!`);
 
       if (error instanceof Error) {
         console.error(
-          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
         );
 
         const errorMessage = `Something went wrong during running the file! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
@@ -85,14 +86,14 @@ const executionHandler = ({ mainWindow, app }) => {
 
       console.log(
         "Object file successfully created! The output is: ",
-        linkingOutput
+        linkingOutput,
       );
     } catch (error) {
       console.error(`Something went wrong during running the file!`);
 
       if (error instanceof Error) {
         console.error(
-          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
         );
 
         const errorMessage = `Something went wrong during building the file! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
@@ -112,14 +113,14 @@ const executionHandler = ({ mainWindow, app }) => {
 
       console.log(
         "File successfully created! The output is: ",
-        nasmObjGenerationOutput
+        nasmObjGenerationOutput,
       );
     } catch (error) {
       console.error(`Something went wrong during running the file!`);
 
       if (error instanceof Error) {
         console.error(
-          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
         );
 
         const errorMessage = `Something went wrong during linking the file! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
@@ -147,7 +148,7 @@ const executionHandler = ({ mainWindow, app }) => {
 
       const buildOutput = await buildFiles(
         asmPaths as ArrayOf<"at least", 1, string>,
-        "win32"
+        "win32",
       );
 
       console.log("File successfully created! The output is: ", buildOutput);
@@ -156,7 +157,7 @@ const executionHandler = ({ mainWindow, app }) => {
 
       if (error instanceof Error) {
         console.error(
-          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
         );
 
         const errorMessage = `Something went wrong during building the file! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
@@ -184,7 +185,7 @@ const executionHandler = ({ mainWindow, app }) => {
 
       const linkOutput = await linkFiles(
         objPaths as ArrayOf<"at least", 1, string>,
-        path.join(rootPath, "_project.exe")
+        path.join(rootPath, "_project.exe"),
       );
 
       console.log("File successfully created! The output is: ", linkOutput);
@@ -193,7 +194,7 @@ const executionHandler = ({ mainWindow, app }) => {
 
       if (error instanceof Error) {
         console.error(
-          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
         );
 
         const errorMessage = `Something went wrong during linking the file! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;

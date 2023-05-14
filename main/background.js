@@ -1,8 +1,9 @@
 import { app } from "electron";
 import serve from "electron-serve";
-import { createWindow } from "./helpers";
-import rootEventsHandler from "./features";
+
 import { isProd } from "./constants";
+import rootEventsHandler from "./features";
+import { createWindow } from "./helpers";
 
 if (isProd) {
   serve({ directory: "app" });

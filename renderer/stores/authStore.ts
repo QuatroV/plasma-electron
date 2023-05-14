@@ -4,6 +4,9 @@ import { devtools } from "zustand/middleware";
 interface authState {
   isAuthModalOpen: boolean;
   setIsAuthModalOpen: (isOpen: boolean) => void;
+
+  isProfileModalOpen: boolean;
+  setIsProfileModalOpen: (isOpen: boolean) => void;
 }
 
 const useAuthStore = create<authState>()(
@@ -12,7 +15,11 @@ const useAuthStore = create<authState>()(
     setIsAuthModalOpen: (isAuthModalOpen) => {
       set({ isAuthModalOpen });
     },
-  }))
+    isProfileModalOpen: false,
+    setIsProfileModalOpen: (isProfileModalOpen) => {
+      set({ isProfileModalOpen });
+    },
+  })),
 );
 
 export default useAuthStore;

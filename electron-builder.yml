@@ -1,5 +1,5 @@
-appId: com.example.nextron
-productName: My Nextron App
+appId: com.plasma
+productName: Plasma IDE
 copyright: Copyright © 2018 Yoshihide Shiono
 directories:
   output: dist

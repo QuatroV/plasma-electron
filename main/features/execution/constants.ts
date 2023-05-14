@@ -3,7 +3,7 @@ import path from "path";
 export const EXTRA_RESOURCES_LOCATION = path.join(
   __dirname,
   "..",
-  "extraResources"
+  "extraResources",
 );
 
 export const MINGW_LOCATION = path.join(EXTRA_RESOURCES_LOCATION, "MinGW");

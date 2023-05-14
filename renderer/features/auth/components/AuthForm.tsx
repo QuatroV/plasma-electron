@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FiUser } from "react-icons/fi";
+
 import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
 
@@ -11,7 +12,7 @@ const forms = {
 const AuthForm = () => {
   const [tab, setTab] = useState<"login" | "registration">("login");
   return (
-    <div className="flex h-64 w-80 flex-col">
+    <div className="flex h-[300px] w-80 flex-col">
       <div>
         <div className="flex items-center gap-2 text-lg font-bold uppercase">
           <FiUser size={40} /> Auth

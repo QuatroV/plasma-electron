@@ -2,10 +2,9 @@ import Resizable from "../../../components/Resizable";
 import useSidebarStore from "../stores/sidebarStore";
 import DebugSidebar from "./DebugSidebar";
 import Explorer from "./Explorer";
-import Flags from "./Flags";
 import GitExplorer from "./GitExplorer";
-import Registers from "./Registers";
 import SidebarTabs from "./SidebarTabs";
+import StudySidebar from "./StudySidebar";
 
 const Sidebar = () => {
   const tab = useSidebarStore((state) => state.tab);
@@ -23,6 +22,9 @@ const Sidebar = () => {
         </div>
         <div className={tab !== "git" ? "hidden" : "h-full"}>
           <GitExplorer />
+        </div>
+        <div className={tab !== "study" ? "hidden" : "h-full"}>
+          <StudySidebar />
         </div>
         <div className={tab !== "debug" ? "hidden" : "h-full"}>
           <DebugSidebar />

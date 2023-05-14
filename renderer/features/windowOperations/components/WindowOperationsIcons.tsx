@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ipcRenderer } from "electron";
-import useModalStore from "../../../stores/modalStore";
-
 import { FiMaximize, FiMinimize, FiUser } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { MdMinimize } from "react-icons/md";
 import { VscGear } from "react-icons/vsc";
+
 import Tooltip from "../../../components/Tooltip";
 import useAuthStore from "../../../stores/authStore";
+import useModalStore from "../../../stores/modalStore";
+import AuthHeaderElement from "./AuthHeaderElement";
 
 const WindowOperationsIcons = () => {
   const setOpen = useModalStore((state) => state.setIsOpen);
@@ -25,14 +26,7 @@ const WindowOperationsIcons = () => {
   return (
     <>
       <div className="non-draggable flex items-center">
-        <Tooltip tooltip={<span>Login</span>}>
-          <div
-            onClick={() => setOpenAuthModal(true)}
-            className="mr-1 flex h-min w-10 cursor-pointer items-center justify-center rounded p-1 outline-1 transition-all hover:bg-gray-300 active:scale-105 active:outline active:outline-gray-400"
-          >
-            <FiUser size={20} />
-          </div>
-        </Tooltip>
+        <AuthHeaderElement />
         <Tooltip tooltip={<span>Settings</span>}>
           <div
             onClick={() => setOpen(true)}

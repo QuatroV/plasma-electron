@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-export type Stage = "welcome" | "createProject";
+export type Stage = "welcome" | "createProject" | "createAnswer";
 
 interface WelcomeModalState {
   isOpen: boolean;
@@ -20,7 +20,7 @@ const useWelcomeModalStore = create<WelcomeModalState>()(
     setStage: (stage) => {
       set({ stage });
     },
-  }))
+  })),
 );
 
 export default useWelcomeModalStore;

@@ -1,14 +1,14 @@
 import {
-  screen,
   BrowserWindow,
   BrowserWindowConstructorOptions,
   app,
+  screen,
 } from "electron";
 import Store from "electron-store";
 
 export default (
   windowName: string,
-  options: BrowserWindowConstructorOptions
+  options: BrowserWindowConstructorOptions,
 ): BrowserWindow => {
   const key = "window-state";
   const name = `window-state-${windowName}`;

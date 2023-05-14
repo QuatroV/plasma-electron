@@ -1,20 +1,19 @@
-import Editor, { loader, Monaco } from "@monaco-editor/react";
+import path from "path";
 import { useEffect, useRef, useState } from "react";
+import Editor, { Monaco, loader } from "@monaco-editor/react";
+
 import useKeyPress from "../../../hooks/useKeyPress";
 import useSaveFile from "../../../hooks/useSaveFile";
 import useFileStore from "../../../stores/fileStore";
-
 import isPackaged from "../../../utils/isPackaged";
 import { NASM_SYNTAX } from "../constants/nasmSyntax";
+import { uriFromPath } from "../utils";
 import { LoadingPlaceholder } from "./LoadingPlaceholder";
 import { OpenFilePlaceholder } from "./OpenFilePlaceholder";
 
-import path from "path";
-import { uriFromPath } from "../utils";
-
 const editorLocation = isPackaged()
-  ? "../../../resources/extraResources/react-monaco/vs"
-  : "../../../../../../extraResources/react-monaco/vs";
+  ? "../../../apps/ide/resources/extraResources/react-monaco/vs"
+  : "../../../../../../apps/ide/extraResources/react-monaco/vs";
 
 loader.config({
   paths: {
@@ -42,7 +41,7 @@ export default function MonacoEditorComponent() {
   const currentFile = useFileStore((state) => state.currentFile);
   const currentFileContent = useFileStore((state) => state.currentFileContent);
   const setCurrentFileContent = useFileStore(
-    (state) => state.setCurrentFileContent
+    (state) => state.setCurrentFileContent,
   );
   const [editorText, setEditorText] = useState("");
 

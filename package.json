@@ -1,6 +1,7 @@
 {
+  "type": "module",
   "private": true,
-  "name": "plasma-ide",
+  "name": "@plasma/ide",
   "description": "IDE for assembly language",
   "version": "0.1.0",
   "author": "ktm",
@@ -8,7 +9,6 @@
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
-    "postinstall": "electron-builder install-app-deps",
     "rebuild": "electron-rebuild"
   },
   "build": {
@@ -17,10 +17,16 @@
     ]
   },
   "dependencies": {
-    "@koale/useworker": "^4.0.2",
+    "@plasma/api": "^0.1.0",
+    "@plasma/auth": "^0.1.0",
+    "@plasma/db": "^0.1.0",
+    "@babel/runtime-corejs3": "^7.21.5",
     "@monaco-editor/react": "^4.4.6",
     "@tailwindcss/container-queries": "^0.1.0",
     "@tippyjs/react": "^4.2.6",
+    "@trpc/client": "^10.25.1",
+    "@trpc/next": "^10.25.1",
+    "@trpc/server": "^10.25.1",
     "@types/wicg-file-system-access": "^2020.9.5",
     "antlr4": "^4.12.0",
     "clsx": "^1.2.1",
@@ -31,6 +37,7 @@
     "monaco-editor": "^0.34.1",
     "monaco-editor-webpack-plugin": "^7.0.1",
     "next": "12.3.1",
+    "next-auth": "^4.22.1",
     "next-pwa": "^5.6.0",
     "next-transpile-modules": "^10.0.0",
     "node-pty": "^0.10.1",
@@ -39,8 +46,10 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.2.0",
+    "react-html-parser": "^2.0.2",
     "react-icons": "^4.7.1",
     "simple-git": "^3.15.1",
+    "superjson": "^1.12.3",
     "tailwind-merge": "^1.8.1",
     "xterm": "^5.0.0",
     "xterm-addon-fit": "^0.7.0",
@@ -52,7 +61,7 @@
     "@types/react": "^18.0.8",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.7",
-    "electron": "^21.0.0",
+    "electron": "21.0.0",
     "electron-builder": "^23.3.3",
     "electron-rebuild": "^3.2.9",
     "eslint": "8.26.0",

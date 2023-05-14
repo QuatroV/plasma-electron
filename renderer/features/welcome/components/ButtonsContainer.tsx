@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { BiBook } from "react-icons/bi";
+
 import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 import MainButton from "./MainButton";
 import OpenExistingProjectButton from "./OpenExistingProjectButton";
@@ -10,12 +13,14 @@ const ButtonsContainer = () => {
 
   useEffect(() => {
     setRecentProjects(
-      JSON.parse(localStorage.getItem("recentProjects") || "[]")
+      JSON.parse(localStorage.getItem("recentProjects") || "[]"),
     );
   }, []);
 
+  const { data: session } = useSession();
+
   return (
-    <div className="flex w-full animate-slow-appear flex-row gap-3">
+    <div className="animate-slow-appear flex w-full flex-row gap-3">
       <div className="w-2/3">
         <div className="mb-3">
           <div className="text-3xl font-black">Welcome to Plasma</div>
@@ -34,11 +39,14 @@ const ButtonsContainer = () => {
             title="Open existing project"
             imgSrc="/welcome/file_open_black_24dp.svg"
           />
-          {/* <MainButton
-            title="Education mode"
-            imgSrc="/welcome/school_FILL0_wght400_GRAD0_opsz48.svg"
-            onClick={() => null}
-          /> */}
+          {session && (
+            <MainButton
+              title="Create new answer"
+              onClick={() => setStage("createAnswer")}
+            >
+              <BiBook size={24} />
+            </MainButton>
+          )}
         </div>
       </div>
 
