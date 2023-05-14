@@ -1,4 +1,5 @@
 import { ipcRenderer } from "electron";
+
 import useFileStore, {
   SupportedAssemblyLanguage,
 } from "../../../stores/fileStore";
@@ -7,6 +8,7 @@ interface CreateProjectOptions {
   name: string;
   architecture: string;
   assembly: string;
+  lessonId?: string;
 }
 
 const getLastDirFromPath = (path: string) => {
@@ -17,12 +19,12 @@ const getLastDirFromPath = (path: string) => {
 
 const saveToRecentProjects = (projectInfo: { name: string; path: string }) => {
   const recentProjects = JSON.parse(
-    localStorage.getItem("recentProjects") || "[]"
+    localStorage.getItem("recentProjects") || "[]",
   );
 
   if (
     !recentProjects.find(
-      ({ path: existingPath }) => existingPath === projectInfo.path
+      ({ path: existingPath }) => existingPath === projectInfo.path,
     )
   ) {
     recentProjects.push(projectInfo);
@@ -41,13 +43,13 @@ const useCreateProject = (callback?: () => void) => {
   const clearAllFiles = useFileStore((state) => state.clearAllFiles);
   const setProjectName = useFileStore((state) => state.setProjectName);
   const setProjectAssemblyLanguage = useFileStore(
-    (state) => state.setProjectAssemblyLanguage
+    (state) => state.setProjectAssemblyLanguage,
   );
 
   const createProject = async (options: CreateProjectOptions) => {
     const { files, rootPath, originalProjectName } = await ipcRenderer.invoke(
       "app:on-create-project",
-      options
+      options,
     );
 
     const projectName = originalProjectName || getLastDirFromPath(rootPath);

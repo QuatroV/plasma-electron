@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+
 import useFileStore from "../../../stores/fileStore";
 import useWelcomeModalStore from "../../../stores/welcomeModalStore";
 import useCreateProject from "../hooks/useCreateProject";
@@ -18,6 +19,7 @@ const CreateProjectContainer = () => {
   const { createProject } = useCreateProject(() => setIsOpen(false));
 
   const handleChooseDir = () => {
+    if (!assembly) return;
     createProject({ name: userInput, architecture, assembly });
   };
 
@@ -66,7 +68,7 @@ const CreateProjectContainer = () => {
       />
 
       <div
-        className={`mb-3 flex animate-slow-appear-no-opacity flex-row gap-2 ${
+        className={`animate-slow-appear-no-opacity mb-3 flex flex-row gap-2 ${
           projectName ? "" : "pointer-events-none opacity-30"
         }`}
       >
@@ -86,21 +88,6 @@ const CreateProjectContainer = () => {
             />
             x86
           </li>
-          {/* <li
-            className={`flex cursor-pointer flex-row items-center gap-2 rounded p-1 transition-all hover:bg-slate-100 active:outline active:outline-2 active:outline-emerald-400 ${
-              architecture === "avr" ? " bg-white" : ""
-            }
-            `}
-            onClick={() => setArchitecture("avr")}
-          >
-            <Image
-              src="/welcome/avr_icon_132637.png"
-              alt="Icon"
-              height="32"
-              width="32"
-            />
-            AVR
-          </li> */}
         </ul>
 
         <ul

@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "private": true,
   "name": "@plasma/ide",
   "description": "IDE for assembly language",
@@ -9,6 +8,7 @@
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
+    "postinstall": "electron-builder install-app-deps",
     "rebuild": "electron-rebuild"
   },
   "build": {
