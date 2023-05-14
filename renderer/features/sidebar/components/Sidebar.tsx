@@ -1,4 +1,5 @@
 import Resizable from "../../../components/Resizable";
+import useLessonStore from "../../../stores/lessonStore";
 import useSidebarStore from "../stores/sidebarStore";
 import DebugSidebar from "./DebugSidebar";
 import Explorer from "./Explorer";
@@ -15,7 +16,7 @@ const Sidebar = () => {
       resizeCallback={() => dispatchEvent(new Event("resize-editor"))}
       defaultSize="w-64"
     >
-      <aside className=" flex h-[calc(100vh-40px)] min-w-[12rem] flex-col bg-gray-200 font-rubik">
+      <aside className=" font-rubik flex h-[calc(100vh-40px)] min-w-[12rem] flex-col bg-gray-200">
         <SidebarTabs />
         <div className={tab !== "files" ? "hidden" : "h-full"}>
           <Explorer />

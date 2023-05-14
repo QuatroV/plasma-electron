@@ -1,6 +1,7 @@
-import { dialog, ipcMain } from "electron";
 import fs from "fs";
 import path from "path";
+import { dialog, ipcMain } from "electron";
+
 import { buildFileTree } from "./utils";
 
 const fileSystemHandler = ({ app, mainWindow }) => {
@@ -8,6 +9,7 @@ const fileSystemHandler = ({ app, mainWindow }) => {
     const dialogReturnValue = await dialog.showOpenDialog({
       properties: ["openDirectory"],
     });
+
     const rootPath = dialogReturnValue.filePaths[0];
 
     const fileTree = buildFileTree(rootPath);
@@ -29,6 +31,7 @@ const fileSystemHandler = ({ app, mainWindow }) => {
         files: JSON.stringify(fileTree.items),
         rootPath,
         projectFileInfo: {
+          lessonId: parsedProjectInfo.lessonId,
           projectName: parsedProjectInfo.name,
           assembly: parsedProjectInfo.assembly,
         },
@@ -52,7 +55,7 @@ const fileSystemHandler = ({ app, mainWindow }) => {
     await fs.promises.writeFile(
       `${rootPath}/${options.name}.plasma.json`,
       projectFileContent,
-      "utf8"
+      "utf8",
     );
 
     const fileTree = buildFileTree(rootPath);
@@ -61,6 +64,7 @@ const fileSystemHandler = ({ app, mainWindow }) => {
       files: JSON.stringify(fileTree.items),
       rootPath,
       originalProjectName: options.name,
+      lessonId: options.lessonId,
     };
   });
 
@@ -88,7 +92,7 @@ const fileSystemHandler = ({ app, mainWindow }) => {
     await fs.promises.writeFile(
       path.join(pathStr, nameWithExtension),
       "",
-      "utf8"
+      "utf8",
     );
 
     const fileTree = buildFileTree(rootPath);

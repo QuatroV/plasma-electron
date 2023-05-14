@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import { ipcRenderer } from "electron";
 
 import useFileStore, {
   SupportedAssemblyLanguage,
 } from "../../../stores/fileStore";
+import useLessonStore from "../../../stores/lessonStore";
+import { api } from "../../../utils/api";
 
 interface CreateProjectOptions {
   name: string;
@@ -46,11 +49,28 @@ const useCreateProject = (callback?: () => void) => {
     (state) => state.setProjectAssemblyLanguage,
   );
 
+  const setLesson = useLessonStore((state) => state.setLesson);
+
+  const [fetchInfoId, setFetchInfoId] = useState<string>();
+
+  const { data } = api.lesson.show.useQuery(
+    { lessonId: fetchInfoId },
+    { enabled: !!fetchInfoId },
+  );
+
+  useEffect(() => {
+    if (data) {
+      setLesson(data.lesson);
+    }
+  }, [data]);
+
   const createProject = async (options: CreateProjectOptions) => {
-    const { files, rootPath, originalProjectName } = await ipcRenderer.invoke(
-      "app:on-create-project",
-      options,
-    );
+    const { files, rootPath, originalProjectName, lessonId } =
+      await ipcRenderer.invoke("app:on-create-project", options);
+
+    if (lessonId) {
+      setFetchInfoId(lessonId);
+    }
 
     const projectName = originalProjectName || getLastDirFromPath(rootPath);
 

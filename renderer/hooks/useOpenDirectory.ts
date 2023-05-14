@@ -1,6 +1,10 @@
+import { useEffect, useState } from "react";
 import { ipcRenderer } from "electron";
-import useTabsStore from "./tabsStore";
+
 import useFileStore from "../stores/fileStore";
+import useLessonStore from "../stores/lessonStore";
+import { api } from "../utils/api";
+import useTabsStore from "./tabsStore";
 
 const getLastDirFromPath = (path: string) => {
   var arr = path.split("\\");
@@ -10,12 +14,12 @@ const getLastDirFromPath = (path: string) => {
 
 const saveToRecentProjects = (projectInfo: { name: string; path: string }) => {
   const recentProjects = JSON.parse(
-    localStorage.getItem("recentProjects") || "[]"
+    localStorage.getItem("recentProjects") || "[]",
   );
 
   if (
     !recentProjects.find(
-      ({ path: existingPath }) => existingPath === projectInfo.path
+      ({ path: existingPath }) => existingPath === projectInfo.path,
     )
   ) {
     recentProjects.push(projectInfo);
@@ -35,8 +39,23 @@ export default function useOpenDirectory(callback?: () => void) {
   const clearTabs = useTabsStore((state) => state.clearTabs);
   const setProjectName = useFileStore((state) => state.setProjectName);
   const setProjectAssemblyLanguage = useFileStore(
-    (state) => state.setProjectAssemblyLanguage
+    (state) => state.setProjectAssemblyLanguage,
   );
+
+  const setLesson = useLessonStore((state) => state.setLesson);
+
+  const [fetchInfoId, setFetchInfoId] = useState<string>();
+
+  const { data } = api.lesson.show.useQuery(
+    { lessonId: fetchInfoId },
+    { enabled: !!fetchInfoId },
+  );
+
+  useEffect(() => {
+    if (data) {
+      setLesson(data.lesson);
+    }
+  }, [data]);
 
   const openDir = async () => {
     const {
@@ -44,6 +63,12 @@ export default function useOpenDirectory(callback?: () => void) {
       rootPath,
       projectFileInfo = {},
     } = await ipcRenderer.invoke("app:on-dir-open");
+
+    if (projectFileInfo.lessonId) {
+      setFetchInfoId(projectFileInfo.lessonId);
+    } else {
+      setLesson(undefined);
+    }
 
     const projectName = projectFileInfo.name || getLastDirFromPath(rootPath);
 
