@@ -1,3 +1,4 @@
+import { stat } from "fs";
 import { useEffect, useState } from "react";
 import { ipcRenderer } from "electron";
 
@@ -6,6 +7,7 @@ import useFileStore, {
 } from "../../../stores/fileStore";
 import useLessonStore from "../../../stores/lessonStore";
 import { api } from "../../../utils/api";
+import useSolutionStore from "../../lesson/components/lessonTasks/stores/solutionsStore";
 
 interface CreateProjectOptions {
   name: string;
@@ -50,6 +52,7 @@ const useCreateProject = (callback?: () => void) => {
   );
 
   const setLesson = useLessonStore((state) => state.setLesson);
+  const setSolutions = useSolutionStore((state) => state.setSolutions);
 
   const [fetchInfoId, setFetchInfoId] = useState<string>();
 
@@ -61,6 +64,7 @@ const useCreateProject = (callback?: () => void) => {
   useEffect(() => {
     if (data) {
       setLesson(data.lesson);
+      setSolutions(data.solutions);
     }
   }, [data]);
 

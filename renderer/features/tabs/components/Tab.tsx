@@ -4,6 +4,7 @@ import { ImTree } from "react-icons/im";
 
 import { useDrag, useDrop } from "react-dnd";
 import useContextMenuStore from "../../../stores/contextMenuStore";
+import { MdOutlinePlayLesson } from "react-icons/md";
 
 interface TabProps {
   tabInfo: Tab;
@@ -63,6 +64,7 @@ const Tab = ({ tabInfo, onClose, onClick, last, reorderTabs }: TabProps) => {
       onContextMenu={handleContextMenu}
     >
       {type === "AST" ? <ImTree /> : null}
+      {type === "lesson" ? <MdOutlinePlayLesson size={20} /> : null}
       <div
         className={`flex flex-col items-center after:h-0.5 after:rounded after:bg-cyan-500 ${
           active && "after:w-full"

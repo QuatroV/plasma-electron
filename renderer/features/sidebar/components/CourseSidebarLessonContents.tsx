@@ -28,7 +28,6 @@ const renderHeadersTree = (
   jsonElement: JsonElement,
 ): JSX.Element | undefined => {
   if (isHeaderTag(jsonElement)) {
-    console.log({ jsonElement });
     const handleHeaderClick = () => {
       document
         .querySelector(`#${jsonElement.id}`)

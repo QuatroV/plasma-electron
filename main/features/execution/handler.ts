@@ -1,5 +1,6 @@
+import fs from "fs";
 import path from "path";
-import { ipcMain } from "electron";
+import { dialog, ipcMain } from "electron";
 
 import { ArrayOf } from "../../../types";
 import { sendMessageToRenderer } from "../../utils";
@@ -205,6 +206,78 @@ const executionHandler = ({ mainWindow, app }) => {
   });
 
   ipcMain.handle("app:on-run-project", async (event, arg) => {});
+
+  ipcMain.handle("app:on-check-task", async (event, arg) => {
+    const { expectedResult } = arg;
+
+    const dialogReturnValue = await dialog.showOpenDialog({
+      properties: ["openFile"],
+    });
+
+    const currentFilePath = dialogReturnValue.filePaths[0];
+
+    try {
+      const generateObjCommand = `${NASM_EXE_LOCATION} -f win32 ${currentFilePath}`;
+
+      const nasmObjGenerationOutput = await runCommandInCmd(generateObjCommand);
+
+      console.log(
+        "File successfully created! The output is: ",
+        nasmObjGenerationOutput,
+      );
+
+      const objectFilePath = changeExtension(currentFilePath, ".obj");
+      const executableFilePath = changeExtension(currentFilePath, ".exe");
+
+      const linkCommand = `${GCC_EXE_LOCATION} ${objectFilePath} -o ${executableFilePath}`;
+
+      console.log("link command ", linkCommand);
+
+      const linkingOutput = await runCommandInCmd(linkCommand);
+
+      console.log({ linkingOutput });
+
+      console.log(
+        "Executable successfully created! The output is: ",
+        linkingOutput,
+      );
+
+      const executingOutput = await runCommandInCmd(executableFilePath);
+
+      console.log(
+        "Program successfully executed! The output is:",
+        executingOutput,
+      );
+
+      if (expectedResult === executingOutput) {
+        const fileContents = await fs.promises.readFile(currentFilePath);
+
+        return {
+          success: true,
+          output: executingOutput,
+          filePath: currentFilePath,
+          fileContents: fileContents.toString(),
+        };
+      } else {
+        return {
+          success: false,
+          output: executingOutput,
+        };
+      }
+    } catch (error) {
+      console.error(`Something went wrong during running the file!`);
+
+      if (error instanceof Error) {
+        console.error(
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
+        );
+
+        const errorMessage = `Something went wrong during running the file! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
+
+        sendMessageToRenderer(mainWindow, "main-process-error", errorMessage);
+      }
+    }
+  });
 };
 
 export default executionHandler;

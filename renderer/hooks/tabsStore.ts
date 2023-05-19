@@ -2,7 +2,7 @@ import produce, { current } from "immer";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-export type TabType = "file" | "AST";
+export type TabType = "file" | "AST" | "lesson";
 
 export type Tab = {
   id: string;
@@ -58,7 +58,7 @@ const useTabsStore = create<TabsState>()(
             tabs[secondTabIndex],
             tabs[firstTabIndex],
           ];
-        })
+        }),
       ),
     clearToTheRightTabs: (id) =>
       set(
@@ -67,12 +67,10 @@ const useTabsStore = create<TabsState>()(
 
           const tabIndex = tabs.findIndex((tab) => tab.id === id);
 
-          console.log({ tabIndex });
-
           tabs.splice(tabIndex + 1);
-        })
+        }),
       ),
-  }))
+  })),
 );
 
 export default useTabsStore;

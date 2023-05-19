@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ipcRenderer } from "electron";
 
+import useSolutionStore from "../features/lesson/components/lessonTasks/stores/solutionsStore";
 import useFileStore from "../stores/fileStore";
 import useLessonStore from "../stores/lessonStore";
 import { api } from "../utils/api";
@@ -43,6 +44,7 @@ export default function useOpenDirectory(callback?: () => void) {
   );
 
   const setLesson = useLessonStore((state) => state.setLesson);
+  const setSolutions = useSolutionStore((state) => state.setSolutions);
 
   const [fetchInfoId, setFetchInfoId] = useState<string>();
 
@@ -54,6 +56,7 @@ export default function useOpenDirectory(callback?: () => void) {
   useEffect(() => {
     if (data) {
       setLesson(data.lesson);
+      setSolutions(data.solutions);
     }
   }, [data]);
 

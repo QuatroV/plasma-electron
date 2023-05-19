@@ -1,11 +1,32 @@
+import { useEffect } from "react";
 import { TbPlugConnectedX } from "react-icons/tb";
 
+import useTabsStore from "../../../hooks/tabsStore";
 import useLessonStore from "../../../stores/lessonStore";
+import useSidebarStore from "../stores/sidebarStore";
 import CourseSidebarLessonContents from "./CourseSidebarLessonContents";
 import CourseSidebarTasksContent from "./CourseSidebarTasksContent";
 
 const StudySidebar = () => {
   const lesson = useLessonStore((state) => state.lesson);
+
+  const sidebarTab = useSidebarStore((state) => state.tab);
+  const tabs = useTabsStore((state) => state.tabs);
+
+  const addTab = useTabsStore((state) => state.addTab);
+  const setTab = useTabsStore((state) => state.setActiveTab);
+
+  useEffect(() => {
+    if (sidebarTab !== "study" || !lesson) return;
+    if (tabs.some((t) => t.type === "lesson")) {
+      setTab(tabs.find((t) => t.type === "lesson")!.id);
+      return;
+    }
+    addTab({
+      type: "lesson",
+      name: lesson.name,
+    });
+  }, [sidebarTab]);
 
   if (!lesson)
     return (
