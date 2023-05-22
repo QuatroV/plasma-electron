@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { ipcRenderer } from "electron";
-import { BsCheckCircleFill, BsQuestionCircle } from "react-icons/bs";
+import {
+  BsCheckCircleFill,
+  BsFillCheckCircleFill,
+  BsQuestionCircle,
+} from "react-icons/bs";
 import { ImSpinner9 as Spinner } from "react-icons/im";
 import { MdCancel } from "react-icons/md";
 
@@ -37,6 +41,7 @@ const LessonTask = ({ task }: Props) => {
   const [solutionFilename, setSolutionFilename] = useState<string>();
   const solutionTextRef = useRef<string>();
 
+  const forceRerender = useSolutionStore((state) => state.forceRerender);
   const solutionForTask = useSolutionStore((state) =>
     state.solutions.find((s) => s.taskId === task.id),
   );
@@ -98,8 +103,9 @@ const LessonTask = ({ task }: Props) => {
           {task.name}
         </div>
         <div className="text-sm">{task.content}</div>
-        <div className="text-sm italic">
-          Waiting for teacher to approve solution...
+        <div className="flex items-center gap-2 text-sm italic text-emerald-500">
+          <BsFillCheckCircleFill size={20} /> Your solution is approved! Your
+          score is {solutionForTask.mark}
         </div>
       </div>
     );
