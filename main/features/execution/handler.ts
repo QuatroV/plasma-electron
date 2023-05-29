@@ -3,16 +3,14 @@ import path from "path";
 import { dialog, ipcMain } from "electron";
 
 import { ArrayOf } from "../../../types";
-import { sendMessageToRenderer } from "../../utils";
-import { buildFileTree } from "../fileSystem/utils";
-import { GCC_EXE_LOCATION, NASM_EXE_LOCATION } from "./constants";
+import { GCC_EXE_LOCATION, NASM_EXE_LOCATION } from "../../constants";
 import {
-  buildFiles,
-  changeExtension,
-  getExtension,
-  linkFiles,
   runCommandInCmd,
-} from "./utils";
+  runShellCommand,
+  sendMessageToRenderer,
+} from "../../utils";
+import { buildFileTree } from "../fileSystem/utils";
+import { buildFiles, changeExtension, getExtension, linkFiles } from "./utils";
 
 const executionHandler = ({ mainWindow, app }) => {
   ipcMain.handle("app:on-run-file", async (event, arg) => {
@@ -20,6 +18,8 @@ const executionHandler = ({ mainWindow, app }) => {
 
     try {
       const generateObjCommand = `${NASM_EXE_LOCATION} -f win32 ${currentFilePath}`;
+
+      console.log("gen obj command ", generateObjCommand);
 
       const nasmObjGenerationOutput = await runCommandInCmd(generateObjCommand);
 
@@ -44,18 +44,25 @@ const executionHandler = ({ mainWindow, app }) => {
         linkingOutput,
       );
 
-      const executingOutput = await runCommandInCmd(executableFilePath);
+      // const executingOutput = await runCommandInCmd(executableFilePath);
 
-      console.log(
-        "Program successfully executed! The output is:",
-        executingOutput,
-      );
+      // console.log(
+      //   "Program successfully executed! The output is:",
+      //   executingOutput,
+      // );
 
-      sendMessageToRenderer(
-        mainWindow,
-        "terminal:output-send-data",
-        executingOutput,
-      );
+      await runShellCommand({
+        commandLine: executableFilePath,
+        options: {
+          outputCallback: async (data) =>
+            sendMessageToRenderer(
+              mainWindow,
+              "terminal:output-send-data",
+              data,
+            ),
+          hasInput: true,
+        },
+      });
     } catch (error) {
       console.error(`Something went wrong during running the file!`);
 

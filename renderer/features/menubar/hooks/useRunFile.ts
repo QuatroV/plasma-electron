@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ipcRenderer } from "electron";
+
+import useExecutionStore from "../../../stores/executionStore";
 import useFileStore from "../../../stores/fileStore";
 
 const useRunFile = () => {
@@ -7,7 +9,8 @@ const useRunFile = () => {
     useState(false);
   const [currentFileCanBeBuild, setCurrentFileCanBeBuild] = useState(false);
   const [currentFileCanBeLinked, setCurrentFileCanBeLinked] = useState(false);
-  const [isExecuting, setIsExecuting] = useState(false);
+  const isExecuting = useExecutionStore((state) => state.isExecuting);
+  const setIsExecuting = useExecutionStore((state) => state.setIsExecuting);
   const currentFile = useFileStore((state) => state.currentFile);
   const rootPath = useFileStore((state) => state.rootPath);
 

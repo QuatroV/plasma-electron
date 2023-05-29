@@ -1,6 +1,7 @@
-import { Terminal as TerminalInstance } from "xterm";
-import { ipcRenderer } from "electron";
 import { useEffect, useRef } from "react";
+import { ipcRenderer } from "electron";
+import { Terminal as TerminalInstance } from "xterm";
+
 import clsxm from "../../../utils/clsxm";
 import "xterm/css/xterm.css";
 import { FitAddon } from "xterm-addon-fit";
@@ -48,7 +49,7 @@ const Terminal = (props: Props) => {
     <div
       className={clsxm(
         "relative w-full rounded-lg bg-black p-2 transition-all",
-        collapsed ? "hidden" : ""
+        collapsed ? "hidden" : "",
       )}
     >
       <div ref={terminalRef} />
