@@ -1,14 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { dialog, ipcMain } from "electron";
+import { dialog, ipcMain, shell } from "electron";
 
 import { ArrayOf } from "../../../types";
 import { GCC_EXE_LOCATION, NASM_EXE_LOCATION } from "../../constants";
-import {
-  runCommandInCmd,
-  runShellCommand,
-  sendMessageToRenderer,
-} from "../../utils";
+import { runCommandInCmd, sendMessageToRenderer } from "../../utils";
 import { buildFileTree } from "../fileSystem/utils";
 import { buildFiles, changeExtension, getExtension, linkFiles } from "./utils";
 
@@ -51,18 +47,24 @@ const executionHandler = ({ mainWindow, app }) => {
       //   executingOutput,
       // );
 
-      await runShellCommand({
-        commandLine: executableFilePath,
-        options: {
-          outputCallback: async (data) =>
-            sendMessageToRenderer(
-              mainWindow,
-              "terminal:output-send-data",
-              data,
-            ),
-          hasInput: true,
-        },
-      });
+      // console.log({ executableFilePath });
+
+      // await execute(executableFilePath);
+
+      shell.openPath(executableFilePath);
+
+      // await runShellCommand({
+      //   commandLine: executableFilePath,
+      //   options: {
+      //     outputCallback: async (data) =>
+      //       sendMessageToRenderer(
+      //         mainWindow,
+      //         "terminal:output-send-data",
+      //         data,
+      //       ),
+      //     inputChannel: "terminal:output-fetch-data",
+      //   },
+      // });
     } catch (error) {
       console.error(`Something went wrong during running the file!`);
 

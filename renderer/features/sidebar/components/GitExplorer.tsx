@@ -1,13 +1,14 @@
-import useFileStore from "../../../stores/fileStore";
-import { FaGitAlt } from "react-icons/fa";
-import useGit from "../hooks/useGit";
 import { useState } from "react";
-import RemotesList from "./RemotesList";
+import { FaGitAlt } from "react-icons/fa";
+
+import useFileStore from "../../../stores/fileStore";
+import useGit from "../hooks/useGit";
+import useGitStore from "../stores/gitStore";
+import BranchDropdown from "./BranchDropdown";
 import CommitChanges from "./CommitChanges";
 import CommitForm from "./CommitForm";
 import GitHeader from "./GitHeader";
-import BranchDropdown from "./BranchDropdown";
-import useGitStore from "../stores/gitStore";
+import RemotesList from "./RemotesList";
 
 const GitExplorer = () => {
   const projectName = useFileStore((state) => state.projectName);
@@ -53,7 +54,7 @@ const GitExplorer = () => {
       ) : null}
       <div className="flex h-full flex-col items-center justify-center">
         {isRepo && gitStatus ? (
-          <div className="flex h-full w-full flex-col justify-start ">
+          <div className="animate-slow-appear flex h-full w-full flex-col justify-start ">
             <BranchDropdown gitStatus={gitStatus} />
             <CommitForm commit={commit} />
             <CommitChanges
@@ -63,7 +64,7 @@ const GitExplorer = () => {
             />
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-2">
+          <div className="animate-slow-appear flex flex-col items-center gap-2">
             <FaGitAlt size={100} color="rgb(107 114 128)" />
             <span className="text-gray-500">No Git repo found!</span>
             <button

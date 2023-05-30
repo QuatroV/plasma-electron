@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { dialog, ipcMain } from "electron";
 
+import { sendMessageToRenderer } from "../../utils";
 import { buildFileTree } from "./utils";
 
 const fileSystemHandler = ({ app, mainWindow }) => {
@@ -10,38 +11,54 @@ const fileSystemHandler = ({ app, mainWindow }) => {
       properties: ["openDirectory"],
     });
 
-    const rootPath = dialogReturnValue.filePaths[0];
+    try {
+      const rootPath = dialogReturnValue.filePaths[0];
 
-    const fileTree = buildFileTree(rootPath);
+      const fileTree = buildFileTree(rootPath);
 
-    const projectFile = fileTree.items.find((item) => {
-      const splittedItemName = item.name.split(".");
-      return (
-        splittedItemName.at(-1) === "json" &&
-        splittedItemName.at(-2) === "plasma"
-      );
-    });
+      const projectFile = fileTree.items.find((item) => {
+        const splittedItemName = item.name.split(".");
+        return (
+          splittedItemName.at(-1) === "json" &&
+          splittedItemName.at(-2) === "plasma"
+        );
+      });
 
-    if (projectFile) {
-      const projectFileContents = await fs.promises.readFile(projectFile.path);
+      if (projectFile) {
+        const projectFileContents = await fs.promises.readFile(
+          projectFile.path,
+        );
 
-      const parsedProjectInfo = JSON.parse(projectFileContents.toString());
+        const parsedProjectInfo = JSON.parse(projectFileContents.toString());
+
+        return {
+          files: JSON.stringify(fileTree.items),
+          rootPath,
+          projectFileInfo: {
+            lessonId: parsedProjectInfo.lessonId,
+            projectName: parsedProjectInfo.name,
+            assembly: parsedProjectInfo.assembly,
+          },
+        };
+      }
 
       return {
         files: JSON.stringify(fileTree.items),
         rootPath,
-        projectFileInfo: {
-          lessonId: parsedProjectInfo.lessonId,
-          projectName: parsedProjectInfo.name,
-          assembly: parsedProjectInfo.assembly,
-        },
       };
-    }
+    } catch (error) {
+      console.error(`Something went wrong during opening directory!`);
 
-    return {
-      files: JSON.stringify(fileTree.items),
-      rootPath,
-    };
+      if (error instanceof Error) {
+        console.error(
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
+        );
+
+        const errorMessage = `Something went wrong during opening directory! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
+
+        sendMessageToRenderer(mainWindow, "main-process-error", errorMessage);
+      }
+    }
   });
 
   ipcMain.handle("app:on-create-project", async (event, options) => {
@@ -128,6 +145,102 @@ const fileSystemHandler = ({ app, mainWindow }) => {
     const fileTree = buildFileTree(rootPath);
 
     return { files: JSON.stringify(fileTree.items) };
+  });
+
+  ipcMain.handle("app:on-check-compatibility", async (event, arg) => {
+    const { lessonArchitecture, lessonAssembler, directoryPath } = arg;
+
+    try {
+      // Read the directory
+      const files = await fs.promises.readdir(directoryPath);
+
+      // Find the file with the desired extension
+      const regex = /\.plasma\.json$/;
+      const jsonFile = files.find((file) => regex.test(file));
+
+      if (!jsonFile) {
+        console.log("No .plasma.json file found in the directory.");
+        return false;
+      }
+
+      // Read the file
+      const filePath = path.join(directoryPath, jsonFile);
+      const fileContent = await fs.promises.readFile(filePath, "utf8");
+
+      // Parse the JSON data
+      const jsonData = JSON.parse(fileContent);
+
+      // Retrieve the values of the desired fields
+      const architecture = jsonData.architecture;
+      const assembler = jsonData.assembly;
+
+      console.log("Architecture:", architecture);
+      console.log("Assembler:", assembler);
+
+      if (
+        architecture === lessonArchitecture &&
+        assembler === lessonAssembler
+      ) {
+        console.log("compatibilityCheckPassed");
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.error(`Something went wrong during comparing meta info!`);
+
+      if (error instanceof Error) {
+        console.error(
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
+        );
+
+        const errorMessage = `Something went wrong during comparing meta info! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
+
+        sendMessageToRenderer(mainWindow, "main-process-error", errorMessage);
+      }
+    }
+  });
+
+  ipcMain.handle("app:on-connect-lesson", async (event, arg) => {
+    const { lessonId, directoryPath } = arg;
+
+    try {
+      const files = await fs.promises.readdir(directoryPath);
+
+      // Find the file with the desired extension
+      const regex = /\.plasma\.json$/;
+      const jsonFile = files.find((file) => regex.test(file));
+
+      if (!jsonFile) {
+        console.log("No .plasma.json file found in the directory.");
+        throw new Error("No .plasma.json file found in the directory.");
+      }
+
+      // Read the file
+      const filePath = path.join(directoryPath, jsonFile);
+      const fileContent = await fs.promises.readFile(filePath, "utf8");
+
+      // Parse the JSON data
+      const jsonData = JSON.parse(fileContent);
+
+      const updatedJSONstring = JSON.stringify({ ...jsonData, lessonId });
+
+      await fs.promises.writeFile(filePath, updatedJSONstring, "utf8");
+
+      return { success: true };
+    } catch (error) {
+      console.error(`Something went wrong during comparing meta info!`);
+
+      if (error instanceof Error) {
+        console.error(
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
+        );
+
+        const errorMessage = `Something went wrong during comparing meta info! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
+
+        sendMessageToRenderer(mainWindow, "main-process-error", errorMessage);
+      }
+    }
   });
 };
 

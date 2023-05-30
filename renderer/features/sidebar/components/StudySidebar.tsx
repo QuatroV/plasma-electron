@@ -1,14 +1,17 @@
-import { useEffect } from "react";
-import { TbPlugConnectedX } from "react-icons/tb";
+import { useEffect, useState } from "react";
 
 import useTabsStore from "../../../hooks/tabsStore";
 import useLessonStore from "../../../stores/lessonStore";
 import useSidebarStore from "../stores/sidebarStore";
+import ConnectToLessonForm from "./ConnectToLessonForm";
 import CourseSidebarLessonContents from "./CourseSidebarLessonContents";
 import CourseSidebarTasksContent from "./CourseSidebarTasksContent";
+import NoLessonPlaceholder from "./NoLessonPlaceholder";
 
 const StudySidebar = () => {
   const lesson = useLessonStore((state) => state.lesson);
+
+  const [isConnectingWithLesson, setIsConnectingWithLesson] = useState(false);
 
   const sidebarTab = useSidebarStore((state) => state.tab);
   const tabs = useTabsStore((state) => state.tabs);
@@ -28,22 +31,17 @@ const StudySidebar = () => {
     });
   }, [sidebarTab]);
 
+  if (isConnectingWithLesson) {
+    return (
+      <ConnectToLessonForm onCreate={() => setIsConnectingWithLesson(false)} />
+    );
+  }
+
   if (!lesson)
     return (
-      <div className=" flex h-full w-full items-center justify-center">
-        <div className="flex flex-col items-center space-y-4">
-          <TbPlugConnectedX className="text-gray-500" size={100} />
-          <div className="mt-2 text-gray-500">
-            Cannot find connected lesson!
-          </div>
-          <button
-            onClick={() => null}
-            className="rounded-xl border border-gray-400 px-2 py-0.5 transition-all hover:bg-gradient-to-b hover:from-gray-400 hover:to-gray-500 hover:text-white active:scale-105 active:shadow"
-          >
-            Connect with lesson id
-          </button>
-        </div>
-      </div>
+      <NoLessonPlaceholder
+        onButtonClick={() => setIsConnectingWithLesson(true)}
+      />
     );
 
   return (

@@ -1,13 +1,17 @@
-import { useState, useRef } from "react";
-import { IoMdArrowDropdown } from "react-icons/io";
-import clsxm from "../../../utils/clsxm";
-import useRunFile from "../hooks/useRunFile";
+import { useRef, useState } from "react";
 import { ImSpinner9 } from "react-icons/im";
-import useOnClickOutside from "../../../hooks/useOnClickOutside";
+import { IoMdArrowDropdown } from "react-icons/io";
+
 import Dropdown from "../../../components/Dropdown";
+import useOnClickOutside from "../../../hooks/useOnClickOutside";
+import clsxm from "../../../utils/clsxm";
+import useDebug from "../../debug/hooks/useDebug";
+import useRunFile from "../hooks/useRunFile";
 
 const MenuRunElement = (props) => {
   const { runFile, currentFileCanBeExecuted, isExecuting } = useRunFile();
+
+  const { startDebug } = useDebug();
 
   const BuildAndRunCurrentFileOption = () => (
     <div
@@ -41,21 +45,9 @@ const MenuRunElement = (props) => {
 
   const RunProjectOption = () => <div>Run Project</div>;
 
-  const RunCurrentFileWithDebugOption = () => (
-    <div
-      onClick={() => null}
-      title={!currentFileCanBeExecuted && "Wrong type of file"}
-      className={
-        !currentFileCanBeExecuted && "cursor-not-allowed text-gray-500"
-      }
-    >
-      Run Current File With Debug
-    </div>
+  const RunFileWithDebugOption = () => (
+    <div onClick={() => startDebug()}>Run File With Debug...</div>
   );
-
-  const RunFileWithDebugOption = () => <div>Run File With Debug...</div>;
-
-  const RunProjectWithDebugOption = () => <div>Run Project With Debug</div>;
 
   const options = [
     BuildAndRunCurrentFileOption,
@@ -66,9 +58,7 @@ const MenuRunElement = (props) => {
     RunFileOption,
     RunProjectOption,
     "divider",
-    RunCurrentFileWithDebugOption,
     RunFileWithDebugOption,
-    RunProjectWithDebugOption,
   ];
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -90,8 +80,8 @@ const MenuRunElement = (props) => {
   return (
     <div
       className={clsxm(
-        `non-draggable flex items-stretch rounded-lg border  bg-white font-rubik transition-all hover:shadow-lg`,
-        shakeEffect ? "animate-fast-shake" : ""
+        `non-draggable font-rubik flex items-stretch rounded-lg  border bg-white transition-all hover:shadow-lg`,
+        shakeEffect ? "animate-fast-shake" : "",
       )}
       onAnimationEnd={() => setShakeEffect(false)}
       {...props}
@@ -100,17 +90,17 @@ const MenuRunElement = (props) => {
         onClick={handleClickRunButton}
         title={!currentFileCanBeExecuted && "Wrong type of file"}
         className={clsxm(
-          " flex h-[30px] items-center rounded-l-lg border-r py-1 px-2 ",
+          " flex h-[30px] items-center rounded-l-lg border-r px-2 py-1 ",
           currentFileCanBeExecuted
             ? "cursor-pointer active:bg-gray-300 active:shadow-inner"
-            : "cursor-not-allowed"
+            : "cursor-not-allowed",
         )}
       >
         Run
       </div>
       <div
         className={clsxm(
-          "relative flex w-full cursor-pointer items-center rounded-r-lg py-1 px-1 active:bg-gray-200 active:shadow-inner"
+          "relative flex w-full cursor-pointer items-center rounded-r-lg px-1 py-1 active:bg-gray-200 active:shadow-inner",
         )}
       >
         {isExecuting ? (

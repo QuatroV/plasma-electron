@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { exec, spawn } from "child_process";
 import { ipcMain } from "electron";
 
 export const sendMessageToRenderer = (window, channelName, data?) => {
@@ -21,7 +21,7 @@ type runShellCommandParams = {
   commandLine: string;
   options: {
     outputCallback?: (data?: string) => Promise<void>;
-    hasInput?: boolean;
+    inputChannel?: string;
     errorCallback?: (data?: string) => Promise<void>;
   };
 };
@@ -31,7 +31,7 @@ export const runShellCommand = (params: runShellCommandParams) =>
   new Promise<void>(async (resolve, reject) => {
     const {
       commandLine,
-      options: { outputCallback, hasInput, errorCallback },
+      options: { outputCallback, inputChannel, errorCallback },
     } = params;
 
     const [command, ...args] = commandLine.split(/\s+/);
@@ -39,7 +39,6 @@ export const runShellCommand = (params: runShellCommandParams) =>
 
     if (outputCallback) {
       childProcess.stdout.on("data", (data) => {
-        console.log("OUTPUT!!!");
         outputCallback(data.toString());
       });
     }
@@ -69,9 +68,9 @@ export const runShellCommand = (params: runShellCommandParams) =>
 
     childProcess.on("close", () => resolve());
 
-    if (hasInput) {
+    if (inputChannel) {
       childProcess.stdin.setEncoding("utf-8");
-      ipcMain.on("terminal:output-fetch-data", (event, args) => {
+      ipcMain.on(inputChannel, (event, args) => {
         console.log("INPUT!!!");
         const { data } = args;
         childProcess.stdin.write(data);

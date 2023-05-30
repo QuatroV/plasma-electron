@@ -1,18 +1,19 @@
-import useFileStore from "../../../stores/fileStore";
-import useLoadFile from "../../../hooks/useLoadFile";
 import { useState } from "react";
-import Spinner from "../../../components/Spinner";
-import useSearchFile from "../hooks/useSearchFile";
-import { TbRefresh } from "react-icons/tb";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
-import useRefreshDir from "../hooks/useRefreshDir";
-import clsxm from "../../../utils/clsxm";
-import ExplorerItemIcon from "./ExplorerItemIcon";
-import useContextMenuStore from "../../../stores/contextMenuStore";
-import ExplorerItem from "./ExplorerItem";
+import { TbRefresh } from "react-icons/tb";
+
+import Spinner from "../../../components/Spinner";
 import Tooltip from "../../../components/Tooltip";
+import useLoadFile from "../../../hooks/useLoadFile";
+import useContextMenuStore from "../../../stores/contextMenuStore";
+import useFileStore from "../../../stores/fileStore";
+import clsxm from "../../../utils/clsxm";
+import useRefreshDir from "../hooks/useRefreshDir";
+import useSearchFile from "../hooks/useSearchFile";
 import ExplorerEmptySpace from "./ExplorerEmptySpace";
+import ExplorerItem from "./ExplorerItem";
+import ExplorerItemIcon from "./ExplorerItemIcon";
 
 const Explorer = () => {
   const visibleFiles = useFileStore((state) => state.files);
@@ -24,7 +25,7 @@ const Explorer = () => {
     setContextMenuOpen,
     setPoint,
     setVariant,
-    setContextData
+    setContextData,
   ) => {
     const nodes = [];
     files.forEach((file, idx) => {
@@ -51,10 +52,10 @@ const Explorer = () => {
                 setContextMenuOpen,
                 setPoint,
                 setVariant,
-                setContextData
+                setContextData,
               )
             : null}
-        </>
+        </>,
       );
     });
 
@@ -66,7 +67,7 @@ const Explorer = () => {
     setContextMenuOpen,
     setPoint,
     setVariant,
-    setContextData
+    setContextData,
   ) => {
     const nodes = [];
     files.forEach((file, idx) => {
@@ -103,10 +104,10 @@ const Explorer = () => {
                 setContextMenuOpen,
                 setPoint,
                 setVariant,
-                setContextData
+                setContextData,
               )
             : null}
-        </>
+        </>,
       );
     });
 
@@ -143,9 +144,9 @@ const Explorer = () => {
 
   return (
     <>
-      <div className=" bg-gradient flex flex-row items-center justify-between bg-gray-300 py-1 px-2 text-sm font-semibold uppercase">
+      <div className=" bg-gradient flex flex-row items-center justify-between bg-gray-300 px-2 py-1 text-sm font-semibold uppercase">
         {projectName || "Explorer"}
-        <div className="flex gap-1">
+        <div className="flex gap-1 ">
           {searchFormOpened ? (
             <IoMdClose
               className="cursor-pointer"
@@ -161,7 +162,7 @@ const Explorer = () => {
                   onClick={handleRefresh}
                   className={clsxm(
                     "cursor-pointer",
-                    refreshButtonRotate && "animate-one-roll "
+                    refreshButtonRotate && "animate-one-roll ",
                   )}
                   size={18}
                   onAnimationEnd={() => setRefreshButtonRotate(false)}
@@ -182,7 +183,7 @@ const Explorer = () => {
       <div
         className={`${
           searchFormOpened ? "h-14" : "h-0"
-        } bg-gray-300 text-sm transition-all`}
+        } bg-gray-300 text-sm transition-all `}
       >
         <div className="flex flex-col gap-1 p-1">
           <input
@@ -196,13 +197,13 @@ const Explorer = () => {
         </div>
       </div>
       {showDirectory && (
-        <div className=" relative flex h-full flex-col overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
+        <div className="animate-slow-appear relative flex h-full flex-col overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
           {renderItems(
             visibleFiles,
             setContextMenuOpen,
             setPoint,
             setVariant,
-            setContextData
+            setContextData,
           )}
           <ExplorerEmptySpace
             setContextMenuOpen={setContextMenuOpen}
@@ -218,13 +219,13 @@ const Explorer = () => {
         </div>
       )}
       {showSearchResults ? (
-        <div className=" scrollbar relative overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
+        <div className="animate-slow-appear scrollbar relative overflow-y-hidden bg-gray-200 pt-1 shadow-inner hover:overflow-y-auto">
           {renderSearchResults(
             searchResults,
             setContextMenuOpen,
             setPoint,
             setVariant,
-            setContextData
+            setContextData,
           )}
         </div>
       ) : null}

@@ -18,24 +18,16 @@ const TerminalTabs = ({
         {!collapsed ? (
           <>
             <div className="flex items-center gap-2">
-              {/* <div
-            className={`cursor-pointer rounded-full pt-1 pb-1 pr-3 pl-3 transition-all hover:bg-white active:scale-105 ${
-              tab === "errors" && "bg-white shadow"
-            }`}
-            onClick={() => setTab("errors")}
-          >
-            Errors
-          </div> */}
               <div
-                className={`cursor-pointer rounded-full pt-1 pr-3 pl-3 pb-1 transition-all hover:bg-white active:scale-105 ${
+                className={`cursor-pointer rounded-full pb-1 pl-3 pr-3 pt-1 transition-all hover:bg-white active:scale-105 ${
                   tab === "terminal" && "bg-white shadow"
                 }`}
                 onClick={() => setTab("terminal")}
               >
                 Terminal
               </div>
-              <div
-                className={`relative flex cursor-pointer rounded-full pt-1 pr-3 pl-3 pb-1 transition-all hover:bg-white active:scale-105 ${
+              {/* <div
+                className={`relative flex cursor-pointer rounded-full pb-1 pl-3 pr-3 pt-1 transition-all hover:bg-white active:scale-105 ${
                   tab === "output" && "bg-white shadow"
                 }`}
                 onClick={() => setTab("output")}
@@ -44,7 +36,15 @@ const TerminalTabs = ({
                 {hasOutputNotification && (
                   <span className="animate-ping-appear ml-1">●</span>
                 )}
-              </div>{" "}
+              </div>{" "} */}
+              <div
+                className={`cursor-pointer rounded-full pb-1 pl-3 pr-3 pt-1 transition-all hover:bg-white active:scale-105 ${
+                  tab === "debug" && "bg-white shadow"
+                }`}
+                onClick={() => setTab("debug")}
+              >
+                Debug
+              </div>
             </div>
 
             <IoIosArrowDown

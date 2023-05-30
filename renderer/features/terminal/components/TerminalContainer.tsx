@@ -1,19 +1,19 @@
 import { useState } from "react";
-import Image from "next/image";
+
 import Terminal from "./Terminal";
-import TerminalOutput from "./TerminalOutput";
-import { FaTerminal } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
+import TerminalDebug from "./TerminalDebug";
 import TerminalNotifications from "./TerminalNotifications";
+import TerminalOutput from "./TerminalOutput";
 import TerminalTabs from "./TerminalTabs";
 
-type Tab = "errors" | "output" | "terminal";
+type Tab = "debug" | "output" | "terminal";
 
 const TerminalContainer = () => {
   const [tab, setTab] = useState<Tab>("terminal");
   const [collapsed, setCollapsed] = useState(false);
 
   const [hasOutputNotification, setHasOutputNotification] = useState(false);
+  const [hasDebugNotification, setHasDebugNotification] = useState(false);
 
   const tabsProps = {
     tab,
@@ -24,7 +24,7 @@ const TerminalContainer = () => {
   };
 
   return (
-    <div className="absolute bottom-2 w-full font-rubik">
+    <div className="font-rubik absolute bottom-2 w-full">
       {collapsed && hasOutputNotification ? <TerminalNotifications /> : null}
       <div
         title={collapsed ? "Terminal" : undefined}
@@ -38,10 +38,16 @@ const TerminalContainer = () => {
         <TerminalTabs {...tabsProps} />
 
         <Terminal collapsed={tab !== "terminal" || collapsed} />
-        <TerminalOutput
+        {/* <TerminalOutput
           collapsed={tab !== "output" || collapsed}
           hasOutputNotification={hasOutputNotification}
           setHasOutputNotification={setHasOutputNotification}
+        /> */}
+
+        <TerminalDebug
+          collapsed={tab !== "debug" || collapsed}
+          hasDebugNotification={hasDebugNotification}
+          setHasDebugNotification={setHasDebugNotification}
         />
       </div>
     </div>
