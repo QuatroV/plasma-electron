@@ -6,7 +6,6 @@ const useCreateListing = () => {
   const currentFile = useFileStore((state) => state.currentFile);
 
   const createListing = async (path = currentFile.path) => {
-    console.log(path);
     await ipcRenderer.invoke("app:on-create-listing", { path });
   };
 

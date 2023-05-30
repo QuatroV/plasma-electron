@@ -23,7 +23,6 @@ const MainView = () => {
   const currentTab = useTabsStore((state) =>
     state.tabs.find((tab) => tab.active),
   );
-  console.log({ currentTab }, currentTab?.type);
   return MainViewVariants[currentTab?.type];
 };
 
