@@ -44,7 +44,30 @@ const useTabsStore = create<TabsState>()(
         }),
       })),
     deleteTab: (id) =>
-      set((state) => ({ tabs: state.tabs.filter((tab) => tab.id !== id) })),
+      set(
+        produce((state) => {
+          let updatedTabs = state.tabs.filter((tab) => tab.id !== id);
+
+          console.log(
+            !updatedTabs.some((tab) => tab.active) && updatedTabs.length > 0,
+          );
+
+          // Switch active tab if the deleted tab was active
+          if (
+            !updatedTabs.some((tab) => tab.active) &&
+            updatedTabs.length > 0
+          ) {
+            state.tabs = updatedTabs.map((tab, index, arr) => {
+              return index === arr.length - 1
+                ? { ...tab, active: true }
+                : { ...tab, active: false };
+            });
+          } else {
+            console.log({ updatedTabs });
+            state.tabs = updatedTabs;
+          }
+        }),
+      ),
     clearTabs: () => set({ tabs: [] }),
     reorderTabs: (firstId, secondId) =>
       set(

@@ -77,7 +77,7 @@ const Tab = ({ tabInfo, onClose, onClick, last, reorderTabs }: TabProps) => {
       >
         <IoMdClose
           className="cursor-pointer rounded hover:bg-gray-300 active:bg-gray-400"
-          onClick={() => onClose(tabInfo)}
+          onClick={(e) => {e.stopPropagation(); onClose(tabInfo)}}
           size={20}
         />
       </div>

@@ -23,8 +23,10 @@ const Tabs = () => {
     }
   };
 
+  console.log({ tabs });
+
   return (
-    <div className="scrollbar draggable flex w-full max-w-full overflow-auto whitespace-nowrap bg-gradient-to-b from-gray-100 to-gray-200 font-rubik">
+    <div className="scrollbar draggable font-rubik flex w-full max-w-full overflow-auto whitespace-nowrap bg-gradient-to-b from-gray-100 to-gray-200">
       {tabs.map((tab, index) => (
         <Tab
           key={index}

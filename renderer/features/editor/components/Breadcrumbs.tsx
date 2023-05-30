@@ -69,7 +69,7 @@ const Breadcrumbs = () => {
 
   return (
     <div className="z-50 flex max-h-[23.2px] flex-row items-center justify-between bg-white px-2 py-1 text-xs font-semibold shadow empty:hidden">
-      {relativePath}
+      {activeTab ? relativePath : null}
     </div>
   );
 };
