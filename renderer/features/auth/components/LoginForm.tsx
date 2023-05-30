@@ -54,14 +54,14 @@ const LoginForm = () => {
             className="w-44 border border-gray-500 bg-gray-200"
           />
         </div>
-        <div className="flex items-center justify-between gap-2">
+        {/* <div className="flex items-center justify-between gap-2">
           <Link
             href={"/"}
             className=" whitespace-nowrap pt-[4px] transition-all hover:font-bold hover:underline hover:decoration-solid"
           >
             Forgot password?
           </Link>
-        </div>
+        </div> */}
       </div>
 
       <Button>Login</Button>

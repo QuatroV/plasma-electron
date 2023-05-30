@@ -28,15 +28,8 @@ const renderHeadersTree = (
   jsonElement: JsonElement,
 ): JSX.Element | undefined => {
   if (isHeaderTag(jsonElement)) {
-    const handleHeaderClick = () => {
-      document
-        .querySelector(`#${jsonElement.id}`)
-        ?.scrollIntoView({ behavior: "smooth" });
-    };
-
     return jsonElement.text ? (
       <div
-        onClick={handleHeaderClick}
         className={clsxm(
           getStylesByHeaderType(jsonElement),
           "relative flex cursor-pointer items-center gap-1 p-1 text-sm hover:bg-gray-300 active:shadow-inner",

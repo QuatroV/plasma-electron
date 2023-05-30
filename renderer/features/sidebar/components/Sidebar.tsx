@@ -1,5 +1,4 @@
 import Resizable from "../../../components/Resizable";
-import useLessonStore from "../../../stores/lessonStore";
 import useSidebarStore from "../stores/sidebarStore";
 import DebugSidebar from "./DebugSidebar";
 import Explorer from "./Explorer";
@@ -24,7 +23,11 @@ const Sidebar = () => {
         <div className={tab !== "git" ? "hidden" : "h-full"}>
           <GitExplorer />
         </div>
-        <div className={tab !== "study" ? "hidden" : "h-full"}>
+        <div
+          className={
+            tab !== "study" ? "hidden" : "scrollbar h-full overflow-y-auto"
+          }
+        >
           <StudySidebar />
         </div>
         <div className={tab !== "debug" ? "hidden" : "h-full"}>

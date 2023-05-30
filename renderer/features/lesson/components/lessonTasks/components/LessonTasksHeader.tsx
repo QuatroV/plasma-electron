@@ -1,6 +1,9 @@
+import { useMemo } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 
+import useLessonStore from "../../../../../stores/lessonStore";
 import clsxm from "../../../../../utils/clsxm";
+import useSolutionStore from "../stores/solutionsStore";
 
 type Props = {
   isOpen: boolean;
@@ -8,6 +11,22 @@ type Props = {
 };
 
 const LessonTasksHeader = ({ isOpen, setOpen }: Props) => {
+  const tasks = useLessonStore((state) => state.lesson?.tasks);
+  const solutions = useSolutionStore((state) => state.solutions);
+
+  const completedTasksCount = useMemo(() => {
+    return tasks.reduce((acc: number, task) => {
+      const correspondingSolution = solutions.find(
+        (solution) => solution.taskId === task.id,
+      );
+
+      if (correspondingSolution && correspondingSolution?.mark > 0) {
+        return acc + 1;
+      }
+      return acc;
+    }, 0);
+  }, []);
+
   return (
     <div className="bg-glass flex flex-1 items-center gap-2 rounded-xl p-2">
       <div
@@ -20,7 +39,9 @@ const LessonTasksHeader = ({ isOpen, setOpen }: Props) => {
         />
       </div>
       <h3 className="text-lg font-bold">Tasks</h3>
-      <p className="text-sm text-gray-500">1/3 completed</p>
+      <p className="text-sm text-gray-500">
+        {completedTasksCount}/{tasks.length} completed
+      </p>
     </div>
   );
 };

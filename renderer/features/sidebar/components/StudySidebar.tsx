@@ -45,7 +45,7 @@ const StudySidebar = () => {
     );
 
   return (
-    <div>
+    <div className="animate-slow-appear">
       <CourseSidebarLessonContents />
       <CourseSidebarTasksContent />
     </div>
