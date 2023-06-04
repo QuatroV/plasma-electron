@@ -12,8 +12,15 @@ export const runCommandInCmd = (commandLine: string) =>
     const output = [] as string[];
     child.stdout.on("data", (chunk) => output.push(chunk));
     child.on("close", () => resolve(output.join("").trim()));
+    child.stderr.on("data", (error) => {
+      const err = new Error(error.toString());
+
+      reject(err);
+    });
     child.on("error", (error) => {
-      reject(error);
+      const err = new Error(error.toString());
+
+      reject(err);
     });
   });
 
@@ -23,6 +30,8 @@ type runShellCommandParams = {
     outputCallback?: (data?: string) => Promise<void>;
     inputChannel?: string;
     errorCallback?: (data?: string) => Promise<void>;
+    exitCallback?: (data?: string) => Promise<void>;
+    closeCallback?: (data?: string) => Promise<void>;
   };
 };
 
@@ -31,7 +40,13 @@ export const runShellCommand = (params: runShellCommandParams) =>
   new Promise<void>(async (resolve, reject) => {
     const {
       commandLine,
-      options: { outputCallback, inputChannel, errorCallback },
+      options: {
+        outputCallback,
+        inputChannel,
+        errorCallback,
+        exitCallback,
+        closeCallback,
+      },
     } = params;
 
     const [command, ...args] = commandLine.split(/\s+/);
@@ -58,6 +73,11 @@ export const runShellCommand = (params: runShellCommandParams) =>
         if (code !== 0) {
           errorCallback(`Command failed with code ${code}`);
           reject();
+        } else {
+          if (exitCallback) {
+            exitCallback();
+          }
+          resolve();
         }
       });
     } else {
@@ -66,16 +86,17 @@ export const runShellCommand = (params: runShellCommandParams) =>
       });
     }
 
-    childProcess.on("close", () => resolve());
+    childProcess.on("close", () => {
+      if (closeCallback) {
+        closeCallback();
+      }
+      resolve();
+    });
 
     if (inputChannel) {
-      childProcess.stdin.setEncoding("utf-8");
       ipcMain.on(inputChannel, (event, args) => {
-        console.log("INPUT!!!");
         const { data } = args;
-        childProcess.stdin.write(data);
-        childProcess.stdin.end();
-        // write to stdin
+        childProcess.stdin.write(data + "\n");
       });
     }
   });

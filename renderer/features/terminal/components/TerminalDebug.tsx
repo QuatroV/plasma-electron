@@ -74,10 +74,14 @@ const TerminalDebug = (props: Props) => {
     terminal.open(debugTerminalRef.current);
     terminal.onKey(handleTerminalKey);
 
-    ipcRenderer.on("terminal:debug-send-data", (event, data) => {
-      console.log("debug-data ", data);
-      terminal.write(data);
-      terminal.writeln(""); // Print a new line
+    ipcRenderer.on("terminal:debug-send-data", (event, params) => {
+      console.log("debug-data ", params);
+
+      const { data: txt } = params;
+      const lines = txt.split(/\n/);
+
+      lines.forEach((l) => terminal.write(l + "\r\n"));
+
       setHasDebugNotification(true);
     });
 

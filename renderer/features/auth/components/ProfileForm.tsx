@@ -26,12 +26,8 @@ const ProfileForm = () => {
             <div className="text-xs text-gray-500">{session?.user.email}</div>
           </div>
         </div>
-
-        <div className="flex flex-row gap-4">
-          <div className={`text-xl transition-all`}>Info</div>
-        </div>
       </div>
-      <Button className="mt-auto" onClick={handleLogOut}>
+      <Button className="mt-2" onClick={handleLogOut}>
         Log out
       </Button>
     </div>

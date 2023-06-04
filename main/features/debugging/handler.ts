@@ -1,12 +1,17 @@
 import { dialog, ipcMain } from "electron";
 
-import { GDB_EXE_LOCATION, NASM_EXE_LOCATION } from "../../constants";
+import {
+  GDB_EXE_LOCATION,
+  NASM_EXE_LOCATION,
+  OLLY_DBG_EXE_LOCATION,
+} from "../../constants";
 import {
   runCommandInCmd,
   runShellCommand,
   sendMessageToRenderer,
 } from "../../utils";
 import { changeExtension } from "../execution/utils";
+import { getExecutablePathFromDialog } from "./utils";
 
 const debuggingHandler = ({ app, mainWindow }) => {
   ipcMain.handle("app:on-create-listing", async (event, args) => {
@@ -66,6 +71,16 @@ const debuggingHandler = ({ app, mainWindow }) => {
             });
             console.log({ data });
           },
+          exitCallback: async (data) => {
+            sendMessageToRenderer(mainWindow, "app:on-stop-debug", {
+              data,
+            });
+          },
+          closeCallback: async (data) => {
+            sendMessageToRenderer(mainWindow, "app:on-stop-debug", {
+              data,
+            });
+          },
           inputChannel: "terminal:debug-fetch-data",
         },
       });
@@ -78,6 +93,39 @@ const debuggingHandler = ({ app, mainWindow }) => {
         );
 
         const errorMessage = `Something went wrong during debugging the file! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
+
+        sendMessageToRenderer(mainWindow, "main-process-error", errorMessage);
+      }
+    }
+  });
+
+  ipcMain.on("app:on-start-ollydbg", async (event, args) => {
+    const dialogResult = await dialog.showOpenDialog({
+      title: "Select Executable File",
+      properties: ["openFile"],
+      filters: [{ name: "Executable Files", extensions: ["exe"] }],
+    });
+
+    let filePath;
+
+    if (!dialogResult.canceled && dialogResult.filePaths.length > 0) {
+      filePath = dialogResult.filePaths[0];
+    }
+
+    if (!filePath) throw new Error("No executable chosen");
+
+    try {
+      const openOllyDbgCommand = `${OLLY_DBG_EXE_LOCATION} ${filePath}`;
+      await runCommandInCmd(openOllyDbgCommand);
+    } catch (error) {
+      console.error(`Something went wrong during opening the ollydbg!`);
+
+      if (error instanceof Error) {
+        console.error(
+          `Here is the error: ${error.name}, ${error.message}, ${error.stack}`,
+        );
+
+        const errorMessage = `Something went wrong during opening the ollydbg! Here is the error: ${error.name}, ${error.message}, ${error.stack}`;
 
         sendMessageToRenderer(mainWindow, "main-process-error", errorMessage);
       }

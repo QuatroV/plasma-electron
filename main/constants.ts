@@ -17,3 +17,9 @@ export const NASM_EXE_LOCATION = path.join(MINGW_LOCATION, "bin", "nasm.exe");
 export const GCC_EXE_LOCATION = path.join(MINGW_LOCATION, "bin", "gcc.exe");
 
 export const GDB_EXE_LOCATION = path.join(MINGW_LOCATION, "bin", "gdb.exe");
+
+export const OLLY_DBG_EXE_LOCATION = path.join(
+  EXTRA_RESOURCES_LOCATION,
+  "ollydbg",
+  "OLLYDBG.exe",
+);

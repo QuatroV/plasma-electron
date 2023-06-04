@@ -37,7 +37,6 @@ export default function useLoadFile() {
       if (!tabs.find((tab) => tab.path === file.path)) {
         addTab({ ...rest, type: "file" });
       } else {
-        console.log("tab already exists");
         setActiveTab(tabs.find((tab) => tab.path === file.path).id);
       }
     }

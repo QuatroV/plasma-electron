@@ -1,6 +1,7 @@
-import { ipcRenderer } from "electron";
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { ipcRenderer } from "electron";
+
 import Button from "../../../components/Button";
 import { saveToClipboard } from "../../../utils/clipboard";
 
