@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import useTabsStore from "../../../hooks/tabsStore";
 import useLessonStore from "../../../stores/lessonStore";
+import useTabsStore from "../../../stores/tabsStore";
 import useSidebarStore from "../stores/sidebarStore";
 import ConnectToLessonForm from "./ConnectToLessonForm";
 import CourseSidebarLessonContents from "./CourseSidebarLessonContents";

@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DebugFlags renders correctly 1`] = `
+<div>
+  <div
+    className=" px-2 py-1 text-sm font-bold"
+  >
+    Flags
+  </div>
+  <div
+    className="mx-2 flex flex-col gap-2 rounded border border-gray-300 bg-gray-100 p-2 transition-all"
+  >
+    <div>
+      <div
+        className="grid grid-cols-9 rounded border border-gray-300 text-sm"
+      >
+        <div
+          className="rounded-tl bg-gray-300 flex items-center justify-center"
+        >
+          CF
+        </div>
+        <div
+          className="bg-gray-200 flex items-center justify-center"
+        >
+          PF
+        </div>
+        <div
+          className="bg-gray-300 flex items-center justify-center"
+        >
+          AF
+        </div>
+        <div
+          className="bg-gray-200 flex items-center justify-center"
+        >
+          ZF
+        </div>
+        <div
+          className="bg-gray-300 flex items-center justify-center"
+        >
+          SF
+        </div>
+        <div
+          className="bg-gray-200 flex items-center justify-center"
+        >
+          TF
+        </div>
+        <div
+          className="bg-gray-300 flex items-center justify-center"
+        >
+          IF
+        </div>
+        <div
+          className="bg-gray-200 flex items-center justify-center"
+        >
+          DF
+        </div>
+        <div
+          className="rounded-tr bg-gray-300 flex items-center justify-center"
+        >
+          OF
+        </div>
+        <div
+          className="rounded-bl bg-gray-300 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+        <div
+          className="bg-gray-200 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+        <div
+          className="bg-gray-300 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+        <div
+          className="bg-gray-200 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+        <div
+          className="bg-gray-300 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+        <div
+          className="bg-gray-200 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+        <div
+          className="bg-gray-300 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+        <div
+          className="bg-gray-200 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+        <div
+          className="rounded-br bg-gray-300 flex items-center justify-center border-t border-gray-400"
+        >
+          0
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

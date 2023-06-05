@@ -1,7 +1,7 @@
 import { ipcRenderer } from "electron";
 
 import useFileStore, { FileInfo } from "../stores/fileStore";
-import useTabsStore from "./tabsStore";
+import useTabsStore from "../stores/tabsStore";
 
 export default function useLoadFile() {
   const setCurrentFile = useFileStore((state) => state.setCurrentFile);

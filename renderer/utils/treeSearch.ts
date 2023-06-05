@@ -1,14 +1,14 @@
 export const searchTree = (element, matchingTitle, keyTitle, childrenTitle) => {
   if (element[keyTitle] === matchingTitle) {
     return element;
-  } else if (element[childrenTitle] !== null) {
+  } else if (element[childrenTitle]) {
     let result = null;
     for (let i = 0; result === null && i < element[childrenTitle].length; i++) {
       result = searchTree(
         element[childrenTitle][i],
         matchingTitle,
         keyTitle,
-        childrenTitle
+        childrenTitle,
       );
     }
     return result;
@@ -22,7 +22,7 @@ export const searchTreeForManyItems = async (
   keyTitle,
   childrenTitle,
   resArr = [],
-  nestingLevel = 0
+  nestingLevel = 0,
 ) => {
   nestingLevel++;
   if (
@@ -31,7 +31,7 @@ export const searchTreeForManyItems = async (
   ) {
     resArr.push(element);
   }
-  if (element[childrenTitle] !== null) {
+  if (element[childrenTitle]) {
     for (let i = 0; i < element[childrenTitle].length; i++) {
       await searchTreeForManyItems(
         element[childrenTitle][i],
@@ -39,7 +39,7 @@ export const searchTreeForManyItems = async (
         keyTitle,
         childrenTitle,
         resArr,
-        nestingLevel
+        nestingLevel,
       );
     }
   }

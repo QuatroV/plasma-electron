@@ -8,8 +8,9 @@
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
-    "postinstall": "electron-builder install-app-deps",
-    "rebuild": "electron-rebuild"
+    "rebuild": "electron-rebuild",
+    "test": "jest --silent=false",
+    "postinstall": "electron-builder install-app-deps"
   },
   "build": {
     "extraResources": [
@@ -17,11 +18,11 @@
     ]
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.21.5",
+    "@monaco-editor/react": "^4.4.6",
     "@plasma/api": "^0.1.0",
     "@plasma/auth": "^0.1.0",
     "@plasma/db": "^0.1.0",
-    "@babel/runtime-corejs3": "^7.21.5",
-    "@monaco-editor/react": "^4.4.6",
     "@tailwindcss/container-queries": "^0.1.0",
     "@tippyjs/react": "^4.2.6",
     "@trpc/client": "^10.25.1",
@@ -56,16 +57,24 @@
     "zustand": "^4.1.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-transform-react-jsx": "^7.22.3",
+    "@babel/preset-env": "^7.21.5",
     "@svgr/webpack": "^6.5.1",
+    "@types/jest": "^29.5.2",
     "@types/node": "^16.11.7",
     "@types/react": "^18.0.8",
     "@types/react-dom": "18.0.6",
+    "@types/react-test-renderer": "^18.0.0",
     "autoprefixer": "^10.4.7",
+    "babel-jest": "^29.5.0",
     "electron": "21.0.0",
     "electron-builder": "^23.3.3",
     "electron-rebuild": "^3.2.9",
     "eslint": "8.26.0",
     "eslint-config-next": "12.3.1",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "next": "^12.2.5",
     "nextron": "^8.2.0",
     "postcss": "^8.4.14",
@@ -73,7 +82,9 @@
     "prettier-plugin-tailwindcss": "^0.1.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
     "tailwindcss": "^3.2.0",
+    "ts-jest": "^29.1.0",
     "typescript": "^4.8.2"
   }
 }

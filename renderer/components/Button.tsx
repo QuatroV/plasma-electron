@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import clsxm from "../utils/clsxm";
 
 type Props = {
@@ -10,6 +11,7 @@ const Button = ({ className, invalid, onClick, ...other }: Props) => {
   const [shakeEffect, setShakeEffect] = useState(false);
 
   const handleClick = (e) => {
+    console.log({ onClick });
     if (onClick) {
       onClick(e);
     }
@@ -25,7 +27,7 @@ const Button = ({ className, invalid, onClick, ...other }: Props) => {
       className={clsxm(
         "float-right rounded bg-white p-2 font-medium transition-all hover:shadow-lg active:outline active:outline-emerald-400",
         shakeEffect && "animate-fast-shake",
-        className
+        className,
       )}
       {...other}
       onAnimationEnd={() => setShakeEffect(false)}

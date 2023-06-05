@@ -1,5 +1,5 @@
 import { IoMdClose } from "react-icons/io";
-import { Tab } from "../../../hooks/tabsStore";
+import { Tab } from "../../../stores/tabsStore";
 import { ImTree } from "react-icons/im";
 
 import { useDrag, useDrop } from "react-dnd";

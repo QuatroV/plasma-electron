@@ -1,0 +1,273 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DebugRegisters renders correctly 1`] = `
+<div>
+  <div
+    className="px-2 py-1 text-sm font-bold"
+  >
+    Registers
+  </div>
+  <div
+    className="px-2"
+  >
+    <table
+      className="w-full table-fixed  text-xs"
+    >
+      <thead
+        className="  text-xs uppercase text-gray-700 shadow dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th
+            className=" rounded-tl bg-gray-50 py-1 pl-4 text-start"
+          >
+            Register
+          </th>
+          <th
+            className="  flex-row items-center justify-between rounded-tr bg-gray-50 py-1 pl-4 text-start"
+          >
+            <div>
+              Hex
+            </div>
+          </th>
+          <th
+            className="  flex-row items-center justify-between rounded-tr bg-gray-50 py-1 pl-4 text-start"
+          >
+            <div>
+              Info
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className="border border-gray-300"
+      >
+        <tr
+          className="bg-gray-200 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            EAX
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-100 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            EBX
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-200 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            ECX
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-100 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            EDX
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-200 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            ESI
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-100 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            EDI
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-200 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            ESP
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-100 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            EBP
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-200 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            CS
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-100 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            SS
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-200 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            DS
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-100 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            ES
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-200 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            FS
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-100 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            GS
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+        <tr
+          className="bg-gray-200 cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300"
+        >
+          <td
+            className="pl-4"
+          >
+            EIP
+          </td>
+          <td
+            className="pl-4"
+          />
+          <td
+            className="pl-4"
+          />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

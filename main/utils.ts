@@ -1,4 +1,4 @@
-import { exec, spawn } from "child_process";
+import { spawn } from "child_process";
 import { ipcMain } from "electron";
 
 export const sendMessageToRenderer = (window, channelName, data?) => {

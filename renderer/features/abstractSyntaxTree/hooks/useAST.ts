@@ -1,6 +1,7 @@
 import { CharStream, CommonTokenStream } from "antlr4";
-import useTabsStore from "../../../hooks/tabsStore";
+
 import useFileStore from "../../../stores/fileStore";
+import useTabsStore from "../../../stores/tabsStore";
 import asmMASMLexer from "../../../utils/parsers/MASM/asmMASMLexer";
 import asmMASMParser from "../../../utils/parsers/MASM/asmMASMParser";
 import { treeToJSON } from "../../../utils/parsers/treeToJSON";

@@ -47,6 +47,7 @@ const DebugRegisters = () => {
               const registerValue = registers[register.toLowerCase()];
               return (
                 <tr
+                  key={idx}
                   className={clsxm(
                     idx % 2 === 0 ? "bg-gray-200" : "bg-gray-100",
                     "cursor-pointer border-b border-solid border-gray-300 transition-all hover:bg-gray-300",

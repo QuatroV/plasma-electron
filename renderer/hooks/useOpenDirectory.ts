@@ -4,8 +4,8 @@ import { ipcRenderer } from "electron";
 import useSolutionStore from "../features/lesson/components/lessonTasks/stores/solutionsStore";
 import useFileStore from "../stores/fileStore";
 import useLessonStore from "../stores/lessonStore";
+import useTabsStore from "../stores/tabsStore";
 import { api } from "../utils/api";
-import useTabsStore from "./tabsStore";
 
 const getLastDirFromPath = (path: string) => {
   var arr = path.split("\\");

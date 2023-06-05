@@ -1,7 +1,6 @@
 import fs from "fs";
-import path from "path";
 
-type Item = {
+export type Item = {
   path: string;
   name: string;
   items: Item[];
@@ -16,14 +15,14 @@ export default class FileTree {
   nestingLevel: number;
   kind: "directory" | "file";
 
-  constructor(path, name = null) {
+  constructor(path: string, name: string | undefined = undefined) {
     this.path = path;
-    this.name = name;
+    this.name = name || "";
     this.items = [];
     this.nestingLevel = 0;
 
     const extensionRegExp = /(?:\.([^.]+))?$/;
-    const extension = extensionRegExp.exec(name)[1];
+    const extension = extensionRegExp.exec(name || "")[1];
 
     this.kind = extension === undefined ? "directory" : "file";
   }
@@ -54,7 +53,7 @@ export default class FileTree {
   private recursiveGetFilesByCondition(
     fileArray: Item[],
     conditionCallback: (file: Item) => boolean,
-    foundFiles: Item[]
+    foundFiles: Item[],
   ) {
     fileArray.forEach((file) => {
       const conditionResult = conditionCallback(file);
@@ -67,7 +66,7 @@ export default class FileTree {
         this.recursiveGetFilesByCondition(
           file.items,
           conditionCallback,
-          foundFiles
+          foundFiles,
         );
       }
     });
@@ -79,7 +78,7 @@ export default class FileTree {
     this.recursiveGetFilesByCondition(
       this.items,
       conditionCallback,
-      foundFiles
+      foundFiles,
     );
 
     return foundFiles;

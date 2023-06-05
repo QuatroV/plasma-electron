@@ -25,6 +25,8 @@ const DebugControls = () => {
   const clearBreakpoints = useDebugStore((state) => state.clearBreakpoints);
   const breakpoints = useDebugStore((state) => state.breakpoints);
 
+  console.log({ useState });
+
   const [breakpointNameAdd, setBreakpointNameAdd] = useState("");
   const [breakpointNameRemove, setBreakpointNameRemove] = useState("");
   const [breakpointListCollapsed, setBreakpointListCollapsed] = useState(true);
@@ -46,12 +48,8 @@ const DebugControls = () => {
     runDbgCmd("info registers", (arg) => {
       const transformedResp = transformRegistersResponse(arg.data);
 
-      console.log({ transformedResp });
-
       setRegisters(transformedResp.registers);
       setFlags(transformedResp.flags);
-
-      console.log({ transformedResp });
     });
   };
 

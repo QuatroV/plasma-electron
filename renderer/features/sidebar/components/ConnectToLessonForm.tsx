@@ -6,9 +6,9 @@ import { TbPlugConnected } from "react-icons/tb";
 import z from "zod";
 
 import Button from "../../../components/Button";
-import useTabsStore from "../../../hooks/tabsStore";
 import useFileStore from "../../../stores/fileStore";
 import useLessonStore from "../../../stores/lessonStore";
+import useTabsStore from "../../../stores/tabsStore";
 import { api } from "../../../utils/api";
 import clsxm from "../../../utils/clsxm";
 import useSolutionStore from "../../lesson/components/lessonTasks/stores/solutionsStore";

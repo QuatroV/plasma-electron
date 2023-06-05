@@ -1,7 +1,7 @@
-import useTabsStore from "../../../hooks/tabsStore";
 import useApproveDeleteModalStore from "../../../stores/approveDeleteStore";
 import useContextMenuStore from "../../../stores/contextMenuStore";
 import useRenameModalStore from "../../../stores/renameModalStore";
+import useTabsStore from "../../../stores/tabsStore";
 import { saveToClipboard } from "../../../utils/clipboard";
 import ContextMenuItem from "./ContextMenuItem";
 
@@ -9,7 +9,7 @@ const ContextMenuTab = () => {
   const { tab } = useContextMenuStore((state) => state.contextData);
   const clearTabs = useTabsStore((state) => state.clearTabs);
   const clearToTheRightTabs = useTabsStore(
-    (state) => state.clearToTheRightTabs
+    (state) => state.clearToTheRightTabs,
   );
 
   const handleCopyPath = async () => {

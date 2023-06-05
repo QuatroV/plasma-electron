@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WindowName renders correctly 1`] = `
+<div
+  className="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap font-rubik"
+>
+  <div>
+     
+     - Plasma
+  </div>
+</div>
+`;

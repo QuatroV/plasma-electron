@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuElement renders correctly 1`] = `
+<div
+  className="flex flex-col justify-center"
+>
+  <div
+    className="h-full"
+    onClick={[Function]}
+  >
+    <div
+      className="non-draggable cursor-pointer py-1 px-2 font-rubik outline-1 transition-all hover:bg-white active:scale-105 active:outline active:outline-emerald-400 rounded-lg"
+    >
+      test
+    </div>
+  </div>
+</div>
+`;

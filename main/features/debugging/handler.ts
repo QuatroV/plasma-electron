@@ -11,7 +11,6 @@ import {
   sendMessageToRenderer,
 } from "../../utils";
 import { changeExtension } from "../execution/utils";
-import { getExecutablePathFromDialog } from "./utils";
 
 const debuggingHandler = ({ app, mainWindow }) => {
   ipcMain.handle("app:on-create-listing", async (event, args) => {

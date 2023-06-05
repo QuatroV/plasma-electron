@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner renders correctly 1`] = `
+[
+  <div
+    className=""
+  >
+    Child
+  </div>,
+  <div
+    className="animate-scale rounded bg-gray-800 p-2 text-xs text-white shadow transition-all"
+    tabIndex={-1}
+  >
+    tooltip
+  </div>,
+]
+`;

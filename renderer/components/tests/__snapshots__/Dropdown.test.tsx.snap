@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown renders correctly 1`] = `
+<div
+  className="flex flex-col justify-center"
+>
+  <div
+    className="h-full"
+  >
+    Child
+  </div>
+  <div
+    className="absolute top-3/4 z-10 flex flex-col gap-1 rounded-b rounded-tr bg-white p-1 font-rubik shadow-lg"
+  />
+</div>
+`;

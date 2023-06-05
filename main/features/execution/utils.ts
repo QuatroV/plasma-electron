@@ -6,7 +6,7 @@ import { runCommandInCmd } from "../../utils";
 
 export const changeExtension = (file: string, extension?: string) => {
   const basename = path.basename(file, path.extname(file));
-  return path.join(path.dirname(file), basename + extension);
+  return path.join(path.dirname(file), basename + (extension || ""));
 };
 
 export const getExtension = (path) => path.split(".").pop();

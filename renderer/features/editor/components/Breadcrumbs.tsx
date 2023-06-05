@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { TbRefresh } from "react-icons/tb";
 
 import Tooltip from "../../../components/Tooltip";
-import useTabsStore from "../../../hooks/tabsStore";
 import useFileStore from "../../../stores/fileStore";
 import useLessonStore from "../../../stores/lessonStore";
+import useTabsStore from "../../../stores/tabsStore";
 import { api } from "../../../utils/api";
 import clsxm from "../../../utils/clsxm";
 import useSolutionStore from "../../lesson/components/lessonTasks/stores/solutionsStore";

@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 
-import useTabsStore from "../../../hooks/tabsStore";
+import useTabsStore from "../../../stores/tabsStore";
 import ASTMainView from "../../abstractSyntaxTree/components/ASTMainView";
 import { OpenFilePlaceholder } from "../../editor/components/OpenFilePlaceholder";
 import LessonMainView from "../../lesson/components/LessonMainView";

@@ -1,6 +1,6 @@
-import useTabsStore, { Tab as TabType } from "../../../hooks/tabsStore";
 import useLoadFile from "../../../hooks/useLoadFile";
 import useFileStore from "../../../stores/fileStore";
+import useTabsStore, { Tab as TabType } from "../../../stores/tabsStore";
 import Tab from "./Tab";
 
 const Tabs = () => {

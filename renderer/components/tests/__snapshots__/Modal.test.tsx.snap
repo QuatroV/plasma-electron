@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal renders correctly 1`] = `
+<div
+  className=" fixed top-0 z-20 flex h-screen w-screen items-center justify-center bg-black bg-opacity-60  font-rubik backdrop-blur-sm backdrop-filter transition-all visible opacity-100"
+  onClick={[Function]}
+>
+  <div
+    className=" rounded-xl bg-gray-200 bg-opacity-80 p-4 shadow backdrop-blur"
+    onClick={[Function]}
+  >
+    Child
+  </div>
+</div>
+`;
