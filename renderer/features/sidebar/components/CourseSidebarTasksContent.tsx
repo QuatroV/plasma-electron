@@ -52,7 +52,9 @@ const CourseSidebarTasksContent = () => {
       <div className="my-1 ml-1 text-xs italic text-gray-500">
         {completedTasksCount === tasks.length
           ? "Lesson completed"
-          : `Lesson not completed (${completedTasksCount}/${tasks.length})`}
+          : `Lesson not completed (${completedTasksCount || 0}/${
+              tasks.length
+            })`}
       </div>
     </div>
   );

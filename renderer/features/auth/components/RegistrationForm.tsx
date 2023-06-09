@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { signIn } from "next-auth/react";
 
 import Button from "../../../components/Button";
+import Dropdown from "../../../components/Dropdown";
 import Input from "../../../components/Input";
 import clsxm from "../../../utils/clsxm";
 
 const RegistrationForm = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -18,6 +20,7 @@ const RegistrationForm = () => {
     const response = await signIn("credentials", {
       redirect: false,
       name: name,
+      surname: surname,
       email: email,
       password: password,
       isNewUser: true,
@@ -34,6 +37,33 @@ const RegistrationForm = () => {
     }
   };
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const [role, setRole] = useState<"STUDENT" | "ADMIN" | "TEACHER">("STUDENT");
+
+  const setStudentOption = () => (
+    <div
+      onClick={() => {
+        setRole("STUDENT");
+        setDropdownOpen(false);
+      }}
+    >
+      Student
+    </div>
+  );
+
+  const setTeacherOption = () => (
+    <div
+      onClick={() => {
+        setRole("TEACHER");
+        setDropdownOpen(false);
+      }}
+    >
+      Teacher
+    </div>
+  );
+
   return (
     <form
       className="relative flex flex-1 flex-col justify-between"
@@ -46,6 +76,15 @@ const RegistrationForm = () => {
             type="name"
             value={name}
             onChange={(e: any) => setName(e.target.value)}
+            className="w-44 border border-gray-500 bg-gray-200"
+          />
+        </div>
+        <div className="flex items-center justify-between gap-2">
+          <label className=" whitespace-nowrap">Surname:</label>
+          <Input
+            type="name"
+            value={surname}
+            onChange={(e: any) => setSurname(e.target.value)}
             className="w-44 border border-gray-500 bg-gray-200"
           />
         </div>
@@ -76,6 +115,20 @@ const RegistrationForm = () => {
             onBlur={comparePasswords}
             className="w-44 border border-gray-500 bg-gray-200"
           />
+        </div>
+        <div className="flex items-center justify-between gap-2">
+          <label className=" whitespace-nowrap">Role</label>
+          <Dropdown
+            ref={dropdownRef}
+            options={[setStudentOption, setTeacherOption]}
+            dropdownOpen={dropdownOpen}
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            dropdownStyles="rounded mt-2 w-44 border"
+          >
+            <div className="w-44 cursor-pointer rounded border border-gray-500 bg-gray-200 p-1">
+              {role.toLowerCase()}
+            </div>
+          </Dropdown>
         </div>
       </div>
 

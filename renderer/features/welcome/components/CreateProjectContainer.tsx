@@ -97,14 +97,14 @@ const CreateProjectContainer = () => {
         >
           {architecture === "x86" ? (
             <>
-              <li
+              {/* <li
                 className={`flex h-[40px] cursor-pointer flex-row items-center rounded p-2 hover:underline ${
                   assembly === "masm" ? "font-bold" : ""
                 }`}
                 onClick={() => setAssembly("masm")}
               >
                 MASM
-              </li>
+              </li> */}
               <li
                 className={`flex h-[40px] cursor-pointer flex-row items-center rounded p-2 hover:underline ${
                   assembly === "nasm" ? "font-bold" : ""
